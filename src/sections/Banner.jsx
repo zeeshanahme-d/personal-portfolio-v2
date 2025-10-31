@@ -26,7 +26,6 @@ const Banner = () => {
             <div className="buttonContainer">
               <Link to={'/#work'} className="link">
                 <img
-                  loading='lazy'
                   src={'/images/rounded-text.png'}
                   width={140}
                   height={140}
