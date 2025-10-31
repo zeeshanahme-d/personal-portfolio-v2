@@ -213,13 +213,4 @@ a {
     --color-dark-gray: #515151;
     --color-light-gray: #6B6B6B;
     --color-border-gray: #DBDBDB;
-
-    --text-base: 16px;
-    --leading-tight: 1.3;
-
-    --breakpoint-sm: 40rem;
-    --breakpoint-md: 48rem;
-    --breakpoint-lg: 64rem;
-    --breakpoint-xl: 80rem;
-    --breakpoint-2xl: 96rem;
 }
