@@ -3,9 +3,11 @@ import { Link, useLocation } from 'react-router-dom';
 import {
     HiUser,
     HiViewColumns,
-    HiRectangleGroup,
     HiEnvelope,
 } from 'react-icons/hi2';
+import { MdOutlineFileDownload } from "react-icons/md";
+import { Spin as Hamburger } from 'hamburger-react'
+
 
 
 const navData = [
@@ -73,11 +75,11 @@ const Header = () => {
             <div className="container my-0 mx-auto">
                 <div className="flex justify-between flex-row items-center gap-2 py-2">
                     <Link to="/" className=''>
-                        <h1 className='text-4xl font-medium tracking-wider font-Lobster  letter-spacing-0-05em'>
+                        <h1 className='text-2xl md:text-4xl font-medium tracking-wider font-Lobster  letter-spacing-0-05em'>
                             Zeeshan <span className="text-primary">Ahmed</span>
                         </h1>
                     </Link>
-                    <nav className='navBar'>
+                    <nav className='navBar hidden lg:block'>
                         <div className='flex items-center gap-x-1'>
                             {navData.map((link, index) => {
                                 return (
@@ -91,11 +93,14 @@ const Header = () => {
                             })}
                         </div>
                     </nav>
+                    <div className=" block md:hidden">
+                        <Hamburger rounded size={24} />
+                    </div>
                     <button
-                        className={`bg-primary cursor-pointer h-11 rounded-lg px-3 text-base resume-download-btn`}
+                        className={`bg-primary hidden md:flex items-center justify-center gap-2 cursor-pointer h-6 md:h-8 rounded-md text-sm px-2 md:px-3 md:text-base resume-download-btn`}
                         onClick={handleResumeDownload}
                     >
-                        Download Resume
+                        <MdOutlineFileDownload size={20} /> Resume
                     </button>
                 </div>
             </div>

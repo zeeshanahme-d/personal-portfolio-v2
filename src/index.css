@@ -14,13 +14,13 @@
     --font-Sora: 'Sora', sans-serif;
     --font-Lobster: "Lobster", sans-serif;
 
-    --color-bg: #19132f;
+    --color-bg: #0f0f0f;
     --color-primary: #F13024;
     --color-white: rgb(255, 255, 255);
     --color-black: #070039;
 
     --color-dark-gray: #515151;
-    --color-light-gray: #6B6B6B;
+    --color-light-gray: #DBDBDB;
     --color-border-gray: #DBDBDB;
 
     --base-font-size: 16px;
@@ -38,6 +38,7 @@ body {
     font-family: var(--font-Sora);
     background-color: var(--color-bg);
     overflow-x: hidden;
+    scroll-behavior: smooth;
     color: var(--color-white);
     line-height: var(--base-line-height);
     font-size: var(--base-font-size);
@@ -53,7 +54,7 @@ body {
 .container {
     width: 100%;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 1rem;
     max-width: 1440px;
 }
 
@@ -166,11 +167,6 @@ a {
     }
 }
 
-.resume-download-btn {
-    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
-    position: relative;
-}
-
 .resume-download-btn:hover {
     filter: brightness(1.15);
     box-shadow: 0 2px 8px 0 rgba(241, 48, 36, 0.25);
@@ -179,11 +175,6 @@ a {
 .resume-download-btn:active {
     filter: brightness(0.92);
     box-shadow: 0 1px 4px 0 rgba(241, 48, 36, 0.17);
-}
-
-.resume-download-btn.loading {
-    cursor: wait;
-    opacity: 0.7;
 }
 
 .flex-centered {
@@ -200,6 +191,18 @@ a {
     transform: translate(-50%, -50%);
 }
 
+@media (width >=48rem) {
+    .container {
+        padding: 0 1.5rem;
+    }
+}
+
+@media (width >=64rem) {
+    .container {
+        padding: 0 2rem;
+    }
+}
+
 
 @theme {
     --font-Sora: 'Sora', sans-serif;
@@ -213,4 +216,10 @@ a {
     --color-dark-gray: #515151;
     --color-light-gray: #6B6B6B;
     --color-border-gray: #DBDBDB;
+
+    --breakpoint-sm: 40rem;
+    --breakpoint-md: 48rem;
+    --breakpoint-lg: 64rem;
+    --breakpoint-xl: 80rem;
+    --breakpoint-2xl: 96rem;
 }

@@ -6,12 +6,12 @@ function TabSwitcher({ selectedTab, onSelectTab, tabs }) {
             {tabs.map((tab, index) => (
                 <div key={index} className='flex-1 relative'>
                     <button
-                        className={`cursor-pointer h-12 w-72 bg-transparent border-none gap-3 px-3 transition font-medium text-lg relative justify-center ${selectedTab === index ? 'text-primary' : 'text-gray-400'}`}
+                        className={`cursor-pointer h-10 md:w-72 bg-transparent border-none gap-3 px-0 md:px-3 transition font-medium text-lg relative justify-center ${selectedTab === index ? 'text-primary' : 'text-gray-400'}`}
                         onClick={() => onSelectTab(index)}
                     >
                         {tab.label}
                     </button>
-                    <div className={`absolute h-[6px] ${selectedTab === index ? 'bg-primary rounded-full w-full bottom-[-3.5px]' : ''}`} />
+                    <div className={`absolute h-0.5 md:h-1.5 ${selectedTab === index ? 'bg-primary rounded-full w-full bottom-0 md:-bottom-[3.5px]' : ''}`} />
                 </div>
             ))}
         </div>
