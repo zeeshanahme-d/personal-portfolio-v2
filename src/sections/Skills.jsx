@@ -26,7 +26,8 @@ import {
     SiShadcnui,
     SiFigma,
     SiVercel,
-    SiNetlify
+    SiNetlify,
+    SiNestjs
 } from "react-icons/si";
 import MaterialUiIcon from "../assets/material-ui-icon.svg?react";
 import TypescriptIcon from "../assets/typescript-icon.svg?react";
@@ -37,17 +38,12 @@ const aboutData = [
         title: "skills",
         info: [
             {
-                title: "Languages",
+                title: "FrontEnd Development",
                 icons: [
                     { name: "Html", icon: < FaHtml5 /> },
                     { name: "Css", icon: < FaCss3 /> },
                     { name: "Javascript", icon: < FaJs /> },
                     { name: "Typescript", icon: < TypescriptIcon /> },
-                ],
-            },
-            {
-                title: "Libraries & Frameworks",
-                icons: [
                     { name: "React", icon: < FaReact /> },
                     { name: "Next.js", icon: < SiNextdotjs /> },
                     { name: "Redux / Toolkit", icon: < SiRedux /> },
@@ -57,20 +53,26 @@ const aboutData = [
                     { name: "Ant Design", icon: < SiAntdesign /> },
                     { name: "Material UI", icon: < MaterialUiIcon /> },
                     { name: "Shadcn UI", icon: < SiShadcnui /> },
-                    { name: "Node.js", icon: < FaNodeJs /> },
-                    { name: "Express.js", icon: < SiExpress /> },
                 ],
             },
             {
-                title: "Tools",
+                title: "Backend Development",
+                icons: [
+                    { name: "Node.js", icon: < FaNodeJs /> },
+                    { name: "Express.js", icon: < SiExpress /> },
+                    { name: "NestJS", icon: < SiNestjs /> },
+                    { name: "Firebase", icon: < SiFirebase /> },
+                    { name: "Mongodb", icon: < SiMongodb /> },
+                ],
+            },
+            {
+                title: "Other Tools",
                 icons: [
                     { name: "Git", icon: < FaGitAlt /> },
                     { name: "Github", icon: < FaGithub /> },
                     { name: "AWS", icon: < FaAws /> },
                     { name: "Vercel", icon: < SiVercel /> },
                     { name: "Netlify", icon: < SiNetlify /> },
-                    { name: "Firebase", icon: < SiFirebase /> },
-                    { name: "Mongodb", icon: < SiMongodb /> },
                     { name: "Figma", icon: < SiFigma /> },
                 ],
             },
@@ -156,9 +158,9 @@ const Skills = () => {
     const currentSection = aboutData.find((section) => section.title === currentKey);
 
     return (
-        <div id="skills" className="pb-28 text-center xl:text-left relative">
+        <div id="skills" className="md:pb-20 text-center xl:text-left relative">
 
-            <div className="container mx-auto grid grid-cols-1 xl:grid-cols-2 gap-x-10 gap-y-10 items-start">
+            <div className="container mx-auto grid grid-cols-1 xl:grid-cols-2 gap-x-10 md:gap-y-10 gap-y-5 items-start">
                 <div className="xl:col-span-2">
                     <TabSwitcher selectedTab={selectedTab} onSelectTab={handleSelectTab} tabs={tabs} />
                 </div>
@@ -168,13 +170,13 @@ const Skills = () => {
                     {currentKey === "skills" && (
                         <div className="flex flex-col gap-8">
                             {currentSection?.info?.map((group, gIdx) => (
-                                <div key={gIdx} className="text-left">
+                                <div key={gIdx} className="text-center lg:text-left">
                                     <h4 className="font-semibold mb-4">{group.title}</h4>
-                                    <div className="flex flex-wrap gap-x-4 gap-y-3 justify-center xl:justify-start">
+                                    <div className="flex flex-wrap gap-x-4 gap-y-3 justify-center lg:justify-start">
                                         {group.icons.map((item, idx) => (
-                                            <div key={idx} className="flex items-center gap-2 rounded-lg px-4 py-[10px] backdrop-blur-xl contrast-[0.9]">
-                                                <span className="text-2xl text-primary">{item.icon}</span>
-                                                <span className="text-sm">{item.name}</span>
+                                            <div key={idx} className="flex items-center gap-2 rounded-md px-4 py-[10px] backdrop-blur-xl contrast-[0.9]">
+                                                <span className="text-xl md:text-2xl text-primary">{item.icon}</span>
+                                                <span className="text-sm md:text-base">{item.name}</span>
                                             </div>
                                         ))}
                                     </div>
@@ -187,8 +189,8 @@ const Skills = () => {
                         <ul className="space-y-5">
                             {currentSection?.info?.map((item, idx) => (
                                 <li key={idx} className="flex flex-col gap-4">
-                                    <div className="flex gap-4 rounded-lg p-6 backdrop-blur-xl contrast-[0.9]">
-                                        <div className="w-20 h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center bg-white/10">
+                                    <div className="flex gap-4 rounded-md p-6 backdrop-blur-xl contrast-[0.9]">
+                                        <div className="w-20 h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center bg-white/5">
                                             <img src={item.logo} alt="logo" className="w-8 h-8 object-contain" loading="lazy" />
                                         </div>
                                         <div className="flex flex-col gap-y-5">
@@ -220,13 +222,13 @@ const Skills = () => {
                         <ul className="flex justify-between gap-x-4 items-stretch">
                             {currentSection?.info?.map((item, idx) => (
                                 <li key={idx}>
-                                    <div className="rounded-xl h-full space-y-5 flex flex-col items-center overflow-hidden backdrop-blur-xl contrast-[0.9] p-6">
+                                    <div className="rounded-md h-full space-y-5 flex flex-col items-center overflow-hidden backdrop-blur-xl contrast-[0.9] p-6">
                                         {/* header band */}
                                         <div className="flex-centered px-6">
                                             <p className="text-lg font-semibold">{item.company}</p>
                                         </div>
 
-                                        <div className="w-24 h-24 shadow-2xl bg-[#2c224a] p-2 rounded-full backdrop-blur-xl flex items-center justify-center">
+                                        <div className="w-24 h-24 shadow-2xl bg-white/5 p-2 rounded-full backdrop-blur-xl flex items-center justify-center">
                                             {item.logo}
                                         </div>
 
