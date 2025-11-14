@@ -38,7 +38,7 @@ const aboutData = [
         title: "skills",
         info: [
             {
-                title: "FrontEnd Development",
+                title: "Frontend Development",
                 icons: [
                     { name: "Html", icon: < FaHtml5 /> },
                     { name: "Css", icon: < FaCss3 /> },
@@ -130,7 +130,7 @@ const aboutData = [
                 university: "Saylani Mass IT Training (SMIT)",
                 degree: "MERN Stack Web and App Development Certification",
                 duration: "Dec 2022 – Dec 2023",
-                logo: "/images/vercel.svg",
+                logo: "/images/globe.svg",
                 highlights: [
                     "Completed a professional MERN Stack training program focused on React, Node.js, and modern web technologies.",
                     "Developed multiple full-stack projects using JavaScript, TypeScript, and RESTful APIs.",
@@ -142,8 +142,8 @@ const aboutData = [
 ];
 
 const tabs = [
-    { label: "Skills", key: "skills" },
-    { label: "Experience", key: "experience" },
+    { label: "Skills", key: "skills", },
+    { label: "Experience", key: "experience", className: "flex-2 md:flex-1" },
     { label: "Education", key: "education" },
 ];
 
@@ -158,15 +158,15 @@ const Skills = () => {
     const currentSection = aboutData.find((section) => section.title === currentKey);
 
     return (
-        <div id="skills" className="md:pb-20 text-center xl:text-left relative">
+        <div id="skills" className="pb-20 text-center xl:text-left relative">
 
-            <div className="container mx-auto grid grid-cols-1 xl:grid-cols-2 gap-x-10 md:gap-y-10 gap-y-5 items-start">
-                <div className="xl:col-span-2">
+            <div className="container mx-auto gap-x-10 md:gap-y-10 gap-y-5 items-start">
+                <div className="w-full">
                     <TabSwitcher selectedTab={selectedTab} onSelectTab={handleSelectTab} tabs={tabs} />
                 </div>
 
                 {/* content */}
-                <div className="xl:col-span-2 mt-6">
+                <div className="mt-16">
                     {currentKey === "skills" && (
                         <div className="flex flex-col gap-8">
                             {currentSection?.info?.map((group, gIdx) => (
@@ -186,20 +186,20 @@ const Skills = () => {
                     )}
 
                     {currentKey === "education" && (
-                        <ul className="space-y-5">
+                        <div className="space-y-5">
                             {currentSection?.info?.map((item, idx) => (
-                                <li key={idx} className="flex flex-col gap-4">
-                                    <div className="flex gap-4 rounded-md p-6 backdrop-blur-xl contrast-[0.9]">
-                                        <div className="w-20 h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center bg-white/5">
+                                <div key={idx} className="flex flex-col gap-4">
+                                    <div className="flex md:flex-row flex-col gap-4 rounded-md p-4 md:p-5 backdrop-blur-xl contrast-[0.9]">
+                                        <div className="w-full md:w-20 h-16 md:h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center bg-white/5">
                                             <img src={item.logo} alt="logo" className="w-8 h-8 object-contain" loading="lazy" />
                                         </div>
                                         <div className="flex flex-col gap-y-5">
-                                            <div className="flex-1">
+                                            <div className="flex-1 text-start">
                                                 <p className="text-base font-semibold">{item.university}</p>
                                                 <p className="text-sm mt-1">{item.degree}</p>
                                                 <p className="text-xs opacity-70 mt-1">{item.duration}</p>
                                             </div>
-                                            <div className="flex-1">
+                                            <div className="flex-1 text-start">
                                                 <ul className="ml-4 list-disc space-y-1 text-sm opacity-80">
                                                     {item.highlights.map((h, i) => (
                                                         <li key={i}>{h}</li>
@@ -213,19 +213,19 @@ const Skills = () => {
                                     {idx !== (currentSection.info?.length || 0) - 1 && (
                                         <hr className="opacity-20" />
                                     )}
-                                </li>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     )}
 
                     {currentKey === "experience" && (
-                        <ul className="flex justify-between gap-x-4 items-stretch">
+                        <div className="flex justify-between flex-col md:flex-row gap-5 items-stretch">
                             {currentSection?.info?.map((item, idx) => (
-                                <li key={idx}>
-                                    <div className="rounded-md h-full space-y-5 flex flex-col items-center overflow-hidden backdrop-blur-xl contrast-[0.9] p-6">
+                                <div key={idx}>
+                                    <div className="rounded-md h-full space-y-5 flex flex-col items-center overflow-hidden backdrop-blur-xl contrast-[0.9] p-4 md:p-5">
                                         {/* header band */}
                                         <div className="flex-centered px-6">
-                                            <p className="text-lg font-semibold">{item.company}</p>
+                                            <p className="text-base md:text-lg font-semibold">{item.company}</p>
                                         </div>
 
                                         <div className="w-24 h-24 shadow-2xl bg-white/5 p-2 rounded-full backdrop-blur-xl flex items-center justify-center">
@@ -234,16 +234,16 @@ const Skills = () => {
 
                                         {/* body */}
                                         <div className="text-center">
-                                            <h4 className="text-xl font-semibold">{item.role}</h4>
+                                            <h4 className="text-lg md:text-xl font-semibold">{item.role}</h4>
                                             <p className="mt-2 text-sm opacity-80">{item.duration}</p>
                                             {item.summary && (
-                                                <p className="mt-5 text-sm opacity-80 max-w-4xl mx-auto">{item.summary}</p>
+                                                <p className="mt-5 text-sm opacity-80 w-full md:max-w-4xl mx-auto">{item.summary}</p>
                                             )}
                                         </div>
                                     </div>
-                                </li>
+                                </div>
                             ))}
-                        </ul>
+                        </div>
                     )}
                 </div>
             </div>

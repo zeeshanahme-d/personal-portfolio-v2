@@ -6,7 +6,7 @@ const Contact = () => {
     return (
         <div id="contact" className="py-12 md:py-20">
             <div className="container mx-auto ">
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-10 lg:mb-20">
+                <div className="flex flex-col justify-center items-center gap-y-4 mb-10 md:mb-20">
                     <h2 className="text-4xl xsm:text-5xl md:text-6xl font-semibold">
                         Contact
                     </h2>
