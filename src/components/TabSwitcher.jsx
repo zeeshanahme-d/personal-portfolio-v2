@@ -4,9 +4,9 @@ function TabSwitcher({ selectedTab, onSelectTab, tabs }) {
     return (
         <div className='flex justify-between items-center relative text-center'>
             {tabs.map((tab, index) => (
-                <div key={index} className='flex-1 relative'>
+                <div key={index} className='w-full relative'>
                     <button
-                        className={`cursor-pointer h-10 md:w-72 bg-transparent border-none gap-3 px-0 md:px-3 transition font-medium text-lg relative justify-center ${selectedTab === index ? 'text-primary' : 'text-gray-400'}`}
+                        className={`cursor-pointer h-10 md:w-72 bg-transparent border-none gap-3 px-0 md:px-3 transition font-medium text-lg relative justify-center ${selectedTab === index ? 'text-primary' : 'text-gray-400'} ${tab?.className}`}
                         onClick={() => onSelectTab(index)}
                     >
                         {tab.label}
