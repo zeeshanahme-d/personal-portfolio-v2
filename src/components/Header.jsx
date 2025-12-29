@@ -7,18 +7,21 @@ import {
 } from 'react-icons/hi2';
 import { MdOutlineFileDownload } from "react-icons/md";
 import { Spin as Hamburger } from 'hamburger-react'
+import { smoothScroll } from '../lib/ScrollToElement';
+import { fadeIn } from "../utils/motion";
+import ScrollReveal from './ScrollReveal';
 
 
 
 const navData = [
-    { name: 'About', path: '/about', icon: <HiUser /> },
-    { name: 'Skills', path: '/about', icon: <HiUser /> },
-    { name: 'Experiance', path: '/about', icon: <HiUser /> },
-    { name: 'Education', path: '/about', icon: <HiUser /> },
-    { name: 'Projects', path: '/work', icon: <HiViewColumns /> },
+    { name: 'About', path: 'about', icon: <HiUser /> },
+    { name: 'Skills', path: 'skills', icon: <HiUser /> },
+    { name: 'Experience', path: 'experience', icon: <HiUser /> },
+    { name: 'Education', path: 'education', icon: <HiUser /> },
+    { name: 'Projects', path: 'projects', icon: <HiViewColumns /> },
     {
         name: 'Contact',
-        path: '/contact',
+        path: 'contact',
         icon: <HiEnvelope />,
     },
 ];
@@ -47,30 +50,17 @@ const Header = () => {
         }
     };
 
-    console.log(menuOpen)
-
     useEffect(() => {
         window.addEventListener("scroll", scrollNavbar);
         return () => { window.removeEventListener("scroll", scrollNavbar); }
     }, [lastScrollY]);
 
-    const handleResumeDownload = async () => {
-        try {
-            const url = '/resume/Zeeshan_Ahmed_Resume.pdf';
-            const response = await fetch(url);
-            const blob = await response.blob();
-            const downloadUrl = window.URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = downloadUrl;
-            link.download = 'Zeeshan Ahmed Resume.pdf';
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            window.URL.revokeObjectURL(downloadUrl);
-        } catch (error) {
-            alert('Error downloading the resume.');
-        } finally {
-        }
+    const handleResumeDownload = () => {
+        const link = document.createElement('a');
+        link.href = '/resume/Zeeshan_Ahmed_Resume.pdf';
+        link.download = 'Zeeshan_Ahmed_Resume.pdf';
+        link.click();
+        window.open("/resume/Zeeshan_Ahmed_Resume.pdf", "_blank");
     };
 
     return (
@@ -78,21 +68,21 @@ const Header = () => {
             <div className='flex items-center w-full h-full'>
                 <div className="container my-0 mx-auto">
                     <div className="flex justify-between flex-row items-center gap-2 py-2">
-                        <Link to="/" className=''>
-                            <h1 className='text-3xl md:text-4xl font-medium tracking-wider font-Lobster  letter-spacing-0-05em'>
+                        <ScrollReveal variants={fadeIn("down", "spring", 0.2, 1)}>
+                            <h1 className="text-3xl md:text-4xl font-medium tracking-wider font-Lobster">
                                 Zeeshan <span className="text-primary">Ahmed</span>
                             </h1>
-                        </Link>
+                        </ScrollReveal>
                         <nav className='navBar hidden lg:block'>
                             <div className='flex items-center gap-x-1'>
                                 {navData.map((link, index) => {
                                     return (
-                                        <Link
-                                            to={link.path}
+                                        <button
+                                            onClick={() => smoothScroll(link.path)}
                                             key={index}
                                             className="nav-link">
-                                            <div>{link.name}</div>
-                                        </Link>
+                                            {link.name}
+                                        </button>
                                     )
                                 })}
                             </div>
@@ -102,7 +92,7 @@ const Header = () => {
                                 <Hamburger rounded size={30} duration={0.4} easing="ease-in-out" toggled={menuOpen} toggle={setMenuOpen} />
                             </div>
                             <button
-                                className={`bg-primary hidden md:flex items-center justify-center gap-2 cursor-pointer h-6 md:h-8 rounded-md text-sm px-2 md:px-3 md:text-base resume-download-btn`}
+                                className={`bg-primary hidden md:flex hover:bg-primary-hover transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 items-center justify-center gap-2 cursor-pointer h-10 rounded-lg px-4 text-base my-5`}
                                 onClick={handleResumeDownload}
                             >
                                 <MdOutlineFileDownload size={20} /> Resume
@@ -116,16 +106,16 @@ const Header = () => {
                     <div className='flex flex-col items-start gap-x-1 px-6 py-2'>
                         {navData.map((link, index) => {
                             return (
-                                <Link
-                                    to={link.path}
+                                <button
+                                    onClick={() => smoothScroll(link.path)}
                                     key={index}
                                     className="nav-link my-1.5 text-xl! px-0!">
-                                    <div>{link.name}</div>
-                                </Link>
+                                    {link.name}
+                                </button>
                             )
                         })}
                         <button
-                            className={`bg-primary flex md:hidden items-center justify-center gap-2 cursor-pointer h-10 rounded-md  px-4 text-base resume-download-btn my-5`}
+                            className={`bg-primary w-full hover:bg-primary-hover transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 flex md:hidden items-center justify-center gap-2 cursor-pointer h-10 rounded-lg  px-4 text-base my-5`}
                             onClick={handleResumeDownload}
                         >
                             <MdOutlineFileDownload size={24} /> Resume

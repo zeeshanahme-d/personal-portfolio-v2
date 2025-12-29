@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./style//custom-scroll-bar.css";
 
 @keyframes spin-slow {
     0% {
@@ -16,11 +17,12 @@
 
     --color-bg: #0f0f0f;
     --color-primary: #F13024;
+    --color-primary-hover: #A04836;
     --color-white: rgb(255, 255, 255);
     --color-black: #070039;
 
     --color-dark-gray: #515151;
-    --color-light-gray: #DBDBDB;
+    --color-light-gray: #f5f5f5;
     --color-border-gray: #DBDBDB;
 
     --base-font-size: 16px;
@@ -150,22 +152,7 @@ a {
     }
 }
 
-.social-container {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    font-size: 1.2rem;
-
-    a {
-        color: inherit;
-        text-decoration: none;
-        transition: all 0.3s ease;
-
-        &:hover {
-            color: var(--color-black);
-        }
-    }
-}
+;
 
 .resume-download-btn:hover {
     filter: brightness(1.15);
@@ -205,21 +192,22 @@ a {
 
 
 @theme {
-    --font-Sora: 'Sora', sans-serif;
-    --font-Lobster: "Lobster", sans-serif;
+    --font-Sora: var(--font-Sora);
+    --font-Lobster: var(--font-Lobster);
 
     --color-bg: #19132f;
-    --color-primary: #F13024;
-    --color-white: rgb(255, 255, 255);
-    --color-black: #070039;
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-white: var(--color-white);
+    --color-black: var(--color-black);
 
-    --color-dark-gray: #515151;
-    --color-light-gray: #6B6B6B;
-    --color-border-gray: #DBDBDB;
+    --color-dark-gray: var(--color-dark-gray);
+    --color-light-gray: var(--color-light-gray);
+    --color-border-gray: var(--color-border-gray);
 
     --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
-    --breakpoint-2xl: 96rem;
+    --breakpoint-2xl: 90rem;
 }

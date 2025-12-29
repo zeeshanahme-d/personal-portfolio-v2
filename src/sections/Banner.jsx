@@ -1,8 +1,7 @@
+import { smoothScroll } from "../lib/ScrollToElement"
 //icons
 import { HiArrowRight } from "react-icons/hi2";
 
-//components
-import { Link } from "react-router-dom";
 
 const Banner = () => {
 
@@ -23,7 +22,7 @@ const Banner = () => {
           {/* button */}
           <div className="flex justify-center mt-12 md:mt-10 md:justify-start">
             <div className="buttonContainer">
-              <Link to={'/#work'} className="link">
+              <button role="button" onClick={() => smoothScroll("projects")} className="link cursor-pointer">
                 <img
                   src={'/images/rounded-text.png'}
                   width={140}
@@ -32,11 +31,12 @@ const Banner = () => {
                   className="image"
                 />
                 <HiArrowRight className="arrow-icon" />
-              </Link>
+              </button>
             </div>
           </div>
         </div>
-        <div className="absolute left-1/2 bottom-0 md:bottom-16" style={{ transform: 'translate(-50%, -50%)' }}>
+        <div
+          className="absolute left-1/2 bottom-0 md:bottom-16" style={{ transform: 'translate(-50%, -50%)' }}>
           <img src="/images/scroll-down.gif" className="w-16 h-16 object-contain" />
         </div>
       </div>

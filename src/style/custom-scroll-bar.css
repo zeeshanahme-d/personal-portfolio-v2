@@ -1,0 +1,23 @@
+::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.25rem;
+  display: none;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 100vh;
+  background: #FDE9E5;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #DC6648;
+  border-radius: 100vh;
+  border: 0.2rem solid #DC6648;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #FAD3C8;
+}
