@@ -1,29 +1,29 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
     HiUser,
     HiViewColumns,
     HiEnvelope,
+    HiCodeBracket,
+    HiBriefcase,
+    HiAcademicCap,
 } from 'react-icons/hi2';
 import { MdOutlineFileDownload } from "react-icons/md";
 import { Spin as Hamburger } from 'hamburger-react'
 import { smoothScroll } from '../lib/ScrollToElement';
 import { fadeIn } from "../utils/motion";
 import ScrollReveal from './ScrollReveal';
+import { AnimatePresence, motion } from 'framer-motion';
 
 
 
 const navData = [
     { name: 'About', path: 'about', icon: <HiUser /> },
-    { name: 'Skills', path: 'skills', icon: <HiUser /> },
-    { name: 'Experience', path: 'experience', icon: <HiUser /> },
-    { name: 'Education', path: 'education', icon: <HiUser /> },
+    { name: 'Skills', path: 'skills', icon: <HiCodeBracket /> },
+    { name: 'Experience', path: 'experience', icon: <HiBriefcase /> },
+    { name: 'Education', path: 'education', icon: <HiAcademicCap /> },
     { name: 'Projects', path: 'projects', icon: <HiViewColumns /> },
-    {
-        name: 'Contact',
-        path: 'contact',
-        icon: <HiEnvelope />,
-    },
+    { name: 'Contact', path: 'contact', icon: <HiEnvelope /> },
 ];
 
 const Header = () => {
@@ -64,66 +64,110 @@ const Header = () => {
     };
 
     return (
-        <header className={`w-full fixed z-50 transition-all duration-500 translate-y-0 h-20 p-0 ${show === "hide" ? "translate-y-[-80px]" : show === "show" || menuOpen ? "bg-[#1a1a1a]" : ""}`}>
-            <div className='flex items-center w-full h-full'>
-                <div className="container my-0 mx-auto">
-                    <div className="flex justify-between flex-row items-center gap-2 py-2">
-                        <ScrollReveal variants={fadeIn("down", "spring", 0.2, 1)}>
-                            <h1 className="text-3xl md:text-4xl font-medium tracking-wider font-Lobster">
-                                Zeeshan <span className="text-primary">Ahmed</span>
-                            </h1>
-                        </ScrollReveal>
-                        <nav className='navBar hidden lg:block'>
-                            <div className='flex items-center gap-x-1'>
-                                {navData.map((link, index) => {
-                                    return (
-                                        <button
-                                            onClick={() => smoothScroll(link.path)}
-                                            key={index}
-                                            className="nav-link">
-                                            {link.name}
-                                        </button>
-                                    )
-                                })}
+        <motion.header
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', stiffness: 80, delay: 0.3 }}
+            className={`w-full fixed z-50 transition-all duration-500 h-20 ${show === 'hide' ? '-translate-y-full' : 'translate-y-0'
+                } ${show === 'show' || menuOpen ? 'bg-background/95 backdrop-blur-md' : ''}`}
+        >
+            <div className="flex items-center w-full h-full">
+                <div className="container">
+                    <div className="flex justify-between items-center gap-2 py-2">
+                        {/* Logo */}
+                        <motion.h1
+                            initial={{ opacity: 0, y: -20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.6, duration: 0.4 }}
+                            className="text-3xl md:text-4xl font-medium tracking-wider font-family-lobster cursor-pointer"
+                            onClick={() => smoothScroll('home')}
+                        >
+                            Zeeshan <span className="text-primary">Ahmed</span>
+                        </motion.h1>
+
+                        {/* Desktop Navigation */}
+                        <nav className="hidden lg:block">
+                            <div className="flex items-center gap-x-1">
+                                {navData.map((link, index) => (
+                                    <motion.button
+                                        key={link.path}
+                                        initial={{ opacity: 0, y: -20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: 0.6 + index * 0.1, duration: 0.5 }}
+                                        onClick={() => smoothScroll(link.path)}
+                                        className="nav-link"
+                                    >
+                                        {link.name}
+                                    </motion.button>
+                                ))}
                             </div>
                         </nav>
-                        <div className='flex items-center gap-x-2'>
-                            <div className="block lg:hidden">
-                                <Hamburger rounded size={30} duration={0.4} easing="ease-in-out" toggled={menuOpen} toggle={setMenuOpen} />
-                            </div>
-                            <button
-                                className={`bg-primary hidden md:flex hover:bg-primary-hover transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 items-center justify-center gap-2 cursor-pointer h-10 rounded-lg px-4 text-base my-5`}
+
+                        {/* Actions */}
+                        <div className="flex items-center gap-x-3">
+
+                            {/* Resume Button */}
+                            <motion.button
+                                initial={{ opacity: 0, y: -20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.7, duration: 0.4 }}
+                                className="bg-primary hidden md:flex hover:bg-primary/80 transition-all duration-300 items-center justify-center gap-2 cursor-pointer h-10 rounded-lg px-4 text-sm font-medium"
                                 onClick={handleResumeDownload}
                             >
                                 <MdOutlineFileDownload size={20} /> Resume
+                            </motion.button>
+                            {/* Mobile Menu Toggle */}
+                            <button
+                                className="block lg:hidden p-2 text-2xl"
+                                onClick={() => setMenuOpen(!menuOpen)}
+                            >
+                                <div className="block lg:hidden">
+                                    <Hamburger rounded size={30} duration={0.4} easing="ease-in-out" toggled={menuOpen} toggle={setMenuOpen} />
+                                </div>
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
-            <div className='relative'>
-                <div className={`absolute transition-all duration-500 w-full  ${menuOpen ? "bg-[#1a1a1a] top-0 z-10 outline-pink-100" : "-top-92 opacity-0 pointer-events-none"}`}>
-                    <div className='flex flex-col items-start gap-x-1 px-6 py-2'>
-                        {navData.map((link, index) => {
-                            return (
-                                <button
+
+            {/* Mobile Menu */}
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute w-full bg-background/98 backdrop-blur-lg lg:hidden"
+                    >
+                        <div className="flex flex-col items-start gap-y-2 px-6 py-4">
+                            {navData.map((link, index) => (
+                                <motion.button
+                                    key={link.path}
+                                    initial={{ opacity: 0, x: -20 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: index * 0.1 }}
                                     onClick={() => smoothScroll(link.path)}
-                                    key={index}
-                                    className="nav-link my-1.5 text-xl! px-0!">
+                                    className="nav-link text-xl! py-2 flex items-center gap-3"
+                                >
+                                    <span className="text-primary">{link.icon}</span>
                                     {link.name}
-                                </button>
-                            )
-                        })}
-                        <button
-                            className={`bg-primary w-full hover:bg-primary-hover transition-all duration-300 hover:shadow-xl transform hover:-translate-y-1 flex md:hidden items-center justify-center gap-2 cursor-pointer h-10 rounded-lg  px-4 text-base my-5`}
-                            onClick={handleResumeDownload}
-                        >
-                            <MdOutlineFileDownload size={24} /> Resume
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </header>
+                                </motion.button>
+                            ))}
+                            <motion.button
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                                className="bg-primary w-full hover:bg-primary/80 transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer h-12 rounded-lg px-4 text-base font-medium mt-4"
+                                onClick={handleResumeDownload}
+                            >
+                                <MdOutlineFileDownload size={24} /> Resume
+                            </motion.button>
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.header>
     )
 }
 

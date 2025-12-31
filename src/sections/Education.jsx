@@ -1,82 +1,106 @@
-import Wrapper from "../components/Wrapper";
+import { motion } from 'framer-motion';
+import Wrapper from '../components/Wrapper';
+import { HiAcademicCap } from 'react-icons/hi2';
 
-//  data
-const EDUCATION_DATA =
-{
-    title: "education",
+const EDUCATION_DATA = {
+    title: 'education',
     info: [
         {
-            university: "Govt. Dehli Science College",
-            degree: "Intermediate (HSC) in Computer Science",
-            duration: "June 2021 – June 2023",
-            logo: "/images/globe.svg",
+            university: 'Govt. Dehli Science College',
+            degree: 'Intermediate (HSC) in Computer Science',
+            duration: 'June 2021 – June 2023',
             highlights: [
-                "Completed coursework focused on programming fundamentals, computer systems, and mathematics.",
-                "Built a strong foundation in problem-solving, algorithms, and front-end development concepts.",
+                'Completed coursework focused on programming fundamentals, computer systems, and mathematics.',
+                'Built a strong foundation in problem-solving, algorithms, and front-end development concepts.',
             ],
         },
         {
-            university: "Saylani Mass IT Training (SMIT)",
-            degree: "MERN Stack Web and App Development Certification",
-            duration: "Dec 2022 – Dec 2023",
-            logo: "/images/globe.svg",
+            university: 'Saylani Mass IT Training (SMIT)',
+            degree: 'MERN Stack Web and App Development Certification',
+            duration: 'Dec 2022 – Dec 2023',
             highlights: [
-                "Completed a professional MERN Stack training program focused on React, Node.js, and modern web technologies.",
-                "Developed multiple full-stack projects using JavaScript, TypeScript, and RESTful APIs.",
+                'Completed a professional MERN Stack training program focused on React, Node.js, and modern web technologies.',
+                'Developed multiple full-stack projects using JavaScript, TypeScript, and RESTful APIs.',
             ],
         },
     ],
-};;
+};
 
 const Education = () => {
-
     return (
-        <section id="education" className="py-20 text-center xl:text-left relative">
-
+        <section id="education" className="py-20 md:py-28 relative">
             <Wrapper>
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-10 md:mb-10">
-                    <h2 className="text-4xl xsm:text-5xl md:text-6xl font-semibold">
-                        Education
-                    </h2>
-
-                    <p className="max-w-full md:max-w-200 font-light leading-normal text-light-gray text-center text-base xl:text-lg">
+                <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
+                    <motion.h1
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
+                        className="section-heading text-center">
+                        My <span className="text-primary">Education</span>
+                    </motion.h1>
+                    <motion.p
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                        className="section-subheading">
                         Academic background and professional certifications that strengthen my web development expertise.
-                    </p>
+                    </motion.p>
                 </div>
 
-                {/* content */}
-                <div className="mt-16">
+                {/* Education Cards */}
+                <div className="max-w-4xl mx-auto space-y-6">
+                    {EDUCATION_DATA.info.map((item, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, x: idx % 2 === 0 ? -50 : 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6, delay: idx * 0.2 }}
+                            className="glass-card p-6 md:p-8 rounded-3xl hover:border-primary/50 transition-all duration-300"
+                        >
+                            <div className="flex flex-col md:flex-row gap-6">
+                                {/* Icon */}
+                                <motion.div
+                                    initial={{ scale: 0, rotate: -180 }}
+                                    whileInView={{ scale: 1, rotate: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ type: 'spring', stiffness: 200, delay: 0.3 + idx * 0.1 }}
+                                    className="w-16 h-16 shrink-0 rounded-full bg-primary/10 flex items-center justify-center"
+                                >
+                                    <HiAcademicCap className="text-3xl text-primary" />
+                                </motion.div>
 
-                    <div className="space-y-5">
-                        {EDUCATION_DATA?.info?.map((item, idx) => (
-                            <div key={idx} className="flex flex-col gap-4">
-                                <div className="flex md:flex-row flex-col gap-4 rounded-lg p-4 md:p-8 backdrop-blur-xl contrast-[0.9]">
-                                    <div className="w-full md:w-20 h-16 md:h-20 shrink-0 rounded-full overflow-hidden flex items-center justify-center bg-white/5">
-                                        <img src={item.logo} alt="logo" className="w-8 h-8 object-contain" loading="lazy" />
-                                    </div>
-                                    <div className="flex flex-col gap-y-5">
-                                        <div className="flex-1 text-start">
-                                            <p className="text-base font-semibold">{item.university}</p>
-                                            <p className="text-sm mt-1">{item.degree}</p>
-                                            <p className="text-xs opacity-70 mt-1">{item.duration}</p>
-                                        </div>
-                                        <div className="flex-1 text-start">
-                                            <ul className="ml-4 list-disc space-y-1 text-sm opacity-80">
-                                                {item.highlights.map((h, i) => (
-                                                    <li key={i}>{h}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
+                                {/* Content */}
+                                <div className="flex-1">
+                                    <h4 className="text-lg md:text-xl font-medium mb-0.5">{item.university}</h4>
+                                    <p className="text-base text-primary font-medium mb-0.5">{item.degree}</p>
+                                    <p className="text-sm text-light-gray mb-4">{item.duration}</p>
 
+                                    <ul className="space-y-2">
+                                        {item.highlights.map((highlight, hIdx) => (
+                                            <motion.li
+                                                key={hIdx}
+                                                initial={{ opacity: 0, x: -20 }}
+                                                whileInView={{ opacity: 1, x: 0 }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 0.4, delay: 0.5 + hIdx * 0.1 }}
+                                                className="text-sm text-light-gray flex items-start gap-2"
+                                            >
+                                                <span className="text-primary mt-1">▹</span>
+                                                {highlight}
+                                            </motion.li>
+                                        ))}
+                                    </ul>
                                 </div>
                             </div>
-                        ))}
-                    </div>
+                        </motion.div>
+                    ))}
                 </div>
             </Wrapper>
         </section>
-    )
+    );
 };
 
 export default Education;

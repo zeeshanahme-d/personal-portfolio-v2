@@ -1,4 +1,6 @@
 import { smoothScroll } from "../lib/ScrollToElement"
+import { motion } from 'framer-motion';
+
 //icons
 import { HiArrowRight } from "react-icons/hi2";
 
@@ -6,23 +8,52 @@ import { HiArrowRight } from "react-icons/hi2";
 const Banner = () => {
 
   return (
-    <div id="home" className="h-screen flex  min-h-220 max-h-480">
-      <div className="flex flex-row justify-between container mx-auto relative">
-        <div className="flex flex-col justify-center items-center w-full flex-1 mt-10">
-          <h1 className="mb-6 text-[10vw] xsm:text-5xl md:text-6xl font-semibold leading-tight xsm:leading-[1.3] text-center">
-            Transforming Ideas
-            Into <span className="text-primary">Digital Reality</span>
-          </h1>
+    <section id="home" className="min-h-screen max-h-480 flex items-center justify-center relative overflow-hidden pt-20">
+      {/* Background Gradient Orbs */}
+      <div className="absolute top-1/4 left-1/5 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
 
-          {/* subtitle */}
-          <p className="max-w-full md:max-w-200 font-light leading-normal text-light-gray text-center text-base xl:text-lg">
-            Hi, I’m Zeeshan Ahmed, a Front-End Web Developer focused on creating responsive, high performance web applications that seamlessly integrate with backend technologies
-          </p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="container relative z-10"
+      >
+        <div className="flex flex-col justify-center items-center w-full text-center">
+          {/* Main Heading */}
+          <motion.h1
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', duration: 1.25, delay: 0.3 }}
+            className="mb-6 text-[10vw] xsm:text-5xl md:text-6xl lg:text-7xl font-semibold leading-tight"
+          >
+            Transforming Ideas Into <span className="text-primary">Digital Reality</span>
+          </motion.h1>
 
-          {/* button */}
-          <div className="flex justify-center mt-12 md:mt-10 md:justify-start">
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="max-w-full md:max-w-3xl font-light leading-relaxed text-light-gray text-center text-base md:text-lg xl:text-xl"
+          >
+            Hi, I'm <span className="text-primary font-medium">Zeeshan Ahmed</span>, a Front-End Web Developer
+            focused on creating responsive, high performance web applications that seamlessly
+            integrate with backend technologies
+          </motion.p>
+
+          {/* CTA Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ type: 'spring', duration: 1, delay: 0.8 }}
+            className="flex justify-center mt-12 md:mt-10 md:justify-start"
+          >
             <div className="buttonContainer">
-              <button role="button" onClick={() => smoothScroll("projects")} className="link cursor-pointer">
+              <motion.button
+                onClick={() => smoothScroll('projects')}
+                className="link cursor-pointer relative group"
+              >
                 <img
                   src={'/images/rounded-text.png'}
                   width={140}
@@ -31,16 +62,22 @@ const Banner = () => {
                   className="image"
                 />
                 <HiArrowRight className="arrow-icon" />
-              </button>
+              </motion.button>
             </div>
-          </div>
+          </motion.div>
         </div>
-        <div
-          className="absolute left-1/2 bottom-0 md:bottom-16" style={{ transform: 'translate(-50%, -50%)' }}>
-          <img src="/images/scroll-down.gif" className="w-16 h-16 object-contain" />
-        </div>
-      </div>
-    </div >
+      </motion.div>
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.5, duration: 0.5 }}
+        className="absolute left-1/2 bottom-0 -translate-x-1/2"
+      >
+
+        <img src="/images/scroll-down.gif" className="w-16 h-16 object-contain" />
+      </motion.div>
+    </section>
 
   )
 }
