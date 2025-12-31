@@ -12,17 +12,19 @@
 }
 
 :root {
-    --font-Sora: 'Sora', sans-serif;
+    --font-Sora: "Poppins", sans-serif;
+    ;
     --font-Lobster: "Lobster", sans-serif;
 
-    --color-bg: #0f0f0f;
+    --color-bg: #000;
+    --color-bg-secondary: #0f0f0f;
     --color-primary: #F13024;
     --color-primary-hover: #A04836;
     --color-white: rgb(255, 255, 255);
     --color-black: #070039;
 
     --color-dark-gray: #515151;
-    --color-light-gray: #f5f5f5;
+    --color-light-gray: #DBDBDB;
     --color-border-gray: #DBDBDB;
 
     --base-font-size: 16px;
@@ -43,6 +45,7 @@ body {
     scroll-behavior: smooth;
     color: var(--color-white);
     line-height: var(--base-line-height);
+    letter-spacing: 1.1px !important;
     font-size: var(--base-font-size);
     font-weight: normal;
     font-style: normal;
@@ -192,22 +195,229 @@ a {
 
 
 @theme {
-    --font-Sora: var(--font-Sora);
-    --font-Lobster: var(--font-Lobster);
+    /* Font Families */
+    --font-family-sora: var(--font-Sora);
+    --font-family-lobster: var(--font-Lobster);
 
-    --color-bg: #19132f;
-    --color-primary: var(--color-primary);
-    --color-primary-hover: var(--color-primary-hover);
-    --color-white: var(--color-white);
-    --color-black: var(--color-black);
-
+    /* Base colors - defined first */
+    --color-white: rgb(255, 255, 255);
+    --color-black: #070039;
     --color-dark-gray: var(--color-dark-gray);
     --color-light-gray: var(--color-light-gray);
     --color-border-gray: var(--color-border-gray);
 
+    /* Colors - Tailwind v4 compatible */
+    --color-background: #0f0f0f;
+    --color-foreground: var(--color-white);
+    --color-primary: var(--color-primary);
+    --color-primary-hover: var(--color-primary-hover);
+    --color-card: rgba(15, 15, 15, 0.3);
+    --color-border: var(--color-border-gray);
+    --color-muted-foreground: var(--color-dark-gray);
+
+    /* Legacy color support */
+    --color-bg: #19132f;
+
+    /* Breakpoints */
     --breakpoint-sm: 40rem;
     --breakpoint-md: 48rem;
     --breakpoint-lg: 64rem;
     --breakpoint-xl: 80rem;
     --breakpoint-2xl: 90rem;
+}
+
+@layer base {
+    * {
+        border-color: var(--color-border);
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background-color: var(--color-background);
+        color: var(--color-foreground);
+        font-family: var(--font-Sora), sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        overflow-x: hidden;
+    }
+}
+
+@layer components {
+    .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        max-width: 1440px;
+    }
+
+    @media (width >=48rem) {
+        .container {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+    }
+
+    @media (width >=64rem) {
+        .container {
+            padding-left: 2rem;
+            padding-right: 2rem;
+        }
+    }
+
+    .nav-link {
+        font-size: 1rem;
+        padding: 0.125rem 0.5rem;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        z-index: 10;
+        transition-property: color;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+    }
+
+    .nav-link::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: transparent;
+        border-bottom-width: 2px;
+        border-bottom-style: solid;
+        border-bottom-color: var(--color-primary);
+        transition-property: width;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+        z-index: -10;
+    }
+
+    .nav-link:hover::before {
+        width: 100%;
+    }
+
+    .nav-link:hover {
+        color: var(--color-primary);
+    }
+
+    .glass-card {
+        backdrop-filter: blur(24px);
+        background-color: rgba(15, 15, 15, 0.3);
+        border-width: 1px;
+        border-style: solid;
+        border-color: rgba(219, 219, 219, 0.2);
+        border-radius: 0.5rem;
+    }
+
+    .section-heading {
+        font-size: 2.25rem;
+        line-height: 2.5rem;
+        font-weight: 600;
+    }
+
+    @media (width >=40rem) {
+        .section-heading {
+            font-size: 3rem;
+            line-height: 1;
+        }
+    }
+
+    @media (width >=48rem) {
+        .section-heading {
+            font-size: 3.75rem;
+            line-height: 1;
+        }
+    }
+
+    .section-subheading {
+        max-width: 100%;
+        font-weight: 300;
+        line-height: 1.5;
+        color: var(--color-light-gray);
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    @media (width >=48rem) {
+        .section-subheading {
+            max-width: 800px;
+        }
+    }
+
+    @media (width >=80rem) {
+        .section-subheading {
+            font-size: 1.125rem;
+            line-height: 1.75rem;
+        }
+    }
+
+    .gradient-text {
+        background-image: linear-gradient(to right, var(--color-primary), #fb923c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(241, 48, 36, 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(241, 48, 36, 0.6);
+    }
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@layer utilities {
+    .animate-spin-slow {
+        animation: spin-slow 10s linear infinite;
+    }
+
+    .animate-float {
+        animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+        animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient-shift 3s ease infinite;
+    }
 }

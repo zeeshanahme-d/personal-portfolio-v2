@@ -23,11 +23,6 @@ const ParticlesContainer = () => {
       id="tsparticles"
       className="particles"
       options={{
-        // background: {
-        //   color: {
-        //     value: "",
-        //   },
-        // },
         fpsLimit: 120,
         interactivity: {
           events: {
@@ -53,15 +48,15 @@ const ParticlesContainer = () => {
         },
         particles: {
           color: {
-            value: "#ffffff",
+            value: "#F13024",
           },
-          // links: {
-          //   color: "#f5d393",
-          //   distance: 150,
-          //   enable: false,
-          //   opacity: 0.5,
-          //   width: 1,
-          // },
+          links: {
+            color: "#F13024",
+            distance: 150,
+            enable: true,
+            opacity: 0.3,
+            width: 1,
+          },
           collisions: {
             enable: true,
           },
@@ -80,10 +75,10 @@ const ParticlesContainer = () => {
               enable: true,
               area: 800,
             },
-            value: 50,
+            value: 100,
           },
           opacity: {
-            value: 0.5,
+            value: 0.3,
           },
           shape: {
             type: "circle",
