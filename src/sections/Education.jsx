@@ -58,7 +58,7 @@ const Education = () => {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: idx * 0.2 }}
-                            className="glass-card p-6 md:p-8 rounded-3xl hover:border-primary/50 transition-all duration-300"
+                            className="glass-card p-3 sm:p-5 md:p-8 rounded-3xl hover:border-primary/50 transition-all duration-300"
                         >
                             <div className="flex flex-col md:flex-row gap-6">
                                 {/* Icon */}

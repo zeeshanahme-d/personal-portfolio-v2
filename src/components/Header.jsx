@@ -122,7 +122,7 @@ const Header = () => {
                                 onClick={() => setMenuOpen(!menuOpen)}
                             >
                                 <div className="block lg:hidden">
-                                    <Hamburger rounded size={30} duration={0.4} easing="ease-in-out" toggled={menuOpen} toggle={setMenuOpen} />
+                                    <Hamburger rounded size={30} duration={0.4} easing="ease-in-out" toggled={menuOpen} toggle={setMenuOpen} color={menuOpen ? "#F13024" : "#fff"} />
                                 </div>
                             </button>
                         </div>

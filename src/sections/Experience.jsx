@@ -69,7 +69,7 @@ const Experience = () => {
                             viewport={{ once: true }}
                             transition={{ duration: 0.6, delay: idx * 0.2 }}
                             whileHover={{ y: -5 }}
-                            className="glass-card p-6 md:p-8 rounded-3xl h-full flex flex-col hover:border-primary/50 transition-all duration-300"
+                            className="glass-card p-3 sm:p-5 md:p-8 rounded-3xl h-full flex flex-col hover:border-primary/50 transition-all duration-300"
                         >
                             {/* Header */}
                             <div className="flex items-center gap-4 mb-6">
