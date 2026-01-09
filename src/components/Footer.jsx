@@ -7,9 +7,9 @@ function Footer() {
     return (
         <section className='py-8'>
             <Wrapper>
-                <div className='flex justify-between items-center'>
+                <div className='flex justify-center gap-y-5 sm:justify-between flex-col sm:flex-row items-center'>
                     <span className='text-sm text-light-gray '>© Copyright {new Date().getFullYear()} . Made by
-                        <Link href='/' className='text-white! underline! font-Lobster text-base! -tracking-tight'> Zeeshan Ahmed</Link>
+                        <Link href='/' className='text-white! underline! font-family-lobster text-base! -tracking-tight'> Zeeshan Ahmed</Link>
                     </span>
                     <Socials />
                 </div>
