@@ -7,8 +7,9 @@ import { HiArrowRight } from "react-icons/hi2";
 
 const Banner = () => {
 
+
   return (
-    <section id="home" className="min-h-screen max-h-480 flex items-center justify-center relative overflow-hidden pt-20">
+    <section id="home" className="h-screen min-h-200 max-h-480 flex items-center justify-center relative overflow-hidden pt-20">
       {/* Background Gradient Orbs */}
       <div className="absolute top-1/4 left-1/5 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
       <div className="absolute bottom-1/4 right-1/5 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
