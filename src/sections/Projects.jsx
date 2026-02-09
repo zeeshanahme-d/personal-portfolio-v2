@@ -2,9 +2,23 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Wrapper from '../components/Wrapper';
 import { HiArrowTopRightOnSquare } from 'react-icons/hi2';
-import { SiReact, SiTailwindcss, SiTypescript, SiNextdotjs, SiFirebase, SiMongodb, SiFramer, SiNodedotjs, SiJavascript, SiSass, SiRedux } from 'react-icons/si';
+import { SiReact, SiTailwindcss, SiTypescript, SiNextdotjs, SiJavascript, SiSass, SiRedux, SiMui } from 'react-icons/si';
 
 const projectsData = [
+    {
+        title: 'Movix - Movie & TV Show Discovery Platform',
+        description: 'Responsive movie discovery app built with React and Redux Toolkit, integrated with TMDB API, featuring real-time search, infinite scroll, video playback, dynamic routing, and performance optimizations like lazy loading and code splitting.',
+        image: '/images/movix.png',
+        tags: [SiReact, SiJavascript, SiSass, SiRedux],
+        link: 'https://movie-discovery-platform.vercel.app/',
+    },
+    {
+        title: 'ioPortal - AI-Powered Digital Asset Sharing Platform',
+        description: 'ioPortal is an AI-powered digital asset sharing platform within ioMoVo that enables secure, branded collaboration across multiple storage systems. Built with React, TypeScript, Redux Toolkit, and Material UI.',
+        image: '/images/iomovo.png',
+        tags: [SiReact, SiTypescript, SiMui, SiSass, SiRedux],
+        link: 'https://www.iomovo.io/products/ioportal',
+    },
     {
         title: 'Linea Properties – African Real-Estate App',
         description: 'Modern single-page marketing website built with Next.js, React, TypeScript, and Tailwind CSS for an African real-estate mobile app, featuring smooth scrolling, animated CTAs, reusable sections, and an EmailJS-powered contact form with responsive design.',
@@ -18,20 +32,6 @@ const projectsData = [
         image: '/images/organicsbyappa.png',
         tags: [SiReact, SiNextdotjs, SiTailwindcss, SiTypescript],
         link: 'https://organicsbyappa.pk/',
-    },
-    {
-        title: 'Movix - Movie & TV Show Discovery Platform',
-        description: 'Responsive movie discovery app built with React and Redux Toolkit, integrated with TMDB API, featuring real-time search, infinite scroll, video playback, dynamic routing, and performance optimizations like lazy loading and code splitting.',
-        image: '/images/movix.png',
-        tags: [SiReact, SiJavascript, SiSass, SiRedux],
-        link: 'https://movie-discovery-platform.vercel.app/',
-    },
-    {
-        title: 'AI Language Translator – LinguaSpeak',
-        description: 'AI-powered language translator built with React, TypeScript, and Vite, supporting 112+ languages via the Lingva.ml API. Features debounced real-time translation.',
-        image: '/images/linguaspeak.png',
-        tags: [SiReact, SiTypescript, SiSass],
-        link: 'https://ai-languagetranslator.vercel.app/',
     },
 ];
 
@@ -53,6 +53,7 @@ const ProjectCard = ({ project, idx }) => {
                             <img
                                 src={project.image}
                                 alt={project.title}
+                                loading='lazy'
                                 className="w-full h-full object-cover object-top rounded-xl shadow-2xl transform rotate-2 group-hover:rotate-1 transition-transform duration-500"
                                 style={{
                                     boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(var(--primary-rgb, 220 38 38) / 0.1)'

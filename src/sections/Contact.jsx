@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import Wrapper from '../components/Wrapper';
-import { IoIosSend } from 'react-icons/io';
+import { IoIosSend, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io';
+import { IoMailOutline } from 'react-icons/io5';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -160,7 +161,7 @@ const Contact = () => {
                                         href="mailto:zeeshanahmed@example.com"
                                         className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
                                     >
-                                        <span className="text-primary">📧</span>
+                                        <span className="text-primary"><IoMailOutline size={20} /></span>
                                         dev.zeeshanahmed@gmail.com
                                     </motion.a>
                                     <motion.a
@@ -170,7 +171,7 @@ const Contact = () => {
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
                                     >
-                                        <span className="text-primary">💼</span>
+                                        <span className="text-primary"><IoLogoLinkedin size={20} /></span>
                                         LinkedIn Profile
                                     </motion.a>
                                     <motion.a
@@ -180,7 +181,7 @@ const Contact = () => {
                                         rel="noopener noreferrer"
                                         className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
                                     >
-                                        <span className="text-primary">🐙</span>
+                                        <span className="text-primary"><IoLogoGithub size={20} /></span>
                                         GitHub Profile
                                     </motion.a>
                                 </div>
