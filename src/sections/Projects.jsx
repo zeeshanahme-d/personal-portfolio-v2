@@ -1,34 +1,51 @@
-import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion } from 'framer-motion';
+import { HiArrowTopRightOnSquare, HiViewColumns } from 'react-icons/hi2';
+import {
+    SiReact,
+    SiTailwindcss,
+    SiTypescript,
+    SiNextdotjs,
+    SiJavascript,
+    SiSass,
+    SiRedux,
+    SiMui,
+} from 'react-icons/si';
 import Wrapper from '../components/Wrapper';
-import { HiArrowTopRightOnSquare } from 'react-icons/hi2';
-import { SiReact, SiTailwindcss, SiTypescript, SiNextdotjs, SiJavascript, SiSass, SiRedux, SiMui } from 'react-icons/si';
+import SectionHeader from '../components/SectionHeader';
+import SpotlightCard from '../components/SpotlightCard';
+import { revealFrom } from '../utils/motion';
+import { buttonClassNames } from '@/components/ui/Button';
 
 const projectsData = [
     {
         title: 'Movix - Movie & TV Show Discovery Platform',
-        description: 'Responsive movie discovery app built with React and Redux Toolkit, integrated with TMDB API, featuring real-time search, infinite scroll, video playback, dynamic routing, and performance optimizations like lazy loading and code splitting.',
+        description:
+            'Responsive movie discovery app built with React and Redux Toolkit, integrated with TMDB API, featuring real-time search, infinite scroll, video playback, dynamic routing, and performance optimizations like lazy loading and code splitting.',
         image: '/images/movix.png',
         tags: [SiReact, SiJavascript, SiSass, SiRedux],
         link: 'https://movie-discovery-platform.vercel.app/',
     },
     {
         title: 'ioPortal - AI-Powered Digital Asset Sharing Platform',
-        description: 'ioPortal is an AI-powered digital asset sharing platform within ioMoVo that enables secure, branded collaboration across multiple storage systems. Built with React, TypeScript, Redux Toolkit, and Material UI.',
+        description:
+            'ioPortal is an AI-powered digital asset sharing platform within ioMoVo that enables secure, branded collaboration across multiple storage systems. Built with React, TypeScript, Redux Toolkit, and Material UI.',
         image: '/images/iomovo.png',
         tags: [SiReact, SiTypescript, SiMui, SiSass, SiRedux],
         link: 'https://www.iomovo.io/products/ioportal',
     },
     {
         title: 'Linea Properties – African Real-Estate App',
-        description: 'Modern single-page marketing website built with Next.js, React, TypeScript, and Tailwind CSS for an African real-estate mobile app, featuring smooth scrolling, animated CTAs, reusable sections, and an EmailJS-powered contact form with responsive design.',
+        description:
+            'Modern single-page marketing website built with Next.js, React, TypeScript, and Tailwind CSS for an African real-estate mobile app, featuring smooth scrolling, animated CTAs, reusable sections, and an EmailJS-powered contact form with responsive design.',
         image: '/images/lineaproperties.png',
         tags: [SiReact, SiNextdotjs, SiTailwindcss, SiTypescript],
         link: 'https://lineaproperties.com/',
     },
     {
         title: 'Organics by Appa - Natural Snacks E-Commerce Platform',
-        description: 'Modern e-commerce platform built with Next.js & TypeScript, featuring automated AWS deployment via GitHub Actions, EmailJS integration, and responsive design optimized for all devices.',
+        description:
+            'Modern e-commerce platform built with Next.js & TypeScript, featuring automated AWS deployment via GitHub Actions, EmailJS integration, and responsive design optimized for all devices.',
         image: '/images/organicsbyappa.png',
         tags: [SiReact, SiNextdotjs, SiTailwindcss, SiTypescript],
         link: 'https://organicsbyappa.pk/',
@@ -36,66 +53,66 @@ const projectsData = [
 ];
 
 const ProjectCard = ({ project, idx }) => {
+    const dir = idx % 2 === 0 ? 'bottom' : 'top';
     return (
         <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-50px' }}
-            transition={{ duration: 0.5, delay: idx * 0.1 }}
-            className="group glass-card p-3 sm:p-5 md:p-8 rounded-3xl hover:border-primary/50 transition-all duration-300"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-40px' }}
+            variants={revealFrom(dir, 42)}
+            whileHover={{ y: -6 }}
+            transition={{ type: 'spring', stiffness: 280, damping: 24 }}
+            className="h-full"
         >
-
-            <div className='flex flex-col justify-between h-full'>
-                <div className='space-y-5'>
-                    <div className="relative rounded-2xl overflow-hidden aspect-16/10 bg-linear-to-br from-primary/20 via-card/60 to-card/30">
-                        {/* Floating Image with Tilt */}
-                        <div className="absolute inset-x-4 top-8 bottom-[-20%] group-hover:bottom-[-10%] rounded-4xl transition-all duration-500 ease-out">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                loading='lazy'
-                                className="w-full h-full object-cover object-top rounded-xl shadow-2xl transform rotate-2 group-hover:rotate-1 transition-transform duration-500"
-                                style={{
-                                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(var(--primary-rgb, 220 38 38) / 0.1)'
-                                }}
-                            />
-                        </div>
-                        {/* Subtle gradient overlay */}
-                        <div className="absolute inset-0 bg-linear-to-t from-background/30 to-transparent pointer-events-none" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="space-y-3">
-                        <h3 className="text-lg md:text-xl font-medium  group-hover:text-primary transition-colors">
-                            {project.title}
-                        </h3>
-                        <p className="text-sm md:text-base text-light-gray leading-relaxed">
-                            {project.description}
-                        </p>
-                    </div>
-                </div>
-                {/* Footer: Tech Icons + Link */}
-                <div className="flex items-center justify-between pt-2">
-                    <div className="flex items-center gap-2">
-                        {project.tags.map((Icon, tagIdx) => (
-                            <div
-                                key={tagIdx}
-                                className="w-8 h-8 rounded-full bg-card/80 border border-border/50 flex items-center justify-center text-light-gray hover:text-primary hover:border-primary/50 transition-colors"
-                            >
-                                <Icon className="w-4 h-4" />
+            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-4 sm:p-6 md:p-7">
+                <div className="flex h-full flex-col justify-between gap-6">
+                    <div className="space-y-5">
+                        <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-linear-to-br from-primary/20 via-card/50 to-background/80 ring-1 ring-border">
+                            <div className="absolute inset-x-4 top-7 bottom-[-18%] transition-[bottom] duration-500 ease-out group-hover:bottom-[-10%]">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    loading="lazy"
+                                    className="h-full w-full rounded-lg object-cover object-top shadow-[0_24px_48px_-16px_rgba(0,0,0,0.65)] ring-1 ring-black/20 transition-transform duration-500 group-hover:scale-[1.02]"
+                                />
                             </div>
-                        ))}
+                            <div className="pointer-events-none absolute inset-0 bg-linear-to-t from-background/35 to-transparent" />
+                        </div>
+
+                        <div className="space-y-2">
+                            <h3 className="font-display text-lg font-semibold tracking-tight transition-colors duration-300 group-hover:text-primary md:text-xl">
+                                {project.title}
+                            </h3>
+                            <p className="line-clamp-3 text-sm leading-relaxed text-light-gray md:text-[0.9375rem] md:line-clamp-4">
+                                {project.description}
+                            </p>
+                        </div>
                     </div>
-                    <a
-                        href={project.link}
-                        target='_blank'
-                        className="flex items-center gap-2 text-sm font-medium text-light-gray hover:text-primary! transition-colors group/link"
-                    >
-                        Check Live Site
-                        <HiArrowTopRightOnSquare className="w-4 h-4 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                    </a>
+
+                    <div className="flex items-center justify-between gap-4 border-t border-border pt-4">
+                        <div className="flex flex-wrap items-center gap-2">
+                            {project.tags.map((Icon, tagIdx) => (
+                                <motion.div
+                                    key={tagIdx}
+                                    whileHover={{ scale: 1.12, rotate: 6 }}
+                                    className="flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card/60 text-light-gray transition-colors duration-300 group-hover:border-primary/35 group-hover:text-primary"
+                                >
+                                    <Icon className="h-4 w-4" aria-hidden />
+                                </motion.div>
+                            ))}
+                        </div>
+                        <a
+                            href={project.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/link flex shrink-0 items-center gap-2 text-sm font-semibold text-light-gray transition-colors duration-300 hover:text-primary"
+                        >
+                            Live site
+                            <HiArrowTopRightOnSquare className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
+                        </a>
+                    </div>
                 </div>
-            </div>
+            </SpotlightCard>
         </motion.div>
     );
 };
@@ -103,55 +120,47 @@ const ProjectCard = ({ project, idx }) => {
 const Projects = () => {
     const [showAll, setShowAll] = useState(false);
     const visibleCount = showAll ? projectsData.length : 4;
+    const sectionRef = useRef(null);
 
     return (
-        <section id="projects" className="py-20 md:py-28 relative">
-            <Wrapper>
-                {/* Section Header */}
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
-                        className="section-heading text-center">
-                        Featured <span className="text-primary">Projects</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="section-subheading">
-                        Here you will find some of the personal and client projects that I created with the latest tech stack.
-                    </motion.p>
+        <section ref={sectionRef} id="projects" className="section-shell relative scroll-mt-24 overflow-hidden">
+            <Wrapper className="relative z-1">
+                <SectionHeader
+                    eyebrow="Portfolio"
+                    title="Featured"
+                    accent="projects"
+                    description="Selected client and personal work built with modern front-end stacks."
+                    revealDirection="top"
+                    HeadingIcon={HiViewColumns}
+                />
+
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8">
+                    {projectsData.slice(0, visibleCount).map((project, idx) => (
+                        <ProjectCard key={project.title} project={project} idx={idx} />
+                    ))}
                 </div>
 
-                {/* Projects Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-                    <AnimatePresence>
-                        {projectsData.slice(0, visibleCount).map((project, idx) => (
-                            <ProjectCard key={idx} project={project} idx={idx} />
-                        ))}
-                    </AnimatePresence>
-                </div>
-
-                {/* Load More Button */}
                 {!showAll && projectsData.length > 4 && (
                     <motion.div
-                        className="flex justify-center mt-12"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
+                        className="mt-12 flex justify-center md:mt-14"
+                        initial={{ opacity: 0, y: 14 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.45 }}
                     >
-                        <button
-                            variant="outline"
-                            size="lg"
+                        <motion.button
+                            type="button"
+                            whileHover={{ scale: 1.03 }}
+                            whileTap={{ scale: 0.97 }}
                             onClick={() => setShowAll(true)}
-                            className="border-primary/30 border border-input bg-background hover:bg-primary hover:text-accent-foreground h-12 px-6 transition-all duration-300 rounded-lg cursor-pointer"
+                            className={buttonClassNames({
+                                variant: 'ghost',
+                                size: 'md',
+                                className: 'cursor-pointer px-10 py-3 text-sm',
+                            })}
                         >
-                            Load More Projects
-                        </button>
+                            Load more work
+                        </motion.button>
                     </motion.div>
                 )}
             </Wrapper>
