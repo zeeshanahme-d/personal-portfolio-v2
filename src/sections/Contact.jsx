@@ -1,10 +1,16 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { HiEnvelope } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
+import SectionHeader from '../components/SectionHeader';
+import SpotlightCard from '../components/SpotlightCard';
+import { revealFrom } from '../utils/motion';
+import { buttonClassNames } from '@/components/ui/Button';
 import { IoIosSend, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 
 const Contact = () => {
+    const sectionRef = useRef(null);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -18,174 +24,155 @@ const Contact = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Message sent successfully! I\'ll get back to you soon.');
+        console.log("Message sent successfully! I'll get back to you soon.");
         setFormData({ name: '', email: '', subject: '', message: '' });
     };
 
     return (
-        <section id="contact" className="py-20 md:py-28 relative">
-            <Wrapper>
-                {/* Section Header */}
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
-                        className="section-heading text-center">
-                        Get In <span className="text-primary">Touch</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="section-subheading">
-                        Feel free to contact me by submitting the form below and I will get back to you as soon as possible.
-                    </motion.p>
-                </div>
+        <section ref={sectionRef} id="contact" className="section-shell relative scroll-mt-24 overflow-hidden">
+            <Wrapper className="relative z-1">
+                <SectionHeader
+                    eyebrow="Contact"
+                    title="Get in"
+                    accent="touch"
+                    description="Brief introductions, project inquiries, or roles—send a note and I will reply soon."
+                    revealDirection="bottom"
+                    HeadingIcon={HiEnvelope}
+                />
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
-                    {/* Form */}
+                <div className="mx-auto grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12">
                     <motion.form
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={revealFrom('left', 40)}
                         onSubmit={handleSubmit}
-                        className="flex flex-col gap-5"
+                        className="flex flex-col gap-3.5 lg:col-span-7"
                     >
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                            <motion.input
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.1 }}
+                        <div className="grid grid-cols-1 gap-3.5 sm:grid-cols-2">
+                            <input
                                 type="text"
                                 required
                                 placeholder="Name"
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="h-14 rounded-lg px-6 bg-transparent border border-border outline-none focus:border-primary hover:border-primary/50 transition-all duration-300 text-foreground placeholder:text-dark-gray"
+                                className="input-surface h-12 px-4 text-sm"
                             />
-                            <motion.input
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.2 }}
+                            <input
                                 type="email"
                                 required
                                 placeholder="Email"
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="h-14 rounded-lg px-6 bg-transparent border border-border outline-none focus:border-primary hover:border-primary/50 transition-all duration-300 text-foreground placeholder:text-dark-gray"
+                                className="input-surface h-12 px-4 text-sm"
                             />
                         </div>
 
-                        <motion.input
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.3 }}
+                        <input
                             type="text"
                             required
                             placeholder="Subject"
                             name="subject"
                             value={formData.subject}
                             onChange={handleChange}
-                            className="h-14 rounded-lg px-6 bg-transparent border border-border outline-none focus:border-primary hover:border-primary/50 transition-all duration-300 text-foreground placeholder:text-dark-gray"
+                            className="input-surface h-12 px-4 text-sm"
                         />
 
-                        <motion.textarea
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.4 }}
+                        <textarea
                             required
                             placeholder="Message"
                             name="message"
                             value={formData.message}
                             onChange={handleChange}
-                            className="h-[200px] p-6 rounded-lg resize-none bg-transparent border border-border outline-none focus:border-primary hover:border-primary/50 transition-all duration-300 text-foreground placeholder:text-dark-gray"
+                            rows={8}
+                            className="input-surface min-h-[168px] resize-none p-4 text-sm"
                         />
 
                         <motion.button
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 }}
                             type="submit"
-                            // className="bg-primary hidden md:flex hover:bg-primary/80 transition-all duration-300 items-center justify-center gap-2 cursor-pointer h-10 rounded-lg px-4 text-sm font-medium"
-
-                            className="w-full bg-primary px-8 py-4 rounded-lg cursor-pointer hover:bg-primary/80 transition-all duration-300 font-semibold text-lg shadow-lg shadow-primary/20 flex items-center justify-center gap-3"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                            className={buttonClassNames({
+                                variant: 'solid',
+                                size: 'lg',
+                                className: 'w-full cursor-pointer py-3.5 text-base',
+                            })}
                         >
-                            Send Message
-                            <IoIosSend size={24} />
+                            Send message
+                            <IoIosSend size={22} />
                         </motion.button>
                     </motion.form>
 
-                    {/* Illustration */}
                     <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6 }}
-                        className="hidden lg:flex flex-col items-center justify-center"
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: '-40px' }}
+                        variants={revealFrom('right', 40)}
+                        className="lg:col-span-5"
                     >
                         <div className="relative">
-                            {/* Decorative elements */}
-                            <div className="absolute -top-8 -left-8 w-32 h-32 bg-primary/10 rounded-full blur-2xl" />
-                            <div className="absolute -bottom-8 -right-8 w-24 h-24 bg-primary/20 rounded-full blur-xl" />
-
-                            {/* Contact Card */}
-                            <div className="relative glass-card p-8 rounded-2xl">
+                            <div
+                                className="pointer-events-none absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary/8 blur-2xl"
+                                aria-hidden
+                            />
+                            <SpotlightCard innerClassName="relative p-7 md:p-8">
                                 <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ type: 'spring', stiffness: 200, delay: 0.4 }}
-                                    className="text-7xl mb-6 text-center"
+                                    className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/25"
+                                    animate={{ y: [0, -4, 0] }}
+                                    transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut' }}
                                 >
-                                    📬
+                                    <IoMailOutline size={28} aria-hidden />
                                 </motion.div>
-                                <h3 className="text-xl font-semibold mb-3 text-center">Let's Work Together</h3>
-                                <p className="text-light-gray text-center text-sm leading-relaxed">
-                                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                                <h3 className="font-display text-center text-lg font-semibold tracking-tight md:text-xl">
+                                    Direct channels
+                                </h3>
+                                <p className="mt-2 text-center text-sm leading-relaxed text-light-gray">
+                                    Prefer email or socials? Reach out anytime.
                                 </p>
 
-                                <div className="mt-6 pt-6 border-t border-border space-y-3">
+                                <div className="mt-7 space-y-0.5 border-t border-border pt-7">
                                     <motion.a
-                                        whileHover={{ x: 5 }}
-                                        href="mailto:zeeshanahmed@example.com"
-                                        className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
+                                        whileHover={{ x: 4 }}
+                                        href="mailto:dev.zeeshanahmed@gmail.com"
+                                        className="flex w-fit items-center gap-3 rounded-lg py-2.5 text-sm text-light-gray transition-colors duration-300 hover:text-primary"
                                     >
-                                        <span className="text-primary"><IoMailOutline size={20} /></span>
+                                        <motion.span
+                                            className="text-primary"
+                                            whileHover={{ rotate: [0, -12, 12, 0] }}
+                                            transition={{ duration: 0.45 }}
+                                        >
+                                            <IoMailOutline size={20} />
+                                        </motion.span>
                                         dev.zeeshanahmed@gmail.com
                                     </motion.a>
                                     <motion.a
-                                        whileHover={{ x: 5 }}
+                                        whileHover={{ x: 4 }}
                                         href="https://linkedin.com/in/zeeshanahme-d"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
+                                        className="flex w-fit items-center gap-3 rounded-lg py-2.5 text-sm text-light-gray transition-colors duration-300 hover:text-primary"
                                     >
-                                        <span className="text-primary"><IoLogoLinkedin size={20} /></span>
-                                        LinkedIn Profile
+                                        <motion.span className="text-primary" whileHover={{ y: -2 }}>
+                                            <IoLogoLinkedin size={20} />
+                                        </motion.span>
+                                        LinkedIn
                                     </motion.a>
                                     <motion.a
-                                        whileHover={{ x: 5 }}
+                                        whileHover={{ x: 4 }}
                                         href="https://github.com/zeeshanahme-d"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-3 text-sm text-light-gray hover:text-primary transition-colors"
+                                        className="flex w-fit items-center gap-3 rounded-lg py-2.5 text-sm text-light-gray transition-colors duration-300 hover:text-primary"
                                     >
-                                        <span className="text-primary"><IoLogoGithub size={20} /></span>
-                                        GitHub Profile
+                                        <motion.span className="text-primary" whileHover={{ y: -2 }}>
+                                            <IoLogoGithub size={20} />
+                                        </motion.span>
+                                        GitHub
                                     </motion.a>
                                 </div>
-                            </div>
+                            </SpotlightCard>
                         </div>
                     </motion.div>
                 </div>
