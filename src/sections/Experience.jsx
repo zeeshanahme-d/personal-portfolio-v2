@@ -1,14 +1,23 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
-import Wrapper from "../components/Wrapper"
+import { HiBriefcase } from 'react-icons/hi2';
+import Wrapper from '../components/Wrapper';
+import SectionHeader from '../components/SectionHeader';
+import SpotlightCard from '../components/SpotlightCard';
+import { revealFrom } from '../utils/motion';
+import { useTheme } from '@/contexts/ThemeContext';
 
 const EXPERIENCE_DATA = {
-    title: 'experience',
     info: [
         {
+            title: 'Frontend Developer',
             company: 'IR Solutions',
-            role: 'Front-End Developer (React / Next.js / JavaScript / TypeScript)',
-            duration: 'June 2025 – Present',
-            logo: <img src="images/irlogowhite.png" alt="IR Solutions" className="w-14" />,
+            employmentType: 'Full-time',
+            period: 'Jun 2025 – Present',
+            tenure: '10 mos',
+            location: 'Islamabad, Pakistan',
+            workMode: 'On-site',
+            logo: <img src="/images/irlogowhite.png" alt="IR Solutions" className="w-14" />,
             summary:
                 'Working as a Front-End Developer at IR Solutions, building modern, responsive web applications using React, Next.js and TypeScript.',
             highlights: [
@@ -19,9 +28,13 @@ const EXPERIENCE_DATA = {
             ],
         },
         {
+            title: 'Frontend Developer',
             company: 'XtecSoft',
-            role: 'Front-End Developer (React / TypeScript)',
-            duration: 'Jan 2024 – Mar 2025',
+            employmentType: 'Full-time',
+            period: 'Jan 2024 – Mar 2025',
+            tenure: '1 yr 3 mos',
+            location: 'Karachi, Pakistan',
+            workMode: 'Hybrid',
             logo: <img src="/images/xtecsoft-logo.png" alt="Xtecsoft" className="w-20" />,
             summary:
                 'Worked as a Front-End Developer on ioMoVo, an enterprise-level digital asset management platform showcased at IBC Show 2024.',
@@ -36,83 +49,85 @@ const EXPERIENCE_DATA = {
 };
 
 const Experience = () => {
-    return (
-        <section id="experience" className="py-20 md:py-28 relative">
-            <Wrapper>
-                {/* Section Header */}
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
-                        className="section-heading text-center">
-                        Work <span className="text-primary">Experience</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="section-subheading">
-                        Built and optimized web applications while collaborating with cross-functional teams in various companies.
-                    </motion.p>
-                </div>
+    const sectionRef = useRef(null);
+    const { theme } = useTheme();
 
-                {/* Experience Cards */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+    return (
+        <section ref={sectionRef} id="experience" className="section-shell relative scroll-mt-24 overflow-hidden">
+            <Wrapper className="relative z-1">
+                <SectionHeader
+                    eyebrow="Career"
+                    title="Work"
+                    accent="experience"
+                    description="Roles where I shipped product with cross-functional teams."
+                    revealDirection="right"
+                    HeadingIcon={HiBriefcase}
+                />
+
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-2 lg:gap-6">
                     {EXPERIENCE_DATA.info.map((item, idx) => (
                         <motion.div
-                            key={idx}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: idx * 0.2 }}
+                            key={item.company}
+                            initial="hidden"
+                            whileInView="show"
+                            viewport={{ once: true, margin: '-40px' }}
+                            variants={revealFrom(idx % 2 === 0 ? 'left' : 'right', 46)}
                             whileHover={{ y: -5 }}
-                            className="glass-card p-3 sm:p-5 md:p-8 rounded-3xl h-full flex flex-col hover:border-primary/50 transition-all duration-300"
+                            transition={{ type: 'spring', stiffness: 320, damping: 28 }}
+                            className="h-full"
                         >
-                            {/* Header */}
-                            <div className="flex items-center gap-4 mb-6">
-                                <motion.div
-                                    initial={{ scale: 0 }}
-                                    whileInView={{ scale: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ type: 'spring', stiffness: 200, delay: 0.3 + idx * 0.1 }}
-                                    className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center text-3xl"
-                                >
-                                    {item.logo}
-
-                                </motion.div>
-                                <div>
-                                    <h4 className="text-lg md:text-xl font-medium">{item.company}</h4>
-                                    <p className="text-sm text-primary font-medium">{item.duration}</p>
+                            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-6 md:p-8">
+                                <div className="mb-6 flex items-start gap-4">
+                                    <div className={`flex h-22 ${theme === 'light' ? 'bg-[#1b1c35]' : 'bg-primary/10'} w-22 shrink-0 items-center justify-center rounded-2xl ring-1 ring-border transition-colors duration-300`}>
+                                        {item.logo}
+                                    </div>
+                                    <div className="min-w-0 flex-1 space-y-0.5 pt-0.5 text-left">
+                                        <h3 className="text-lg font-bold leading-snug text-foreground md:text-xl">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-sm leading-snug text-light-gray">
+                                            {item.company}
+                                            <span className="mx-1.5 text-border" aria-hidden>
+                                                ·
+                                            </span>
+                                            {item.employmentType}
+                                        </p>
+                                        <p className="text-sm leading-snug text-muted-foreground">
+                                            {item.period}
+                                            <span className="mx-1.5 text-border" aria-hidden>
+                                                ·
+                                            </span>
+                                            {item.tenure}
+                                        </p>
+                                        <p className="text-sm leading-snug text-muted-foreground">
+                                            {item.location}
+                                            <span className="mx-1.5 text-border" aria-hidden>
+                                                ·
+                                            </span>
+                                            {item.workMode}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            {/* Role */}
-                            <h5 className="text-base md:text-lg font-medium mb-3">{item.role}</h5>
+                                <p className="mb-5 text-sm leading-relaxed text-light-gray md:text-[0.9375rem]">
+                                    {item.summary}
+                                </p>
 
-                            {/* Summary */}
-                            <p className="text-sm md:text-base text-light-gray mb-4 leading-relaxed">
-                                {item.summary}
-                            </p>
-
-                            {/* Highlights */}
-                            <ul className="space-y-2 mt-auto">
-                                {item.highlights.map((highlight, hIdx) => (
-                                    <motion.li
-                                        key={hIdx}
-                                        initial={{ opacity: 0, x: -20 }}
-                                        whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.4, delay: 0.4 + hIdx * 0.1 }}
-                                        className="text-sm text-light-gray flex items-start gap-2"
-                                    >
-                                        <span className="text-primary mt-1">▹</span>
-                                        {highlight}
-                                    </motion.li>
-                                ))}
-                            </ul>
+                                <ul className="mt-auto space-y-2.5 border-t border-border pt-5">
+                                    {item.highlights.map((highlight, hIdx) => (
+                                        <li
+                                            key={hIdx}
+                                            className="flex gap-2.5 text-sm leading-relaxed text-light-gray"
+                                        >
+                                            <span
+                                                className="mt-2 h-1 w-1 shrink-0 rounded-full bg-linear-to-br from-primary to-(--gradient-accent-mid)"
+                                                aria-hidden
+                                            />
+                                            {highlight}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </SpotlightCard>
                         </motion.div>
                     ))}
                 </div>
