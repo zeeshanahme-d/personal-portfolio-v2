@@ -1,23 +1,21 @@
 ::-webkit-scrollbar {
-  width: 0.4rem;
-  height: 0.25rem;
-  display: none;
+    width: 0.4rem;
+    height: 0.25rem;
+    display: none;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
-  border-radius: 100vh;
-  background: #FDE9E5;
+    border-radius: 100vh;
+    background: color-mix(in srgb, var(--surface-muted) 85%, var(--accent) 15%);
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #DC6648;
-  border-radius: 100vh;
-  border: 0.2rem solid #DC6648;
+    background: var(--accent);
+    border-radius: 100vh;
+    border: 0.2rem solid var(--accent);
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #FAD3C8;
+    background: var(--accent-hover);
+    border-color: var(--accent-hover);
 }
