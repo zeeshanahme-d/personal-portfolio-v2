@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
     FaHtml5,
@@ -26,13 +27,17 @@ import {
     SiTypescript,
     SiMui,
 } from 'react-icons/si';
+import { HiCodeBracket } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
+import SectionHeader from '../components/SectionHeader';
+import SpotlightCard from '../components/SpotlightCard';
+import { revealFrom, staggerContainer } from '../utils/motion';
 
 const SKILLS_DATA = {
-    title: 'skills',
     info: [
         {
-            title: 'Frontend Development',
+            title: 'Frontend',
+            subtitle: 'Interfaces & design systems',
             icons: [
                 { name: 'HTML', icon: <FaHtml5 /> },
                 { name: 'CSS', icon: <FaCss3 /> },
@@ -40,27 +45,28 @@ const SKILLS_DATA = {
                 { name: 'TypeScript', icon: <SiTypescript /> },
                 { name: 'React', icon: <FaReact /> },
                 { name: 'Next.js', icon: <SiNextdotjs /> },
-                { name: 'Redux / Toolkit', icon: <SiRedux /> },
-                { name: 'Zustand', icon: <FaReact /> },
-                { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
+                { name: 'Redux', icon: <SiRedux /> },
+                { name: 'Tailwind', icon: <SiTailwindcss /> },
                 { name: 'Bootstrap', icon: <FaBootstrap /> },
                 { name: 'Ant Design', icon: <SiAntdesign /> },
-                { name: 'Material UI', icon: <SiMui /> },
-                { name: 'Shadcn UI', icon: <SiShadcnui /> },
+                { name: 'MUI', icon: <SiMui /> },
+                { name: 'Shadcn', icon: <SiShadcnui /> },
             ],
         },
         {
-            title: 'Backend Development',
+            title: 'Backend',
+            subtitle: 'APIs & data',
             icons: [
                 { name: 'Node.js', icon: <FaNodeJs /> },
-                { name: 'Express.js', icon: <SiExpress /> },
+                { name: 'Express', icon: <SiExpress /> },
                 { name: 'NestJS', icon: <SiNestjs /> },
                 { name: 'Firebase', icon: <SiFirebase /> },
                 { name: 'MongoDB', icon: <SiMongodb /> },
             ],
         },
         {
-            title: 'Other Tools',
+            title: 'Tooling',
+            subtitle: 'Ship & collaborate',
             icons: [
                 { name: 'Git', icon: <FaGitAlt /> },
                 { name: 'GitHub', icon: <FaGithub /> },
@@ -73,60 +79,78 @@ const SKILLS_DATA = {
     ],
 };
 
-const Skills = () => {
+function SkillChip({ item }) {
     return (
-        <section id="skills" className="py-20 md:py-28 relative">
-            <Wrapper>
-                {/* Section Header */}
-                <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
-                    <motion.h1
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
-                        className="section-heading text-center">
-                        My <span className="text-primary">Skills</span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.8, delay: 0.5 }}
-                        className="section-subheading">
-                        Building interactive and responsive web experiences using modern frontend technologies.
-                    </motion.p>
-                </div>
+        <motion.div
+            variants={{
+                hidden: { opacity: 0, scale: 0.92, y: 8 },
+                show: {
+                    opacity: 1,
+                    scale: 1,
+                    y: 0,
+                    transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] },
+                },
+            }}
+            whileHover={{ y: -3, scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            className="flex cursor-default items-center gap-2.5 rounded-xl border border-border/90 bg-linear-to-br from-card/80 to-background/30 px-3.5 py-2.5 shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-primary/35 hover:shadow-[0_12px_40px_-28px_var(--accent-soft)]"
+        >
+            <span className="text-lg text-primary md:text-xl">{item.icon}</span>
+            <span className="text-[0.8125rem] font-semibold text-foreground/95">{item.name}</span>
+        </motion.div>
+    );
+}
 
-                {/* Skills Grid */}
-                <div className="space-y-12">
-                    {SKILLS_DATA.info.map((group, gIdx) => (
-                        <motion.div
-                            key={gIdx}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.6, delay: gIdx * 0.1 }}
-                            className="text-center lg:text-left"
-                        >
-                            <h4 className="font-medium text-xl mb-6">{group.title}</h4>
-                            <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
-                                {group.icons.map((item, idx) => (
-                                    <motion.div
-                                        key={idx}
-                                        initial={{ opacity: 0, scale: 0.8 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 0.3, delay: idx * 0.05 }}
-                                        whileHover={{ scale: 1.05, y: -5 }}
-                                        className="flex items-center gap-2 rounded-lg px-4 py-3 glass-card hover:border-primary/50 transition-all duration-300 cursor-default"
-                                    >
-                                        <span className="text-xl md:text-2xl text-primary">{item.icon}</span>
-                                        <span className="text-sm md:text-base font-normal">{item.name}</span>
-                                    </motion.div>
-                                ))}
-                            </div>
-                        </motion.div>
+function SkillPanel({ group, colClass, reveal }) {
+    return (
+        <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={revealFrom(reveal, 40)}
+            className={colClass}
+        >
+            <SpotlightCard className="h-full" innerClassName="flex h-full flex-col p-6 md:p-8">
+                <div className="mb-5 border-b border-border pb-4">
+                    <p className="section-eyebrow mb-1 text-primary/90">{group.subtitle}</p>
+                    <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">{group.title}</h3>
+                </div>
+                <motion.div
+                    variants={staggerContainer(0.04, 0.02)}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, margin: '-20px' }}
+                    className="flex flex-wrap gap-2.5"
+                >
+                    {group.icons.map((item) => (
+                        <SkillChip key={item.name} item={item} />
                     ))}
+                </motion.div>
+            </SpotlightCard>
+        </motion.div>
+    );
+}
+
+const Skills = () => {
+    const sectionRef = useRef(null);
+    const [front, back, tools] = SKILLS_DATA.info;
+
+    return (
+        <section ref={sectionRef} id="skills" className="section-shell relative scroll-mt-24 overflow-hidden">
+            <Wrapper className="relative z-1">
+                <SectionHeader
+                    eyebrow="Stack"
+                    title="Technical"
+                    accent="skills"
+                    description="Technologies I use to design, build, and ship production interfaces."
+                    revealDirection="left"
+                    HeadingIcon={HiCodeBracket}
+                />
+
+                <div className="grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
+                    <SkillPanel group={front} colClass="lg:col-span-7" reveal="bottom" />
+                    <SkillPanel group={back} colClass="lg:col-span-5" reveal="right" />
+                    <SkillPanel group={tools} colClass="lg:col-span-12" reveal="top" />
                 </div>
             </Wrapper>
         </section>
