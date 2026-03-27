@@ -121,6 +121,14 @@ a {
     background-size: cover;
 }
 
+[data-theme="light"] .buttonContainer .link {
+    background-image: url("/images/circle-dark.png") !important;
+}
+
+[data-theme="dark"] .buttonContainer .link {
+    background-image: url("/images/circle-light.png") !important;
+}
+
 .buttonContainer {
     border-radius: 100%;
     margin-right: auto;
@@ -133,7 +141,6 @@ a {
         display: flex;
         justify-content: center;
         align-items: center;
-        background-image: url("/images/circle-star.svg");
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;

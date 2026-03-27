@@ -110,7 +110,7 @@ const Banner = () => {
                                 aria-label="Scroll to about"
                             >
                                 <img
-                                    src={theme === 'dark' ? "/images/rounded-text.png" : "/images/rounded-text-dark.png"}
+                                    src={theme === 'dark' ? "/images/my-project-light.png" : "/images/my-project-dark.png"}
                                     width={140}
                                     height={140}
                                     alt=""
