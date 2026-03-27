@@ -125,51 +125,51 @@ const Header = () => {
             </div>
 
             <AnimatePresence>
-                {menuOpen && (
-                    <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                        className="border-b border-border bg-background/92 backdrop-blur-xl lg:hidden"
-                    >
-                        <div className="container flex max-h-[min(70vh,520px)] flex-col gap-0.5 overflow-y-auto px-3 py-4">
-                            {navData.map((link, index) => (
-                                <motion.button
-                                    key={link.path}
-                                    type="button"
-                                    initial={{ opacity: 0, x: -12 }}
-                                    animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: index * 0.04 }}
-                                    onClick={() => {
-                                        console.log(link.path);
-                                        smoothScroll(link.path);
-                                        setMenuOpen(false);
-                                    }}
-                                    className="nav-link flex items-center gap-3 rounded-xl py-3 text-left text-base"
-                                >
-                                    <span className="text-primary">{link.icon}</span>
-                                    {link.name}
-                                </motion.button>
-                            ))}
+                <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                    className={`border-b border-border bg-background/92 backdrop-blur-xl lg:hidden ${menuOpen ? 'block' : 'hidden'}`}
+                >
+                    <div className="container flex max-h-[min(70vh,520px)] flex-col gap-0.5 overflow-y-auto px-3 py-4">
+                        {navData.map((link, index) => (
                             <motion.button
+                                key={link.path}
                                 type="button"
-                                initial={{ opacity: 0, y: 8 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.15 }}
-                                className={buttonClassNames({
-                                    variant: 'solid',
-                                    size: 'sm',
-                                    className:
-                                        'mt-2 flex h-12 w-full cursor-pointer items-center justify-center gap-2 text-base font-semibold active:scale-[0.99]',
-                                })}
-                                onClick={handleResumeDownload}
+                                initial={{ opacity: 0, x: -12 }}
+                                animate={{ opacity: 1, x: 0 }}
+                                transition={{ delay: index * 0.04 }}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    smoothScroll(link.path);
+                                    setMenuOpen(false);
+                                }}
+                                className="nav-link flex items-center gap-3 rounded-xl py-3 text-left text-base"
                             >
-                                <MdOutlineFileDownload size={22} /> Resume
+                                <span className="text-primary">{link.icon}</span>
+                                {link.name}
                             </motion.button>
-                        </div>
-                    </motion.div>
-                )}
+                        ))}
+                        <motion.button
+                            type="button"
+                            initial={{ opacity: 0, y: 8 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15 }}
+                            className={buttonClassNames({
+                                variant: 'solid',
+                                size: 'sm',
+                                className:
+                                    'mt-2 flex h-12 w-full cursor-pointer items-center justify-center gap-2 text-base font-semibold active:scale-[0.99]',
+                            })}
+                            onClick={handleResumeDownload}
+                        >
+                            <MdOutlineFileDownload size={22} /> Resume
+                        </motion.button>
+                    </div>
+                </motion.div>
+
             </AnimatePresence>
         </motion.header>
     );

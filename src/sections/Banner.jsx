@@ -105,9 +105,9 @@ const Banner = () => {
                         <div className="buttonContainer">
                             <button
                                 type="button"
-                                onClick={() => smoothScroll('about')}
+                                onClick={() => smoothScroll('projects')}
                                 className="link group relative cursor-pointer"
-                                aria-label="Scroll to about"
+                                aria-label="Scroll to projects"
                             >
                                 <img
                                     src={theme === 'dark' ? "/images/my-project-light.png" : "/images/my-project-dark.png"}
