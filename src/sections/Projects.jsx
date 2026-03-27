@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiArrowTopRightOnSquare, HiViewColumns } from 'react-icons/hi2';
 import {
@@ -120,10 +120,9 @@ const ProjectCard = ({ project, idx }) => {
 const Projects = () => {
     const [showAll, setShowAll] = useState(false);
     const visibleCount = showAll ? projectsData.length : 4;
-    const sectionRef = useRef(null);
 
     return (
-        <section ref={sectionRef} id="projects" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="projects" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Portfolio"

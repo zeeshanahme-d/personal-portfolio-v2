@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { HiBriefcase } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
@@ -49,11 +48,10 @@ const EXPERIENCE_DATA = {
 };
 
 const Experience = () => {
-    const sectionRef = useRef(null);
     const { theme } = useTheme();
 
     return (
-        <section ref={sectionRef} id="experience" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="experience" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Career"

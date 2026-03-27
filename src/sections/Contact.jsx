@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiEnvelope } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
@@ -10,7 +10,6 @@ import { IoIosSend, IoLogoGithub, IoLogoLinkedin } from 'react-icons/io';
 import { IoMailOutline } from 'react-icons/io5';
 
 const Contact = () => {
-    const sectionRef = useRef(null);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -29,7 +28,7 @@ const Contact = () => {
     };
 
     return (
-        <section ref={sectionRef} id="contact" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="contact" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Contact"

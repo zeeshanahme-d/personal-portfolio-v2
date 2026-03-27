@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { HiAcademicCap } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
@@ -30,10 +29,9 @@ const EDUCATION_DATA = {
 };
 
 const Education = () => {
-    const sectionRef = useRef(null);
 
     return (
-        <section ref={sectionRef} id="education" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="education" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Background"

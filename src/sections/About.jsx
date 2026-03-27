@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { HiUser } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
@@ -14,10 +13,9 @@ const developerProfile = {
 };
 
 const About = () => {
-    const sectionRef = useRef(null);
 
     return (
-        <section ref={sectionRef} id="about" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="about" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Profile"

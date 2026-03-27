@@ -30,7 +30,6 @@ const QUOTES = [
 ];
 
 function Testimonials() {
-    const sectionRef = useRef(null);
     const scrollerRef = useRef(null);
     const pausedRef = useRef(false);
     const rafRef = useRef(0);
@@ -57,7 +56,6 @@ function Testimonials() {
 
     return (
         <section
-            ref={sectionRef}
             id="testimonials"
             className="section-shell relative scroll-mt-24 overflow-hidden"
         >

@@ -142,6 +142,7 @@ const Header = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     transition={{ delay: index * 0.04 }}
                                     onClick={() => {
+                                        console.log(link.path);
                                         smoothScroll(link.path);
                                         setMenuOpen(false);
                                     }}

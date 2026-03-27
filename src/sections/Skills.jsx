@@ -1,4 +1,3 @@
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import {
     FaHtml5,
@@ -132,11 +131,10 @@ function SkillPanel({ group, colClass, reveal }) {
 }
 
 const Skills = () => {
-    const sectionRef = useRef(null);
     const [front, back, tools] = SKILLS_DATA.info;
 
     return (
-        <section ref={sectionRef} id="skills" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="skills" className="section-shell relative scroll-mt-24 overflow-hidden">
             <Wrapper className="relative z-1">
                 <SectionHeader
                     eyebrow="Stack"

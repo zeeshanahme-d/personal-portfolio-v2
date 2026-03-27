@@ -10,7 +10,6 @@ import Wrapper from '../components/Wrapper';
 import SectionHeader from '../components/SectionHeader';
 import SpotlightCard from '../components/SpotlightCard';
 import { revealFrom, staggerContainer } from '../utils/motion';
-import { useRef } from 'react';
 
 const ITEMS = [
     {
@@ -38,10 +37,9 @@ const ITEMS = [
 const DIRS = ['top', 'right', 'bottom', 'left'];
 
 function Services() {
-    const sectionRef = useRef(null);
 
     return (
-        <section ref={sectionRef} id="services" className="section-shell relative scroll-mt-24 overflow-hidden">
+        <section id="services" className="section-shell relative scroll-mt-24 overflow-hidden">
             <div
                 className="pointer-events-none absolute inset-x-0 top-1/2 -z-10 h-px bg-linear-to-r from-transparent via-border to-transparent opacity-80"
                 aria-hidden
