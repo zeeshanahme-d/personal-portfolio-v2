@@ -1,160 +1,128 @@
+import { useRef } from 'react';
 import { motion } from 'framer-motion';
+import { HiUser } from 'react-icons/hi2';
 import Wrapper from '../components/Wrapper';
+import SectionHeader from '../components/SectionHeader';
+import SpotlightCard from '../components/SpotlightCard';
+import { revealFrom } from '../utils/motion';
 
 const developerProfile = {
-    name: "Zeeshan Ahmed",
-    skills: ["JavaScript", "TypeScript", "React ", "Next.js"],
-    experience: "2+ Years",
+    name: 'Zeeshan Ahmed',
+    skills: ['JavaScript', 'TypeScript', 'React ', 'Next.js'],
+    experience: '2+ Years',
     passion: `Building scalable web apps with great UI/UX and \n clean code`,
 };
 
 const About = () => {
+    const sectionRef = useRef(null);
+
     return (
-        <section id="about" className="py-20 md:py-28 relative">
-            <Wrapper>
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, margin: '-100px' }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {/* Section Header */}
-                    <div className="flex flex-col justify-center items-center gap-y-4 mb-16 lg:mb-20">
-                        <motion.h1
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ type: 'spring', duration: 1.25, delay: 0.2 }}
-                            className="section-heading text-center">
-                            About <span className="text-primary">Me</span>
-                        </motion.h1>
-                        <motion.p
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.5 }}
-                            className="section-subheading">
-                            Here you will find more information about me, what I do, and my current skills.
-                        </motion.p>
-                    </div>
+        <section ref={sectionRef} id="about" className="section-shell relative scroll-mt-24 overflow-hidden">
+            <Wrapper className="relative z-1">
+                <SectionHeader
+                    eyebrow="Profile"
+                    title="About"
+                    accent="Me"
+                    description="What I do, how I work, and the stack I use day to day."
+                    revealDirection="bottom"
+                    HeadingIcon={HiUser}
+                />
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                        {/* Text Content */}
+                <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+                    <motion.div
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={revealFrom('left', 48)}
+                        className="flex flex-col gap-6"
+                    >
+                        <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">
+                            Get to <span className="gradient-text">know</span> me
+                        </h3>
+
+                        <div className="space-y-5 text-light-gray">
+                            <p className="text-[0.9375rem] font-light leading-relaxed md:text-base">
+                                Front-end developer with{' '}
+                                <strong className="font-medium text-foreground">
+                                    two years of professional experience
+                                </strong>{' '}
+                                shipping responsive apps in React, Next.js, TypeScript, and JavaScript—focused on
+                                performance, accessibility, and maintainable UI.
+                            </p>
+                            <p className="text-[0.9375rem] font-light leading-relaxed md:text-base">
+                                I contributed to{' '}
+                                <strong className="font-medium text-foreground">ioMoVo</strong>
+                                , an award-winning digital asset platform recognized at{' '}
+                                <strong className="font-medium text-foreground">IBC Show 2024</strong>
+                                . I&apos;m open to roles where I can ship quality product and keep growing.
+                            </p>
+                        </div>
+
                         <motion.div
-                            initial={{ opacity: 0, x: -60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
+                            initial={{ opacity: 0, y: 12 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="flex flex-col justify-center items-start gap-y-5"
+                            transition={{ duration: 0.45, delay: 0.12 }}
+                            className="flex flex-wrap items-end gap-10 border-t border-border pt-8"
                         >
-                            <h3 className="text-2xl md:text-3xl font-semibold">
-                                Get to <span className="text-primary">know</span> me!
-                            </h3>
-
-                            <div className="space-y-4 text-light-gray">
-                                <p className="font-light leading-relaxed text-base xl:text-lg">
-                                    Dedicated Front-End Developer with <strong className="text-foreground font-medium">2 years of professional experience</strong> building responsive and high quality web applications using React, Next.js, JavaScript, and TypeScript. Skilled in creating clean, user friendly interfaces, improving performance, and delivering smooth, accessible experiences.
-                                </p>
-                                <p className="font-light leading-relaxed text-base xl:text-lg">
-                                    I was part of the team behind <strong className="text-foreground font-medium">ioMoVo</strong>, an award winning digital asset management platform showcased at <strong className="text-foreground font-medium">IBC Show 2024</strong>, recognized for its innovation and performance.
-                                </p>
-                                <p className="font-light leading-relaxed text-base xl:text-lg">
-                                    I'm passionate about learning new technologies, solving real world problems, and creating products that make a difference.
-                                </p>
-                                <p className="font-light leading-relaxed text-base xl:text-lg">
-                                    I'm open to job opportunities where I can contribute, learn, and grow. If you have a role that matches my skills and experience, don't hesitate to reach out!
+                            <div>
+                                <p className="font-display mb-1 text-3xl font-bold text-primary md:text-4xl">2+</p>
+                                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    Years experience
                                 </p>
                             </div>
-
-                            {/* Stats */}
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.4 }}
-                                className="w-full flex items-center justify-start gap-8 mt-6"
-                            >
-                                <div className="relative pr-8 border-r border-border">
-                                    <motion.p
-                                        initial={{ scale: 0 }}
-                                        whileInView={{ scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ type: 'spring', stiffness: 100, delay: 0.5 }}
-                                        className="text-3xl xl:text-5xl font-extrabold text-primary mb-1"
-                                    >
-                                        2+
-                                    </motion.p>
-                                    <p className="text-xs uppercase tracking-widest text-light-gray">
-                                        Years of experience
-                                    </p>
-                                </div>
-                                <div className="relative">
-                                    <motion.p
-                                        initial={{ scale: 0 }}
-                                        whileInView={{ scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ type: 'spring', stiffness: 100, delay: 0.7 }}
-                                        className="text-3xl xl:text-5xl font-extrabold text-primary mb-1"
-                                    >
-                                        25+
-                                    </motion.p>
-                                    <p className="text-xs uppercase tracking-widest text-light-gray">
-                                        Finished projects
-                                    </p>
-                                </div>
-                            </motion.div>
+                            <div>
+                                <p className="font-display mb-1 text-3xl font-bold text-primary md:text-4xl">25+</p>
+                                <p className="text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                                    Projects shipped
+                                </p>
+                            </div>
                         </motion.div>
+                    </motion.div>
 
-                        <motion.div
-                            initial={{ opacity: 0, x: 60 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.3 }}
-                            className="flex items-center justify-center"
-                        >
-                            <div className="relative w-full max-w-xl">
-                                {/* Decorative elements */}
-                                <div className="absolute -top-4 -left-4 w-32 h-32 border-2 border-primary/30 rounded-lg animate-pulse" />
-                                <div className="absolute -bottom-4 -right-4 w-36 h-36 bg-primary/20 rounded-full blur-2xl animate-pulse" />
-
-                                {/* Code Card */}
-                                <div className="relative glass-card p-6 rounded-xl">
-                                    {/* Window dots */}
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <span className="w-3 h-3 rounded-full bg-red-500" />
-                                        <span className="w-3 h-3 rounded-full bg-yellow-500" />
-                                        <span className="w-3 h-3 rounded-full bg-green-500" />
-                                    </div>
-
-                                    {/* Code Block */}
-                                    <pre className="text-sm md:text-base font-family-sora overflow-x-auto text-light-gray leading-relaxed">
-                                        <code>
-                                            <span className="text-primary">const</span> developer = {"{"}
-                                            {"\n"}  <span className="text-green-400">name</span>:{" "}
-                                            <span className="text-yellow-400">"{developerProfile.name}"</span>,
-                                            {"\n"}  <span className="text-green-400">skills</span>: [
-                                            {developerProfile.skills.map((skill, i) => (
-                                                <span key={skill}>
-                                                    <span className="text-yellow-400">"{skill}"</span>
-                                                    {i < developerProfile.skills.length - 1 && ", "}
-                                                </span>
-                                            ))}
-                                            ],
-                                            {"\n"}  <span className="text-green-400">experience</span>:{" "}
-                                            <span className="text-primary">"{developerProfile.experience}"</span>,
-                                            {"\n"}  <span className="text-green-400">passion</span>:{" "}
-                                            <span className="text-yellow-400">
-                                                "{developerProfile.passion}"
+                    <motion.div
+                        initial="hidden"
+                        whileInView="show"
+                        viewport={{ once: true, margin: '-60px' }}
+                        variants={revealFrom('right', 48)}
+                        className="flex justify-center lg:justify-end"
+                    >
+                        <div className="relative w-full max-w-lg">
+                            <div
+                                className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-primary/10 blur-3xl"
+                                aria-hidden
+                            />
+                            <SpotlightCard innerClassName="relative overflow-hidden p-6 md:p-8">
+                                <div className="mb-5 flex gap-2">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+                                </div>
+                                <pre className="font-sora overflow-x-auto text-xs leading-relaxed text-light-gray md:text-sm">
+                                    <code>
+                                        <span className="text-primary">const</span> developer = {'{'}
+                                        {'\n'} <span className="text-emerald-400/90">name</span>:{' '}
+                                        <span className="text-foreground">&quot;{developerProfile.name}&quot;</span>,
+                                        {'\n'} <span className="text-emerald-400/90">skills</span>: [
+                                        {developerProfile.skills.map((skill, i) => (
+                                            <span key={skill}>
+                                                <span className="text-foreground">&quot;{skill}&quot;</span>
+                                                {i < developerProfile.skills.length - 1 && ', '}
                                             </span>
-                                            {"\n"}{"}"};
-                                        </code>
-                                    </pre>
-                                </div>
-                            </div>
-                        </motion.div>
-
-                    </div>
-                </motion.div>
+                                        ))}
+                                        ],
+                                        {'\n'} <span className="text-emerald-400/90">experience</span>:{' '}
+                                        <span className="text-primary">&quot;{developerProfile.experience}&quot;</span>,
+                                        {'\n'} <span className="text-emerald-400/90">passion</span>:{' '}
+                                        <span className="text-foreground">&quot;{developerProfile.passion}&quot;</span>
+                                        {'\n'}
+                                        {'}'};
+                                    </code>
+                                </pre>
+                            </SpotlightCard>
+                        </div>
+                    </motion.div>
+                </div>
             </Wrapper>
         </section>
     );
