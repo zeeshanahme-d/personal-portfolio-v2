@@ -79,7 +79,7 @@ function Testimonials() {
                 >
                     <div
                         ref={scrollerRef}
-                        onMouseEnter={(e) => {
+                        onMouseEnter={() => {
                             pausedRef.current = true;
                         }}
                         onMouseLeave={() => {

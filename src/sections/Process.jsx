@@ -46,7 +46,7 @@ function Process() {
 
                 <div className="mx-auto max-w-3xl">
                     <ol className="relative space-y-0 border-l border-border pl-8 md:pl-10">
-                        {STEPS.map(({ step, title, text }, idx) => (
+                        {STEPS.map(({ step, title, text }) => (
                             <motion.li
                                 key={step}
                                 initial="hidden"

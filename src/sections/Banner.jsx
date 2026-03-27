@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { HiArrowRight, HiEnvelope, HiSparkles } from 'react-icons/hi2';
 import { fadeIn, staggerContainer, textVariant } from '../utils/motion';
 import ParticlesContainer from '@/components/ParticlesContainer';
-import { buttonClassNames } from '@/components/ui/Button';
+import { buttonClassNames } from '@/components/ui/buttonClassNames';
 import { useTheme } from '@/contexts/ThemeContext';
 
 const Banner = () => {

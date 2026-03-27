@@ -1,4 +1,3 @@
-import React from 'react';
 import Wrapper from './Wrapper';
 import Socials from './Socials';
 import { smoothScroll } from '../lib/ScrollToElement';

@@ -15,7 +15,7 @@ import Wrapper from '../components/Wrapper';
 import SectionHeader from '../components/SectionHeader';
 import SpotlightCard from '../components/SpotlightCard';
 import { revealFrom } from '../utils/motion';
-import { buttonClassNames } from '@/components/ui/Button';
+import { buttonClassNames } from '@/components/ui/buttonClassNames';
 
 const projectsData = [
     {

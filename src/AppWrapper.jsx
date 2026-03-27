@@ -1,16 +1,16 @@
+import { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Banner from '@/sections/Banner';
-import About from '@/sections/About';
-import Services from '@/sections/Services';
-import Experience from '@/sections/Experience';
-import Education from '@/sections/Education';
 import Footer from '@/components/Footer';
 
-import Skills from '@/sections/Skills';
-import Projects from '@/sections/Projects';
-import Process from '@/sections/Process';
-import Testimonials from '@/sections/Testimonials';
-import Contact from '@/sections/Contact';
+const About = lazy(() => import('@/sections/About'));
+const Services = lazy(() => import('@/sections/Services'));
+const Experience = lazy(() => import('@/sections/Experience'));
+const Skills = lazy(() => import('@/sections/Skills'));
+const Projects = lazy(() => import('@/sections/Projects'));
+const Process = lazy(() => import('@/sections/Process'));
+const Testimonials = lazy(() => import('@/sections/Testimonials'));
+const Contact = lazy(() => import('@/sections/Contact'));
 
 const AppWrapper = () => {
     return (
@@ -33,15 +33,30 @@ const AppWrapper = () => {
             </div>
             <Header />
             <Banner />
-            <About />
-            <Skills />
-            <Experience />
-            <Projects />
-            <Services />
-            <Process />
-            <Testimonials />
-            {/* <Education /> */}
-            <Contact />
+            <Suspense fallback={null}>
+                <About />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Skills />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Experience />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Projects />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Services />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Process />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Testimonials />
+            </Suspense>
+            <Suspense fallback={null}>
+                <Contact />
+            </Suspense>
             <div
                 className="container mx-auto h-px w-full max-w-5xl bg-linear-to-r from-transparent via-border to-transparent opacity-90"
                 aria-hidden

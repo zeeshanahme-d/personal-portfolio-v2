@@ -16,7 +16,7 @@ import { Spin as Hamburger } from 'hamburger-react';
 import { smoothScroll } from '../lib/ScrollToElement';
 import { AnimatePresence, motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
-import { buttonClassNames } from './ui/Button';
+import { buttonClassNames } from './ui/buttonClassNames';
 
 const navData = [
     { name: 'About', path: 'about', icon: <HiUser /> },
