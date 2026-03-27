@@ -90,7 +90,7 @@ const About = () => {
                                 className="pointer-events-none absolute -right-6 -top-6 h-40 w-40 rounded-full bg-primary/10 blur-3xl"
                                 aria-hidden
                             />
-                            <SpotlightCard innerClassName="relative overflow-hidden p-6 md:p-8">
+                            <SpotlightCard innerClassName="relative overflow-hidden p-5 sm:p-6 md:p-8">
                                 <div className="mb-5 flex gap-2">
                                     <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
                                     <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />

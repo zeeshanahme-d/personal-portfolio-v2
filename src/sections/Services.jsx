@@ -69,7 +69,7 @@ function Services() {
                             transition={{ type: 'spring', stiffness: 380, damping: 26 }}
                             className="h-full"
                         >
-                            <SpotlightCard className="h-full" innerClassName="group relative h-full overflow-hidden p-7 md:p-8">
+                            <SpotlightCard className="h-full" innerClassName="group relative h-full overflow-hidden p-5 sm:p-6 md:p-8">
                                 <div
                                     className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/8 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
                                     aria-hidden

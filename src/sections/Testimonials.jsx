@@ -92,7 +92,7 @@ function Testimonials() {
                                 quote={item.quote}
                                 name={item.name}
                                 role={item.role}
-                                className="min-w-[min(100%,340px)] shrink-0 sm:min-w-[380px] md:min-w-[420px]"
+                                className="w-full shrink-0 sm:w-[380px] md:w-[420px]"
                             />
                         ))}
                     </div>

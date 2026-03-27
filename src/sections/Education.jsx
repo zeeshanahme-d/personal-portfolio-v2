@@ -51,7 +51,7 @@ const Education = () => {
                             whileHover={{ y: -3 }}
                             transition={{ type: 'spring', stiffness: 400, damping: 28 }}
                         >
-                            <SpotlightCard innerClassName="p-6 md:p-8">
+                            <SpotlightCard innerClassName="p-5 sm:p-6 md:p-8">
                                 <div className="flex flex-col gap-6 md:flex-row md:gap-8">
                                     <motion.div
                                         className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary/12 ring-1 ring-border"

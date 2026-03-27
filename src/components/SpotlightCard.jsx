@@ -1,9 +1,38 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef, useSyncExternalStore } from 'react';
+
+/** Aligns with Tailwind `lg` (64rem = 1024px). */
+const LG_MEDIA = '(min-width: 1024px)';
+
+function subscribeLg(onChange) {
+    const mq = window.matchMedia(LG_MEDIA);
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+}
+
+function getLgSnapshot() {
+    return window.matchMedia(LG_MEDIA).matches;
+}
+
+function getLgServerSnapshot() {
+    return false;
+}
+
+function useIsLg() {
+    return useSyncExternalStore(subscribeLg, getLgSnapshot, getLgServerSnapshot);
+}
+
+function SpotlightCardStatic({ children, className = '', innerClassName = '' }) {
+    return (
+        <div className={`relative rounded-4xl ${className}`}>
+            <div className={`spotlight-border-inner h-full rounded-4xl ${innerClassName}`}>{children}</div>
+        </div>
+    );
+}
 
 const LERP = 0.11;
 const EPS = 0.25;
 
-function SpotlightCard({ children, className = '', innerClassName = '' }) {
+function SpotlightCardInteractive({ children, className = '', innerClassName = '' }) {
     const ref = useRef(null);
     const targetRef = useRef({ x: 50, y: 50 });
     const currentRef = useRef({ x: 50, y: 50 });
@@ -77,11 +106,15 @@ function SpotlightCard({ children, className = '', innerClassName = '' }) {
             className={`spotlight-border rounded-4xl p-px ${className}`}
             style={{ '--spot-x': '50%', '--spot-y': '50%' }}
         >
-            <div className={`spotlight-border-inner h-full rounded-4xl ${innerClassName}`}>
-                {children}
-            </div>
+            <div className={`spotlight-border-inner h-full rounded-4xl ${innerClassName}`}>{children}</div>
         </div>
     );
 }
 
-export default SpotlightCard;
+export default function SpotlightCard(props) {
+    const isLg = useIsLg();
+    if (!isLg) {
+        return <SpotlightCardStatic {...props} />;
+    }
+    return <SpotlightCardInteractive {...props} />;
+}

@@ -74,9 +74,9 @@ const Experience = () => {
                             transition={{ type: 'spring', stiffness: 320, damping: 28 }}
                             className="h-full"
                         >
-                            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-6 md:p-8">
+                            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 sm:p-6 md:p-8">
                                 <div className="mb-6 flex items-start gap-4">
-                                    <div className={`flex h-22 ${theme === 'light' ? 'bg-[#1b1c35]' : 'bg-primary/10'} w-22 shrink-0 items-center justify-center rounded-2xl ring-1 ring-border transition-colors duration-300`}>
+                                    <div className={`hidden sm:flex h-22 ${theme === 'light' ? 'bg-[#1b1c35]' : 'bg-primary/10'} w-22 shrink-0 items-center justify-center rounded-2xl ring-1 ring-border transition-colors duration-300`}>
                                         {item.logo}
                                     </div>
                                     <div className="min-w-0 flex-1 space-y-0.5 pt-0.5 text-left">
@@ -96,13 +96,6 @@ const Experience = () => {
                                                 ·
                                             </span>
                                             {item.tenure}
-                                        </p>
-                                        <p className="text-sm leading-snug text-muted-foreground">
-                                            {item.location}
-                                            <span className="mx-1.5 text-border" aria-hidden>
-                                                ·
-                                            </span>
-                                            {item.workMode}
                                         </p>
                                     </div>
                                 </div>

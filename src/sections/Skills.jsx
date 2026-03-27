@@ -109,7 +109,7 @@ function SkillPanel({ group, colClass, reveal }) {
             variants={revealFrom(reveal, 40)}
             className={colClass}
         >
-            <SpotlightCard className="h-full" innerClassName="flex h-full flex-col p-6 md:p-8">
+            <SpotlightCard className="h-full" innerClassName="flex h-full flex-col p-5 sm:p-6 md:p-8">
                 <div className="mb-5 border-b border-border pb-4">
                     <p className="section-eyebrow mb-1 text-primary/90">{group.subtitle}</p>
                     <h3 className="font-display text-xl font-semibold tracking-tight md:text-2xl">{group.title}</h3>

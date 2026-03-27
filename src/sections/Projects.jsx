@@ -64,7 +64,7 @@ const ProjectCard = ({ project, idx }) => {
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
             className="h-full"
         >
-            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-4 sm:p-6 md:p-7">
+            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 sm:p-6 md:p-8">
                 <div className="flex h-full flex-col justify-between gap-6">
                     <div className="space-y-5">
                         <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-linear-to-br from-primary/20 via-card/50 to-background/80 ring-1 ring-border">
