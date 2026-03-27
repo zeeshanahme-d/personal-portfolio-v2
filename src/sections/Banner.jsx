@@ -11,7 +11,7 @@ const Banner = () => {
     return (
         <section
             id="home"
-            className="relative flex min-h-dvh max-h-[920px] items-center justify-center overflow-hidden pt-24 pb-32 md:pt-28 md:pb-36"
+            className="relative flex min-h-dvh max-h-[920px] items-center justify-center overflow-hidden pt-32 lg:pt-54 pb-32 md:pb-36"
         >
             <ParticlesContainer />
 
