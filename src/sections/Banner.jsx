@@ -16,12 +16,12 @@ const Banner = () => {
             <ParticlesContainer />
 
             <div
-                className="pointer-events-none absolute -top-40 left-[10%] z-2 h-[min(440px,50vw)] w-[min(440px,50vw)] rounded-full blur-[110px]"
+                className="pointer-events-none absolute -top-40 left-[10%] z-2 h-[min(440px,50vw)] w-[min(440px,50vw)] transform-gpu rounded-full blur-[110px] backface-hidden max-md:opacity-70 max-md:blur-[60px]"
                 style={{ backgroundColor: 'var(--mesh-1)' }}
                 aria-hidden
             />
             <div
-                className="pointer-events-none absolute bottom-[-25%] right-[6%] z-2 h-[min(360px,45vw)] w-[min(360px,45vw)] rounded-full blur-[100px]"
+                className="pointer-events-none absolute bottom-[-25%] right-[6%] z-2 h-[min(360px,45vw)] w-[min(360px,45vw)] transform-gpu rounded-full blur-[100px] backface-hidden max-md:opacity-70 max-md:blur-[60px]"
                 style={{ backgroundColor: 'var(--mesh-2)' }}
                 aria-hidden
             />
