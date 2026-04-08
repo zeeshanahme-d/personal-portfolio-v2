@@ -1,19 +1,25 @@
 import { useEffect, useMemo, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { loadAll } from '@tsparticles/all';
+import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@/contexts/ThemeContext';
 
 /** Hero-only particles — mount inside `#home` with `relative overflow-hidden`. */
 const ParticlesContainer = () => {
     const [init, setInit] = useState(false);
     const { theme } = useTheme();
+    const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
         initParticlesEngine(async (engine) => {
-            await loadAll(engine);
+            await loadSlim(engine);
         }).then(() => {
             setInit(true);
         });
+
+        const checkMobile = () => setIsMobile(window.innerWidth < 768);
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
     const options = useMemo(() => {
@@ -29,15 +35,13 @@ const ParticlesContainer = () => {
         const isLight = theme === 'light';
         return {
             fullScreen: { enable: false, zIndex: 0 },
-            fpsLimit: 72,
+            fpsLimit: isMobile ? 30 : 72,
             interactivity: {
                 events: {
-                    onClick: { enable: false, mode: 'push' },
-                    onHover: { enable: true, mode: 'repulse' },
+                    onHover: { enable: !isMobile, mode: 'repulse' },
                     resize: true,
                 },
                 modes: {
-                    push: { quantity: 60 },
                     repulse: { distance: 42, duration: 0.35 },
                 },
             },
@@ -61,15 +65,15 @@ const ParticlesContainer = () => {
                 },
                 number: {
                     density: { enable: true, area: 820 },
-                    value: isLight ? 46 : 54,
+                    value: isLight ? (isMobile ? 20 : 46) : (isMobile ? 25 : 54),
                 },
                 opacity: { value: isLight ? 0.11 : 0.17 },
                 shape: { type: 'circle' },
                 size: { value: { min: 1, max: 3.5 } },
             },
-            detectRetina: true,
+            detectRetina: !isMobile,
         };
-    }, [theme]);
+    }, [theme, isMobile]);
 
     if (!init) return null;
 
