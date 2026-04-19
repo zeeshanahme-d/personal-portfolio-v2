@@ -33,10 +33,30 @@ const navData = [
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
     const location = useLocation();
+    const [show, setShow] = useState("");
+    const [lastScrollY, setLastScrollY] = useState(0);
 
     useEffect(() => {
         window.scrollTo(0, 0);
     }, [location]);
+
+    const scrollNavbar = () => {
+        if (window.scrollY > 200) {
+            if (window.scrollY > lastScrollY) {
+                setShow('hide')
+            } else {
+                setShow('show')
+            }
+            setLastScrollY(window.scrollY)
+        } else {
+            setShow('top')
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener("scroll", scrollNavbar);
+        return () => { window.removeEventListener("scroll", scrollNavbar); }
+    }, [lastScrollY]);
 
     const handleResumeDownload = () => {
         const link = document.createElement('a');
@@ -51,9 +71,9 @@ const Header = () => {
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ type: 'spring', stiffness: 88, damping: 20, delay: 0.12 }}
-            className="fixed top-0 z-50 w-full translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+            className={`${show === "hide" ? "-translate-y-full" : show === "show" ? "translate-y-0" : "translate-y-0"} fixed top-0 z-50 w-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
         >
-            <div className="container pt-3 md:pt-4">
+            <div className="container pt-3 md:pt-4 " >
                 <div
                     className={`flex min-h-13 items-center justify-between gap-2 rounded-2xl border px-5 py-0 lg:py-5 transition-[background,border-color,box-shadow] duration-500 md:min-h-14 border-border bg-background/75 shadow-[0_12px_48px_-12px_rgba(0,0,0,0.4)] backdrop-blur-xl`}
                 >

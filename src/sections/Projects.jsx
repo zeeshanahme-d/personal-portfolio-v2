@@ -31,7 +31,7 @@ const projectsData = [
         description:
             'ioPortal is an AI-powered digital asset sharing platform within ioMoVo that enables secure, branded collaboration across multiple storage systems. Built with React, TypeScript, Redux Toolkit, and Material UI.',
         image: '/images/iomovo.png',
-        tags: [SiReact, SiTypescript, SiMui, SiSass, SiRedux],
+        tags: [SiReact, SiTypescript, SiMui, SiSass],
         link: 'https://www.iomovo.io/products/ioportal',
     },
     {
@@ -64,10 +64,10 @@ const ProjectCard = ({ project, idx }) => {
             transition={{ type: 'spring', stiffness: 280, damping: 24 }}
             className="h-full"
         >
-            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 sm:p-6 md:p-8">
-                <div className="flex h-full flex-col justify-between gap-6">
+            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 md:p-6 lg:p-8">
+                <div className="flex h-full flex-col justify-between gap-4">
                     <div className="space-y-5">
-                        <div className="relative aspect-16/10 overflow-hidden rounded-xl bg-linear-to-br from-primary/20 via-card/50 to-background/80 ring-1 ring-border">
+                        <div className="relative aspect-16/8 overflow-hidden rounded-2xl bg-linear-to-br from-primary/20 via-card/50 to-background/80 ring-1 ring-border">
                             <div className="absolute inset-x-4 top-7 bottom-[-18%] transition-[bottom] duration-500 ease-out group-hover:bottom-[-10%]">
                                 <img
                                     src={project.image}
@@ -89,7 +89,7 @@ const ProjectCard = ({ project, idx }) => {
                         </div>
                     </div>
 
-                    <div className="flex items-center justify-between gap-4 border-t border-border pt-4">
+                    <div className="flex items-center flex-wrap justify-between gap-4 border-t border-border pt-4">
                         <div className="flex flex-wrap items-center gap-2">
                             {project.tags.map((Icon, tagIdx) => (
                                 <motion.div
@@ -105,7 +105,7 @@ const ProjectCard = ({ project, idx }) => {
                             href={project.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="group/link flex shrink-0 items-center gap-2 text-sm font-semibold text-light-gray transition-colors duration-300 hover:text-primary"
+                            className="group/link flex shrink-0 items-center gap-2 text-sm font-semibold text-light-gray transition-colors duration-300 hover:text-primary!"
                         >
                             Live site
                             <HiArrowTopRightOnSquare className="h-4 w-4 transition-transform duration-300 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5" />
