@@ -9,7 +9,7 @@ function TestimonialCard({ quote, name, role, className = '' }) {
     const roleTone = isLight ? 'text-[#888888]' : 'text-[#8b8ba3]';
 
     return (
-        <SpotlightCard className={className} innerClassName="relative p-5 sm:p-6 md:p-8">
+        <SpotlightCard className={className} innerClassName="relative p-5 md:p-6 lg:p-8">
             <span
                 className="font-display mb-1 block select-none text-[clamp(3.25rem,7vw,4.25rem)] font-bold leading-[0.52] -tracking-[0.07em] opacity-90 bg-[linear-gradient(160deg,var(--accent)_0%,var(--gradient-accent-mid)_100%)] bg-clip-text text-transparent"
                 aria-hidden

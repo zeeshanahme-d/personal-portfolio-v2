@@ -74,7 +74,7 @@ const Experience = () => {
                             transition={{ type: 'spring', stiffness: 320, damping: 28 }}
                             className="h-full"
                         >
-                            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 sm:p-6 md:p-8">
+                            <SpotlightCard className="h-full" innerClassName="group flex h-full flex-col p-5 md:p-6 lg:p-8">
                                 <div className="mb-6 flex items-start gap-4">
                                     <div className={`hidden sm:flex h-22 ${theme === 'light' ? 'bg-[#1b1c35]' : 'bg-primary/10'} w-22 shrink-0 items-center justify-center rounded-2xl ring-1 ring-border transition-colors duration-300`}>
                                         {item.logo}

@@ -116,7 +116,7 @@ const Contact = () => {
                                 className="pointer-events-none absolute -left-8 -top-8 h-32 w-32 rounded-full bg-primary/8 blur-2xl"
                                 aria-hidden
                             />
-                            <SpotlightCard innerClassName="relative p-5 sm:p-6 md:p-8">
+                            <SpotlightCard innerClassName="relative p-5 md:p-6 lg:p-8">
                                 <motion.div
                                     className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/25"
                                     animate={{ y: [0, -4, 0] }}
