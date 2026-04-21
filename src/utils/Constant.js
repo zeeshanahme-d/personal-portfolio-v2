@@ -18,5 +18,6 @@ export const ROLES = [
     'UI Architect',
     'Frontend Performance Engineer',
     'Design System Engineer',
-    'Animation & Motion UI Developer'
+    'Animation UI Developer',
+    'Motion UI Developer'
 ];
