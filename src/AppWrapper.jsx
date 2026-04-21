@@ -12,7 +12,6 @@ import Testimonials from '@/sections/Testimonials';
 import Contact from '@/sections/Contact';
 import CustomCursor from '@/components/CustomCursor';
 import PageLoader from '@/components/PageLoader';
-import ScrollProgressBar from '@/components/ScrollProgressBar';
 import SkillsTicker from '@/components/SkillsTicker';
 
 const AppWrapper = () => {
@@ -25,10 +24,6 @@ const AppWrapper = () => {
 
             {/* Custom cursor — desktop only */}
             <CustomCursor />
-
-            <ScrollProgressBar />
-
-            <div className="noise-overlay" aria-hidden />
 
             <div className="app-wrapper">
                 <div className="pointer-events-none fixed inset-0 -z-20">
