@@ -15,8 +15,9 @@
 :root,
 [data-theme="dark"] {
     --font-Sora: "Sora", ui-sans-serif, system-ui, sans-serif;
-    --font-Display: "Syne", ui-sans-serif, system-ui, sans-serif;
+    --font-Display: "Clash Display", "Syne", ui-sans-serif, system-ui, sans-serif;
     --font-Lobster: "Lobster", cursive;
+    --font-Mono: "Fira Code", "Cascadia Code", ui-monospace, monospace;
 
     --surface-base: #05050e;
     --surface-muted: #0a0a16;
@@ -41,6 +42,10 @@
 
     --btn-gradient-from: #7c3aed;
     --btn-gradient-to: #0891b2;
+
+    --amber-accent: #f59e0b;
+    --amber-soft: rgba(245, 158, 11, 0.15);
+    --noise-opacity: 0.032;
 
     --mesh-1: rgba(124, 58, 237, 0.14);
     --mesh-2: rgba(34, 211, 238, 0.09);
@@ -77,6 +82,10 @@
 
     --btn-gradient-from: #5b21b6;
     --btn-gradient-to: #0f766e;
+
+    --amber-accent: #d97706;
+    --amber-soft: rgba(217, 119, 6, 0.12);
+    --noise-opacity: 0.025;
 
     --mesh-1: rgba(91, 33, 182, 0.11);
     --mesh-2: rgba(14, 116, 144, 0.08);
@@ -186,6 +195,7 @@ a {
     --font-sora: var(--font-Sora);
     --font-display: var(--font-Display);
     --font-lobster: var(--font-Lobster);
+    --font-mono: var(--font-Mono);
 
     --color-background: var(--surface-base);
     --color-foreground: var(--text-primary);
@@ -508,16 +518,19 @@ a {
     }
 
     .input-surface {
-        border-radius: 26px;
+        border-radius: 14px;
         border: 1px solid var(--border-subtle);
         background-color: color-mix(in srgb, var(--surface-elevated) 40%, transparent);
         color: var(--text-primary);
+        width: 100%;
+        display: block;
         transition: border-color 0.3s var(--ease-out-expo), box-shadow 0.3s var(--ease-out-expo),
             background-color 0.3s var(--ease-out-expo);
     }
 
+    /* Hide default placeholder — floating label handles it */
     .input-surface::placeholder {
-        color: var(--text-muted);
+        color: transparent;
     }
 
     .input-surface:hover {
@@ -528,6 +541,15 @@ a {
         outline: none;
         border-color: color-mix(in srgb, var(--accent) 55%, var(--border-strong));
         box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    /* Floating label: move up when not placeholder-shown (has value) */
+    .input-surface:not(:placeholder-shown) ~ label,
+    .input-surface:focus ~ label {
+        top: 0.5rem;
+        transform: scale(0.75);
+        transform-origin: left;
+        color: var(--accent);
     }
 }
 
@@ -595,6 +617,26 @@ a {
     }
 }
 
+@keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+}
+
+@keyframes cursor-ping {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50%       { transform: scale(1.6); opacity: 0; }
+}
+
+@keyframes availability-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.55); }
+    70%       { box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+}
+
+@keyframes loader-reveal {
+    0%   { clip-path: inset(0 100% 0 0); }
+    100% { clip-path: inset(0 0% 0 0); }
+}
+
 @layer utilities {
     .animate-spin-slow {
         animation: spin-slow 10s linear infinite;
@@ -619,5 +661,29 @@ a {
 
     .animate-fade-in-up {
         animation: fade-in-up 0.7s var(--ease-out-expo) both;
+    }
+
+    .animate-marquee {
+        animation: marquee 28s linear infinite;
+    }
+
+    .animate-availability {
+        animation: availability-pulse 2s ease-out infinite;
+    }
+
+    .noise-overlay {
+        pointer-events: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        opacity: var(--noise-opacity);
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 180px;
+        mix-blend-mode: overlay;
+    }
+
+    .font-mono {
+        font-family: var(--font-mono);
     }
 }
