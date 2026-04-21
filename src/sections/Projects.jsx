@@ -162,7 +162,7 @@ function FeaturedCard({ project, index }) {
                                 href={project.link}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={buttonClassNames({ variant: 'solid', size: 'sm', className: 'cursor-pointer' })}
+                                className={buttonClassNames({ variant: 'solid', size: 'sm', className: 'cursor-pointer text-[#fff]!' })}
                             >
                                 Live site <HiArrowTopRightOnSquare className="h-3.5 w-3.5" aria-hidden />
                             </a>
