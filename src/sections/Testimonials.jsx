@@ -64,7 +64,7 @@ function Testimonials() {
                     eyebrow="Voices"
                     title="Trusted"
                     accent="feedback"
-                    description="Snapshots of how partners describe working together—auto-scrolling; pause on hover."
+                    description="Snapshots of how partners describe working together."
                     revealDirection="right"
                     HeadingIcon={HiChatBubbleLeftRight}
                 />
