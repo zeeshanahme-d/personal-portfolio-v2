@@ -77,7 +77,7 @@ const Header = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.35 }}
-                        className="font-lobster shrink-0 cursor-pointer text-left text-xl font-normal tracking-wide text-foreground md:text-2xl lg:text-3xl"
+                        className="font-display font-semibold leading-[1.02] tracking-[-0.04em] shrink-0 cursor-pointer text-left text-xl text-foreground md:text-2xl lg:text-3xl"
                         onClick={() => smoothScroll('home')}
                     >
                         Zeeshan <span className="text-primary">Ahmed</span>

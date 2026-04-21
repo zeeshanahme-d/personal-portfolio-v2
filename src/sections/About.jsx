@@ -9,13 +9,12 @@ import { useCountUp } from '../hooks/useCountUp';
 
 const TERMINAL_LINES = [
     { delay: 0, text: 'const developer = {', color: 'var(--accent)' },
-    { delay: 0.6, text: '  name: "Zeeshan Ahmed",', color: 'var(--text-secondary)' },
-    { delay: 1.0, text: '  role: "Frontend Developer",', color: 'var(--text-secondary)' },
-    { delay: 1.4, text: '  stack: ["React", "Next.js", "TS"],', color: 'var(--text-secondary)' },
-    { delay: 1.8, text: '  exp: "2+ years",', color: 'var(--text-secondary)' },
-    { delay: 2.2, text: '  award: "IBC Show 2024",', color: '#4ade80' },
-    { delay: 2.6, text: '  open: true,', color: '#f59e0b' },
-    { delay: 3.0, text: '};', color: 'var(--accent)' },
+    { delay: 0.4, text: '  name: "Zeeshan Ahmed",', color: 'var(--text-secondary)' },
+    { delay: 0.6, text: '  role: "Frontend Developer",', color: 'var(--text-secondary)' },
+    { delay: 0.8, text: '  stack: ["React", "Next.js", "TS"],', color: 'var(--text-secondary)' },
+    { delay: 1, text: '  exp: "2+ years",', color: 'var(--text-secondary)' },
+    { delay: 1.2, text: '  open: true,', color: '#f59e0b' },
+    { delay: 1.4, text: '};', color: 'var(--accent)' },
 ];
 
 function TerminalLine({ text, color, delay, inView }) {
@@ -35,8 +34,8 @@ function TerminalLine({ text, color, delay, inView }) {
             className="flex items-center gap-2"
         >
             <span
-                className="font-mono text-xs leading-relaxed md:text-sm"
-                style={{ color, fontFamily: 'var(--font-Mono)' }}
+                className=" text-xs leading-relaxed tracking-widest md:text-sm"
+                style={{ color, }}
             >
                 {text}
             </span>

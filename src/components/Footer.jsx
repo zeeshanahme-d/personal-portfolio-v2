@@ -5,11 +5,11 @@ import { motion } from 'framer-motion';
 import { HiArrowUp } from 'react-icons/hi2';
 
 const FOOTER_NAV = [
-    { label: 'About',    path: 'about' },
-    { label: 'Skills',   path: 'skills' },
-    { label: 'Work',     path: 'experience' },
+    { label: 'About', path: 'about' },
+    { label: 'Skills', path: 'skills' },
+    { label: 'Work', path: 'experience' },
     { label: 'Projects', path: 'projects' },
-    { label: 'Contact',  path: 'contact' },
+    { label: 'Contact', path: 'contact' },
 ];
 
 function Footer() {
@@ -43,7 +43,7 @@ function Footer() {
                         <button
                             type="button"
                             onClick={() => smoothScroll('home')}
-                            className="font-lobster w-fit cursor-pointer text-left text-2xl font-normal tracking-wide text-foreground hover:text-primary transition-colors duration-300 md:text-3xl"
+                            className="font-display font-semibold leading-[1.02] tracking-[-0.04em] w-fit cursor-pointer text-left text-2xl text-foreground md:text-3xl"
                         >
                             Zeeshan <span className="text-primary">Ahmed</span>
                         </button>
