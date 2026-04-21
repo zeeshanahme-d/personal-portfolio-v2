@@ -1,0 +1,15 @@
+@font-face {
+    font-family: 'Sora';
+    src: url('../assets/font/Sora-font.woff2') format('woff2');
+    font-weight: 300, 400, 500, 600, 700;
+    ;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('../assets/font/Syne-font.woff2') format('woff2');
+    font-weight: 400, 500, 600, 700;
+    ;
+    font-style: normal;
+}
