@@ -1,17 +1,19 @@
-import { smoothScroll } from '../lib/ScrollToElement';
 import { motion } from 'framer-motion';
-import { HiArrowRight, HiEnvelope, HiSparkles } from 'react-icons/hi2';
-import { fadeIn, staggerContainer, textVariant } from '../utils/motion';
+import { HiArrowRight, HiEnvelope, HiSparkles, HiMapPin } from 'react-icons/hi2';
+import { fadeIn, staggerContainer } from '../utils/motion';
 import ParticlesContainer from '@/components/ParticlesContainer';
 import { buttonClassNames } from '@/components/ui/buttonClassNames';
-import { useTheme } from '@/contexts/ThemeContext';
+import ScrambleText from '@/components/ScrambleText';
+import TypewriterCycle from '@/components/TypewriterCycle';
+import { smoothScroll } from '../lib/ScrollToElement';
+import { ROLES } from '../utils/Constant';
+
 
 const Banner = () => {
-    const { theme } = useTheme();
     return (
         <section
             id="home"
-            className="relative flex min-h-dvh max-h-[920px] items-center justify-center overflow-hidden pt-32 lg:pt-54 pb-32 md:pb-36"
+            className="relative flex min-h-dvh items-center justify-center overflow-hidden pt-28 pb-20 lg:pt-36 lg:pb-28"
         >
             <ParticlesContainer />
 
@@ -30,13 +32,14 @@ const Banner = () => {
                 variants={staggerContainer(0.07, 0.1)}
                 initial="hidden"
                 whileInView="show"
-                viewport={{ once: true, amount: 0.25 }}
+                viewport={{ once: true, amount: 0.2 }}
                 className="container relative z-10"
             >
                 <div className="mx-auto flex w-full max-w-4xl flex-col items-center text-center lg:max-w-5xl">
+
                     <motion.div
                         variants={fadeIn('down', 'tween', 0.06, 0.48)}
-                        className="mb-6 flex flex-wrap items-center justify-center gap-2"
+                        className="mb-7 flex flex-wrap items-center justify-center gap-2.5"
                     >
                         <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-md">
                             <motion.span
@@ -47,78 +50,79 @@ const Banner = () => {
                             >
                                 <HiSparkles className="h-3.5 w-3.5" />
                             </motion.span>
-                            {new Date().getFullYear()}
+                            Open to work · {new Date().getFullYear()}
                         </span>
-                        <span className="hidden h-1 w-1 rounded-full bg-border sm:block" aria-hidden />
-                        <span className="section-eyebrow text-primary/95">Front-end · React & Next.js</span>
+
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border/60 bg-card/50 px-3 py-1.5 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground backdrop-blur-md">
+                            <HiMapPin className="h-3 w-3 text-primary" aria-hidden />
+                            Pakistan
+                        </span>
                     </motion.div>
 
                     <motion.h1
-                        variants={textVariant(0.16)}
-                        className="font-display mb-7 text-[clamp(2.25rem,7.8vw,4.35rem)] font-semibold leading-[1.03] tracking-[-0.038em] md:mb-8"
+                        variants={fadeIn('up', 'tween', 0.12, 0.6)}
+                        className="font-display mb-5 text-[clamp(2.6rem,7.5vw,5rem)] font-semibold leading-[1.02] tracking-[-0.04em]"
                     >
-                        Interfaces that feel{' '}
-                        <span className="gradient-text">effortless</span>
-                        <span className="text-foreground"> at scale</span>
+                        <ScrambleText text="Crafting Interfaces That " delay={200} className="block" />
+                        <ScrambleText
+                            text="Feel Alive"
+                            delay={300}
+                            className="gradient-text block"
+                        />
                     </motion.h1>
+
+                    <motion.div
+                        variants={fadeIn('up', 'tween', 0.22, 0.55)}
+                        className="mb-5 flex items-center justify-center gap-2 text-[1rem] text-light-gray md:text-[1.0625rem]"
+                    >
+                        <span className="font-medium text-foreground">I&apos;m a</span>
+                        <TypewriterCycle
+                            words={ROLES}
+                            className="min-w-[12ch] font-semibold text-primary"
+                        />
+                    </motion.div>
 
                     <motion.p
                         variants={fadeIn('up', 'tween', 0.3, 0.55)}
-                        className="max-w-lg text-pretty text-[0.9375rem] font-light leading-[1.75] text-light-gray md:max-w-2xl md:text-lg"
+                        className="mb-9 max-w-xl text-pretty text-[0.9375rem] font-light leading-[1.75] text-light-gray md:text-base"
                     >
                         Hi, I&apos;m{' '}
                         <span className="font-medium text-foreground">Zeeshan Ahmed</span>
-                        —shipping fast, accessible product UI with React, TypeScript, and careful attention to
-                        performance.
+                        {' '}— I build fast, accessible interfaces with React, Next.js and TypeScript,
+                        focused on performance and detail.
                     </motion.p>
 
                     <motion.div
-                        variants={fadeIn('up', 'spring', 0.44, 0.55)}
-                        className="mt-10 flex flex-col items-center gap-4 sm:mt-12 sm:flex-row sm:justify-center"
+                        variants={fadeIn('up', 'spring', 0.38, 0.55)}
+                        className="mb-12 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
                     >
                         <motion.button
                             type="button"
-                            whileHover={{ y: -2 }}
+                            whileHover={{ y: -3, scale: 1.02 }}
                             whileTap={{ scale: 0.97 }}
                             onClick={() => smoothScroll('projects')}
-                            className={buttonClassNames({ variant: 'solid', size: 'lg', className: 'cursor-pointer' })}
+                            className={buttonClassNames({ variant: 'solid', size: 'lg', className: 'cursor-pointer group' })}
                         >
-                            View selected work
-                            <HiArrowRight className="h-4 w-4" aria-hidden />
+                            View Selected Work
+                            <motion.span
+                                className="inline-flex"
+                                animate={{ x: [0, 3, 0] }}
+                                transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+                            >
+                                <HiArrowRight className="h-4 w-4" aria-hidden />
+                            </motion.span>
                         </motion.button>
+
                         <motion.button
                             type="button"
-                            whileHover={{ y: -2 }}
+                            whileHover={{ y: -3, scale: 1.01 }}
                             whileTap={{ scale: 0.97 }}
                             onClick={() => smoothScroll('contact')}
                             className={buttonClassNames({ variant: 'ghost', size: 'lg', className: 'cursor-pointer' })}
                         >
                             <HiEnvelope className="h-4 w-4 text-primary" aria-hidden />
-                            Start a conversation
+                            Start a Conversation
                         </motion.button>
-                    </motion.div>
-
-                    <motion.div
-                        variants={fadeIn('up', 'tween', 0.54, 0.5)}
-                        className="mt-14 flex justify-center md:mt-16"
-                    >
-                        <div className="buttonContainer">
-                            <button
-                                type="button"
-                                onClick={() => smoothScroll('projects')}
-                                className="link group relative cursor-pointer"
-                                aria-label="Scroll to projects"
-                            >
-                                <img
-                                    src={theme === 'dark' ? "/images/my-project-light.png" : "/images/my-project-dark.png"}
-                                    width={140}
-                                    height={140}
-                                    alt=""
-                                    className="image opacity-90"
-                                />
-                                <HiArrowRight className="arrow-icon text-foreground/85 transition-transform duration-300 group-hover:translate-x-1" />
-                            </button>
-                        </div>
                     </motion.div>
                 </div>
             </motion.div>
@@ -126,7 +130,7 @@ const Banner = () => {
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.05, duration: 0.5 }}
+                transition={{ delay: 2, duration: 0.5 }}
                 className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2"
                 aria-hidden
             >
