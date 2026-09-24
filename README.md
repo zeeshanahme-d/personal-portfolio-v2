@@ -1,92 +1,37 @@
-# Portfolio - React Vite Project
+# zeeshanahmed.vercel.app
 
-This is a React portfolio project converted from Next.js to Vite.
+Personal site of Zeeshan Ahmed, front-end developer.
 
-## Features
+React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Geist. Icons: Lucide (UI); technology marks from simple-icons (CC0) in `public/marks.svg`, a sprite kept out of the JS bundle.
 
-- ⚡ Vite for fast development and building
-- ⚛️ React 18 with modern hooks
-- 🎨 Framer Motion for animations
-- 🎯 React Router for navigation
-- 🎨 SCSS for styling
-- 🎨 React Icons for icons
-- 🎨 Particles.js for background effects
+## Scripts
 
-## Getting Started
-
-### Prerequisites
-
-- Node.js (version 16 or higher)
-- npm or yarn
-
-### Installation
-
-1. Install dependencies:
 ```bash
 npm install
+npm run dev        # local dev server
+npm run build      # typecheck, build, then prerender the page to static HTML
+npm run preview    # serve the production build
+npm run lint
 ```
 
-2. Start the development server:
-```bash
-npm run dev
-```
-
-3. Open your browser and navigate to `http://localhost:3000`
-
-### Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## Project Structure
+## Where things live
 
 ```
-src/
-├── components/          # Reusable components
-│   ├── Header.jsx
-│   ├── NavBar.jsx
-│   ├── Transition.jsx
-│   ├── ParticlesContainer.js
-│   └── ...
-├── sections/           # Page sections
-│   ├── home/
-│   ├── about/
-│   ├── services/
-│   ├── work/
-│   └── contact/
-├── context/            # React Context
-├── hooks/              # Custom hooks
-├── utils/              # Utility functions
-├── App.jsx             # Main App component
-├── AppWrapper.jsx      # App wrapper component
-├── main.jsx            # Entry point
-└── index.css           # Global styles
+src/content.ts            every fact on the site: case studies, products, experience, stack, links
+src/sections/             Hero, Work (dark), Experience, About (+ stack), Contact (dark, + footer)
+src/components/           SiteHeader (with mobile menu), Screenshot, ExternalLink
+src/hooks/                useReveal (scroll reveals), useActiveSection (nav state), useLocalTime
+src/index.css             design tokens (@theme), components (buttons, links, browser frame) and the motion system
+scripts/prerender.js      renders the app into dist/index.html and preloads the text font
+public/work/              project screenshots, 800w and 1600w WebP
+public/resume/            résumé PDF
 ```
 
-## Key Changes from Next.js
+To change copy or add a project, edit `src/content.ts`. A screenshot needs
+`public/work/<name>-800.webp` and `public/work/<name>-1600.webp`; set its real width and height in the content entry.
 
-1. **Routing**: Converted from Next.js App Router to React Router
-2. **Images**: Replaced Next.js `Image` component with standard HTML `img` tags
-3. **Links**: Updated from Next.js `Link` to React Router `Link`
-4. **Fonts**: Moved Google Fonts to HTML head instead of Next.js font optimization
-5. **Build System**: Switched from Next.js to Vite for faster builds
+## Notes
 
-## Development
-
-The project uses Vite for development, which provides:
-- Fast Hot Module Replacement (HMR)
-- Optimized builds
-- Modern ES modules support
-- Built-in TypeScript support
-
-## Deployment
-
-Build the project for production:
-
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory, ready for deployment to any static hosting service.
+- The page is prerendered at build time, so the HTML is complete before JavaScript loads; React hydrates it.
+- Motion: a hero entrance sequence, scroll reveals and hover micro-interactions, all disabled under `prefers-reduced-motion`.
+- The footer signature uses a 22 KB subset of Noto Nastaliq Urdu, self-hosted in `public/fonts`.
