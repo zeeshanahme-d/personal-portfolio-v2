@@ -1,79 +1,100 @@
-import { ArrowDown, ArrowRight, ArrowUpRight } from 'lucide-react';
-import { heroIndex, profile, workAnchor } from '../content';
+import { useState } from 'react';
+import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { experience, profile } from '../content';
 import { delay } from '../hooks/useReveal';
 
-/** The right side of the hero: what I've shipped, as an index that jumps straight to each project. */
-function WorkIndex() {
-  return (
-    <nav aria-label="Selected work" className="w-full">
-      <div className="enter flex items-baseline justify-between border-b border-ink pb-3" style={delay(260)}>
-        <p className="text-sm font-medium">Selected work</p>
-        <p className="text-sm text-ink-3">2024 – now</p>
-      </div>
-      <ol>
-        {heroIndex.map((item, i) => (
-          <li key={item.name} className="enter" style={delay(340 + i * 70)}>
-            <a
-              href={`#${workAnchor(item.name)}`}
-              className="index-row group grid grid-cols-[1.75rem_1fr_auto] items-baseline gap-x-3 border-b border-line py-4"
-            >
-              <span className="text-sm tabular-nums text-ink-3">{String(i + 1).padStart(2, '0')}</span>
-              <span className="min-w-0">
-                <span className="index-name block text-lg font-semibold tracking-tight">{item.name}</span>
-                <span className="block text-sm text-ink-2">{item.kind}</span>
-              </span>
-              <span className="flex items-center gap-2 text-sm text-ink-3">
-                <span className="max-sm:hidden">{item.org}</span>
-                <ArrowRight aria-hidden="true" className="index-arrow size-4" />
-              </span>
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
-  );
-}
+// The intro in both languages. The Arabic version is a live demo of the RTL work on my résumé.
+const copy = {
+  en: {
+    status: profile.status,
+    title: 'I build the front ends that businesses run on.',
+    lede: 'Frontend developer in Islamabad with two and a half years in production and 7+ shipped apps: CRMs, admin panels, a loyalty platform, and a module of an enterprise asset platform shown at IBC 2024 in Amsterdam. On most of them I was the only frontend developer.',
+    work: 'See the work',
+    resume: 'Résumé',
+    newTab: '(PDF, opens in a new tab)',
+  },
+  ar: {
+    status: 'متاح للانضمام فوراً',
+    title: 'أبني واجهات الويب التي تُدار بها الأعمال.',
+    lede: 'مطوّر واجهات أمامية في إسلام آباد، بخبرة سنتين ونصف في بيئات الإنتاج وأكثر من سبعة تطبيقات منشورة: أنظمة CRM ولوحات إدارة ومنصة ولاء، ووحدة في منصة مؤسسية لإدارة الأصول الرقمية عُرضت في معرض IBC 2024 في أمستردام. وفي معظمها كنت مطوّر الواجهات الوحيد في الفريق.',
+    work: 'شاهد الأعمال',
+    resume: 'السيرة الذاتية',
+    newTab: '(PDF، تُفتح في علامة تبويب جديدة)',
+  },
+};
+
+type Lang = keyof typeof copy;
 
 export function Hero() {
+  const [lang, setLang] = useState<Lang>('en');
+  const t = copy[lang];
+  // Fetch the bold Arabic weight before the click, so the flip doesn't flash the fallback font.
+  const warm = () => void document.fonts?.load('600 1em "IBM Plex Sans Arabic"', 'ع');
+
   return (
-    <section id="top" aria-label="Introduction" className="container-page pt-12 pb-20 md:pt-16 md:pb-24 lg:pt-20 lg:pb-28">
-      <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-16">
-        <div className="lg:col-span-7">
-          <p className="enter flex items-center gap-2 text-sm font-medium text-ink-2" style={delay(0)}>
-            {profile.name}
-            <span aria-hidden="true" className="text-ink-3">
-              /
-            </span>
-            Front-end developer, Islamabad
+    <section id="top" aria-label="Introduction" className="container-page pt-14 pb-16 md:pt-20 md:pb-20 lg:pt-24">
+      {/* Keyed by language: flipping replays the entrance, now right to left. */}
+      <div key={lang} lang={lang} dir={lang === 'ar' ? 'rtl' : 'ltr'}>
+        <p className="enter flex items-center gap-2.5 text-sm font-medium text-ink-2" style={delay(0)}>
+          <span className="live-dot" aria-hidden="true" />
+          {t.status}
+        </p>
+        <h1 className="enter mt-7 text-hero font-semibold" style={delay(80)}>
+          {t.title}
+        </h1>
+        <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
+          <p className="enter max-w-[38rem] text-lede text-ink-2 lg:col-span-7" style={delay(160)}>
+            {t.lede}
           </p>
-          <h1 className="enter mt-5 max-w-[16ch] text-hero font-semibold" style={delay(80)}>
-            I build complex interfaces for real web products.
-          </h1>
-          <p className="enter mt-6 max-w-[34rem] text-lede text-ink-2" style={delay(160)}>
-            Dashboards, admin systems and product UI in React, Next.js and TypeScript. Two and a half years of
-            production work, most of it as the only front-end developer on the team.
-          </p>
-          <div className="enter mt-8 flex flex-wrap items-center gap-3" style={delay(240)}>
+          <div className="enter flex flex-wrap items-center gap-3 lg:col-span-5 lg:justify-end" style={delay(240)}>
             <a href="#work" className="btn btn-solid">
-              View selected work
+              {t.work}
               <ArrowDown aria-hidden="true" className="btn-icon btn-icon-down size-4" />
             </a>
             <a href={profile.resume} target="_blank" rel="noopener noreferrer" className="btn btn-line">
-              Résumé
-              <ArrowUpRight aria-hidden="true" className="arrow size-4" />
-              <span className="sr-only">(PDF, opens in a new tab)</span>
+              {t.resume}
+              <ArrowUpRight aria-hidden="true" className="arrow size-4 rtl:-scale-x-100" />
+              <span className="sr-only">{t.newTab}</span>
             </a>
           </div>
-          <p className="enter mt-6 flex items-center gap-2 text-sm text-ink-2" style={delay(320)}>
-            <span className="live-dot" aria-hidden="true" />
-            Open to new front-end roles
-          </p>
-        </div>
-
-        <div className="lg:col-span-5">
-          <WorkIndex />
         </div>
       </div>
+
+      <dl className="enter mt-16 grid grid-cols-2 gap-x-6 gap-y-8 border-t border-line pt-6 md:mt-20 lg:grid-cols-4" style={delay(320)}>
+        <div>
+          <dt className="text-sm text-ink-3">Most recently</dt>
+          <dd className="mt-1.5 font-medium">{experience[0].company}</dd>
+          <dd className="text-sm text-ink-2">{experience[0].period}</dd>
+        </div>
+        <div>
+          <dt className="text-sm text-ink-3">Before that</dt>
+          <dd className="mt-1.5 font-medium">{experience[1].company}, on ioMoVo</dd>
+          <dd className="text-sm text-ink-2">{experience[1].period}</dd>
+        </div>
+        <div>
+          <dt className="text-sm text-ink-3">Works with</dt>
+          <dd className="mt-1.5 font-medium">React, Next.js, TypeScript</dd>
+          <dd className="text-sm">
+            <a href="#skills" className="link text-ink-2">
+              All skills
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt className="text-sm text-ink-3">Right to left</dt>
+          <dd className="mt-1.5 font-medium">Shipped for Arabic markets</dd>
+          <dd className="mt-2.5">
+            <div role="group" aria-label="Language of the introduction" data-ar={lang === 'ar' ? '' : undefined} className="lang-switch">
+              <button type="button" aria-pressed={lang === 'en'} onClick={() => setLang('en')}>
+                English
+              </button>
+              <button type="button" lang="ar" aria-pressed={lang === 'ar'} onClick={() => setLang('ar')} onPointerEnter={warm} onFocus={warm}>
+                العربية
+              </button>
+            </div>
+          </dd>
+        </div>
+      </dl>
     </section>
   );
 }

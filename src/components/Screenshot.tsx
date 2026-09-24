@@ -8,11 +8,13 @@ type Props = {
 };
 
 export function Screenshot({ image, sizes, className }: Props) {
+  // A full path ('/work/x.png') is one file; a base name has 800w and 1600w WebP versions.
+  const single = image.src.startsWith('/');
   const base = `/work/${image.src}`;
   return (
     <img
-      src={`${base}-1600.webp`}
-      srcSet={`${base}-800.webp 800w, ${base}-1600.webp 1600w`}
+      src={single ? image.src : `${base}-1600.webp`}
+      srcSet={single ? undefined : `${base}-800.webp 800w, ${base}-1600.webp 1600w`}
       sizes={sizes}
       width={image.width}
       height={image.height}

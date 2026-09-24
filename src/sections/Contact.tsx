@@ -48,7 +48,7 @@ export function Contact() {
       <div className="container-page pt-24 md:pt-32">
         <p data-reveal="up" className="flex items-center gap-2.5 text-snow-2">
           <span className="live-dot" aria-hidden="true" />
-          Open to front-end roles and product work
+          {profile.status}
         </p>
         <h2 id="contact-title" data-reveal="up" style={stagger(1)} className="mt-6 max-w-[18ch] text-display font-semibold">
           Need someone to own your front end?

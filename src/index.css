@@ -10,6 +10,24 @@
   unicode-range: U+20, U+627, U+62D, U+62F-630, U+634, U+645-646, U+6CC;
 }
 
+/* Only the glyphs of the hero's Arabic version (Google Fonts text= subset, OFL). unicode-range keeps
+   the bold file from downloading until Arabic text actually renders in it. */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plex-arabic-400.woff2') format('woff2');
+  unicode-range: U+60C, U+621-631, U+633-639, U+641-648, U+64A-64B, U+64F, U+651, U+653-655;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plex-arabic-600.woff2') format('woff2');
+  unicode-range: U+60C, U+621-631, U+633-639, U+641-648, U+64A-64B, U+64F, U+651, U+653-655;
+}
+
 @theme {
   --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
@@ -38,9 +56,9 @@
   --text-display: clamp(2.625rem, 5.4vw, 4.625rem);
   --text-display--line-height: 1.02;
   --text-display--letter-spacing: -0.045em;
-  --text-hero: clamp(2.25rem, 3.8vw, 3.375rem);
-  --text-hero--line-height: 1.06;
-  --text-hero--letter-spacing: -0.035em;
+  --text-hero: clamp(2.5rem, 7.2vw, 6.25rem);
+  --text-hero--line-height: 1;
+  --text-hero--letter-spacing: -0.048em;
   --text-h2: clamp(2rem, 3.6vw, 2.875rem);
   --text-h2--line-height: 1.05;
   --text-h2--letter-spacing: -0.035em;
@@ -230,6 +248,44 @@
     height: auto;
   }
 
+  /* Carousel inside the frame: a scroll-snap strip, one screen per stop, scrollbar hidden. */
+  .frame-track {
+    display: flex;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .frame-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .frame-track:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .frame-slide {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Back / forward in the frame bar, like a browser's. */
+  .frame-nav {
+    display: grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    border-radius: 0.375rem;
+    color: var(--color-snow-2);
+    transition: background-color var(--dur-quick) ease, color var(--dur-quick) ease;
+  }
+
+  .frame-nav:disabled {
+    color: var(--color-night-line);
+  }
+
   .live-dot {
     position: relative;
     display: inline-block;
@@ -283,29 +339,72 @@
   }
 }
 
-/* Hero work index: the row's rule darkens, the name shifts and the arrow slides in on hover. */
-.index-row {
-  transition: border-color var(--dur-base) ease;
+/* Arabic: Plex Arabic for the letters, Geist for Latin words inside (CRM, IBC 2024). Arabic letters join,
+   so no negative tracking, and they need taller lines than Latin. */
+[lang='ar'] {
+  font-family: 'IBM Plex Sans Arabic', var(--font-sans);
+  letter-spacing: 0;
 }
 
-.index-name,
-.index-arrow {
-  transition: transform var(--dur-base) var(--ease-out), color var(--dur-quick) ease;
+/* Arabic letterforms read larger than Latin at the same size, so the headline steps down a little. */
+[lang='ar'] .text-hero {
+  font-size: calc(var(--text-hero) * 0.86);
+  letter-spacing: 0;
+  line-height: 1.3;
 }
 
-@media (hover: hover) {
-  .index-row:hover {
-    border-bottom-color: var(--color-ink);
-  }
+[lang='ar'] .text-lede {
+  line-height: 1.85;
+}
 
-  .index-row:hover .index-name {
-    transform: translateX(4px);
-  }
+/* Hero language switch: a two-option pill whose ink thumb slides to the chosen language. */
+.lang-switch {
+  position: relative;
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 3px;
+  border: 1px solid var(--color-line);
+  border-radius: 999px;
+  background: var(--color-surface);
+}
 
-  .index-row:hover .index-arrow {
-    transform: translateX(3px);
-    color: var(--color-accent);
-  }
+.lang-switch::before {
+  content: '';
+  position: absolute;
+  inset: 3px auto 3px 3px;
+  width: calc(50% - 3px);
+  border-radius: 999px;
+  background: var(--color-ink);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.lang-switch[data-ar]::before {
+  transform: translateX(100%);
+}
+
+.lang-switch button {
+  position: relative;
+  padding: 0.3125rem 0.875rem;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-ink-2);
+  transition: color var(--dur-base) ease;
+}
+
+.lang-switch button[aria-pressed='true'] {
+  color: var(--color-paper);
+}
+
+/* White slot where a screenshot or photo goes until the real one is added. */
+.placeholder {
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 0.5rem;
+  background: #fff;
+  color: var(--color-ink-3);
+  font-size: 0.8125rem;
 }
 
 /* Hover only for real pointers, so taps never leave a stuck hover state. */
@@ -351,6 +450,11 @@
   .nav-link:hover::after {
     transform: scaleX(1);
     transform-origin: left;
+  }
+
+  .frame-nav:not(:disabled):hover {
+    background: var(--color-night-line);
+    color: var(--color-snow);
   }
 
   .tool:hover .tool-icon {
@@ -489,11 +593,11 @@
     clip-path: inset(12% 0 0 0 round 0.75rem);
   }
 
-  [data-reveal='frame']:not([data-pending]) img {
+  [data-reveal='frame']:not([data-pending]) > img {
     transition: transform 1400ms var(--ease-out);
   }
 
-  [data-reveal='frame'][data-pending] img {
+  [data-reveal='frame'][data-pending] > img {
     transform: scale(1.06);
   }
 
@@ -514,12 +618,12 @@
 
   /* Screenshots zoom slightly inside their frame on hover. */
   @media (hover: hover) {
-    .frame img,
+    .frame > img,
     .tile img {
       transition: transform 900ms var(--ease-out);
     }
 
-    .group:hover .frame img,
+    .group:hover .frame > img,
     .group:hover .tile img {
       transform: scale(1.025);
     }
@@ -551,8 +655,6 @@
 
   .btn:active,
   .btn:hover .btn-icon,
-  .index-row:hover .index-name,
-  .index-row:hover .index-arrow,
   a:hover .arrow,
   .group:hover .arrow {
     transform: none;

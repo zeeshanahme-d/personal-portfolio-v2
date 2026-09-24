@@ -3,6 +3,7 @@ import { About } from './sections/About';
 import { Contact } from './sections/Contact';
 import { Experience } from './sections/Experience';
 import { Hero } from './sections/Hero';
+import { Skills } from './sections/Skills';
 import { Work } from './sections/Work';
 import { useReveal } from './hooks/useReveal';
 
@@ -22,6 +23,7 @@ export function App() {
         <Hero />
         <Work />
         <Experience />
+        <Skills />
         <About />
         <Contact />
       </main>

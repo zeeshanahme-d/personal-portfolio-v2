@@ -12,7 +12,7 @@ export function Experience() {
             Experience
           </h2>
           <p data-reveal="up" style={stagger(1)} className="mt-4 max-w-xs text-ink-2">
-            Two and a half years on product teams, owning the front end in production.
+            2.5 years building and shipping production front ends across SaaS, dashboards, CRM systems and client products.
           </p>
           <p data-reveal="up" style={stagger(2)} className="mt-6 font-medium">
             <ExternalLink href={profile.resume}>Full résumé (PDF)</ExternalLink>
