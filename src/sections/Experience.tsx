@@ -4,10 +4,10 @@ import { stagger } from '../hooks/useReveal';
 
 export function Experience() {
   return (
-    <section id="experience" aria-labelledby="experience-title" className="container-page py-24 md:py-32">
-      <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
+    <section id="experience" aria-labelledby="experience-title" className="container-page py-16 md:py-20">
+      <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
         {/* The heading stays in view while the roles scroll past on wide screens. */}
-        <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+        <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start xl:col-span-3">
           <h2 id="experience-title" data-reveal="up" className="text-h2 font-semibold">
             Experience
           </h2>
@@ -19,11 +19,11 @@ export function Experience() {
           </p>
         </div>
 
-        <div className="lg:col-span-8">
+        <div className="lg:col-span-8 xl:col-span-9">
           <ol className="border-t border-ink">
             {experience.map((role) => (
-              <li key={role.company} data-reveal="up" className="grid gap-4 border-b border-line py-9 md:grid-cols-8 md:gap-6">
-                <div className="md:col-span-3">
+              <li key={role.company} data-reveal="up" className="grid gap-4 border-b border-line py-8 md:grid-cols-8 md:gap-6">
+                <div className="md:col-span-2">
                   <h3 className="text-xl font-semibold tracking-tight">{role.company}</h3>
                   <p className="text-[0.9375rem] text-ink-2">{role.title}</p>
                   <p className="mt-2 text-sm text-ink-3">
@@ -32,7 +32,7 @@ export function Experience() {
                     {role.place}
                   </p>
                 </div>
-                <div className="md:col-span-5">
+                <div className="md:col-span-6">
                   <p className="font-medium">{role.summary}</p>
                   <ul className="bullets mt-3 text-[0.9375rem] leading-relaxed text-ink-2">
                     {role.points.map((p) => (
@@ -45,9 +45,9 @@ export function Experience() {
             ))}
           </ol>
 
-          <div data-reveal="up" className="mt-12 grid gap-4 md:grid-cols-8 md:gap-6">
-            <h3 className="text-sm font-medium text-ink-3 md:col-span-3">Education</h3>
-            <ul className="space-y-3 md:col-span-5">
+          <div data-reveal="up" className="mt-8 grid gap-4 md:grid-cols-8 md:gap-6">
+            <h3 className="text-sm font-medium text-ink-3 md:col-span-2">Education</h3>
+            <ul className="space-y-3 md:col-span-6">
               {education.map((e) => (
                 <li key={e.title}>
                   <p className="font-medium">{e.title}</p>

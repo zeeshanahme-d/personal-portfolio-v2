@@ -1,8 +1,10 @@
 // Technology marks for the Skills section. The paths live in public/marks.svg, a sprite that is cached like
 // an image and kept out of the JS bundle; here is only each mark's sprite id and brand colour.
-// Source: simple-icons (CC0-1.0). Brand names and logos belong to their owners. Tools without a mark get a dot.
+// Sources: simple-icons (CC0-1.0), plus Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons via
+// Iconify (MIT, ISC, Apache-2.0); see the comment in public/marks.svg. Brand names and logos belong to their owners.
+// `wide` marks are wordmarks drawn in a wider box. Tools without a mark get a dot.
 
-export const marks: Record<string, { id: string; hex: string }> = {
+export const marks: Record<string, { id: string; hex: string; wide?: boolean }> = {
   "React": { id: 'react', hex: '61DAFB' },
   "Next.js": { id: 'nextdotjs', hex: '000000' },
   "TypeScript": { id: 'typescript', hex: '3178C6' },
@@ -10,7 +12,7 @@ export const marks: Record<string, { id: string; hex: string }> = {
   "HTML5": { id: 'html5', hex: 'E34F26' },
   "CSS": { id: 'css', hex: '663399' },
   "Sass": { id: 'sass', hex: 'CC6699' },
-  "Less": { id: 'less', hex: '1D365D' },
+  "Less": { id: 'less', hex: '1D365D', wide: true },
   "TanStack Query": { id: 'reactquery', hex: 'FF4154' },
   "Redux Toolkit": { id: 'redux', hex: '764ABC' },
   "React Hook Form": { id: 'reacthookform', hex: 'EC5990' },
@@ -39,4 +41,11 @@ export const marks: Record<string, { id: string; hex: string }> = {
   "Claude Code": { id: 'claude', hex: 'D97757' },
   "Cursor": { id: 'cursor', hex: '000000' },
   "GitHub Copilot": { id: 'githubcopilot', hex: '000000' },
+  "Zustand": { id: 'zustand', hex: '453F39' },
+  "REST APIs": { id: 'rest-api', hex: '047857' },
+  "Husky": { id: 'husky', hex: '5C6770' },
+  "Framer Motion": { id: 'framer-motion', hex: '0055FF' },
+  "Recharts": { id: 'recharts', hex: '8884D8' },
+  "ChatGPT / Codex": { id: 'openai', hex: '10A37F' },
+  "Google Antigravity": { id: 'antigravity', hex: '4285F4' },
 };

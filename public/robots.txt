@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://zeeshanahmed.vercel.app/sitemap.xml
+Sitemap: https://zeeshanahmed.dev/sitemap.xml

@@ -8,19 +8,32 @@
       name="description"
       content="Zeeshan Ahmed, frontend developer in Islamabad. CRMs, admin panels and product UI built with React, Next.js and TypeScript. Available to join immediately."
     />
-    <link rel="canonical" href="https://zeeshanahmed.vercel.app/" />
+    <link rel="canonical" href="https://zeeshanahmed.dev/" />
     <meta name="theme-color" content="#F7F7F5" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+    <script>
+      // Apply the saved theme (or the system one) before first paint, so a reload never flashes.
+      // The header toggle changes it later (src/theme.ts uses the same 'theme' key).
+      (function () {
+        var theme = null;
+        try {
+          theme = localStorage.getItem('theme');
+        } catch (e) {}
+        if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#111113');
+      })();
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://zeeshanahmed.vercel.app/" />
+    <meta property="og:url" content="https://zeeshanahmed.dev/" />
     <meta property="og:title" content="Zeeshan Ahmed, Frontend Developer" />
     <meta
       property="og:description"
       content="CRMs, admin panels and dashboards built with React, Next.js and TypeScript."
     />
-    <meta property="og:image" content="https://zeeshanahmed.vercel.app/og.png" />
+    <meta property="og:image" content="https://zeeshanahmed.dev/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -33,7 +46,7 @@
         "@type": "Person",
         "name": "Zeeshan Ahmed",
         "jobTitle": "Frontend Developer",
-        "url": "https://zeeshanahmed.vercel.app/",
+        "url": "https://zeeshanahmed.dev/",
         "email": "mailto:dev.zeeshanahmed@gmail.com",
         "address": { "@type": "PostalAddress", "addressLocality": "Islamabad", "addressCountry": "PK" },
         "sameAs": [

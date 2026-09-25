@@ -1,8 +1,8 @@
-# zeeshanahmed.vercel.app
+# zeeshanahmed.dev
 
 Personal site of Zeeshan Ahmed, frontend developer.
 
-React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Geist. Icons: Lucide (UI); technology marks from simple-icons (CC0) in `public/marks.svg`, a sprite kept out of the JS bundle.
+React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Geist. Icons: Lucide (UI); technology marks in `public/marks.svg`, a sprite kept out of the JS bundle: simple-icons (CC0), plus a few from Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons (MIT, ISC, Apache-2.0) for tools simple-icons doesn't cover.
 
 ## Scripts
 
@@ -30,8 +30,9 @@ public/resume/            résumé PDF
 To change copy or add a project, edit `src/content.ts`.
 
 Screenshots: a project's `images` is a list. One image is a still; several become a carousel in the browser frame
-(back/forward buttons, swipe, the address bar shows each screen's `path`). A project without `images` shows a white
-16:10 slot. Put files in `public/work/` (1600 x 1000 is ideal) and add `{ src: '/work/partner-portal.png', alt, width, height }`.
+(back/forward buttons, swipe, the address bar shows each screen's `path`). A project without `images` is shown as text
+only. All project screenshots are switched off until the companies approve them: set `showScreenshots` to `true` in
+`src/content.ts` to bring them back. Put files in `public/work/` (1600 x 1000 is ideal) and add `{ src: '/work/partner-portal.png', alt, width, height }`.
 A base name instead of a path (`src: 'ioportal'`) uses `<name>-800.webp` and `<name>-1600.webp`. The About photo works the
 same way: set `portrait` in `src/content.ts` (4:5, e.g. 800 x 1000).
 

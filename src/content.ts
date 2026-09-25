@@ -43,31 +43,20 @@ export type CaseStudy = {
   url?: string;
   /** Public links only; private dashboards get none. */
   links: { label: string; href: string }[];
-  /** One is a still, several become a carousel. Leave out for a white 16:10 placeholder. */
+  /** One is a still, several become a carousel. Without any (or with showScreenshots off) the project is text only. */
   images?: Screenshot[];
   /** Optional phone-sized capture shown beside the desktop one. */
   phone?: { src: string; alt: string; width: number; height: number };
 };
 
-// Selected work, in page order. Screens alternate sides; Saudi Taxi must sit on a flipped (odd) slot
-// because its phone capture overlaps toward the text column.
+/**
+ * Project screenshots stay hidden until the companies approve showing them. Set to true to bring back
+ * every browser frame and carousel; the images below are kept ready.
+ */
+export const showScreenshots = false;
+
+// Selected work, in page order: IR Solutions projects first, then XtecSoft.
 export const cases: CaseStudy[] = [
-  {
-    name: 'ioPortal',
-    context: 'XtecSoft, 2024',
-    summary:
-      'Client portal software inside ioMoVo, an award-winning AI-powered digital asset management platform shown at IBC 2024 in Amsterdam.',
-    role: 'Built the module end to end',
-    points: [
-      'Shareable portals with secure file management and rich previews.',
-      'Role-based access on every portal, from read-only guests to contributors.',
-      'Shipped in English and right-to-left Arabic, in a codebase I migrated to TypeScript.',
-    ],
-    stack: ['React', 'TypeScript', 'Redux Toolkit', 'Material UI'],
-    url: 'iomovo.io/products/ioportal',
-    links: [{ label: 'Visit ioPortal', href: 'https://www.iomovo.io/products/ioportal' }],
-    images: [{ src: 'ioportal', alt: 'ioPortal product page: "Client Portal Software for Enterprise Content".', width: 1600, height: 741 }],
-  },
   {
     name: 'Partner Portal',
     context: 'IR Solutions, 2025',
@@ -94,6 +83,23 @@ export const cases: CaseStudy[] = [
       { src: 'partner-documents', path: '/documents', alt: 'Documents: statements of work and contracts with signature status per client and project.', width: 1600, height: 1000 },
       { src: 'partner-audit', path: '/audit-logs', alt: 'Audit logs: every action by every user, with totals and module and date filters.', width: 1600, height: 1000 },
     ],
+  },
+  {
+    // Two apps, one card: the Business Owner Portal and the Branch Manager Portal share a product and a stack.
+    name: 'Stampy',
+    context: 'IR Solutions, 2026',
+    summary:
+      'Digital stamp cards for cafés and retailers: buy nine coffees, get the tenth free, no paper. I built both of its web apps, the Business Owner Portal and the Branch Manager Portal.',
+    role: 'Sole frontend developer on both apps, development to deployment',
+    points: [
+      'Owner portal: onboarding and subscription billing with Stripe Elements, including payment retry and plan upgrades.',
+      'Branches on a Google Maps location picker with a QR code each; campaigns, rewards, staff roles and Recharts analytics.',
+      'Manager portal: salespeople, customer lookup with stamp history, and the business’s products, campaigns and rewards.',
+      '25+ REST endpoints in each app, from auth and billing to branches, stamps and notifications.',
+    ],
+    stack: ['React', 'TypeScript', 'TanStack Query', 'Zustand', 'Ant Design', 'Tailwind CSS', 'Stripe', 'Google Maps'],
+    // The portals are private; the only public link is the product site, which I didn't build.
+    links: [{ label: 'stampyapp.me (product site)', href: 'https://stampyapp.me' }],
   },
   {
     name: 'Scalezy Admin Panel',
@@ -139,21 +145,20 @@ export const cases: CaseStudy[] = [
     phone: { src: '/work/sauditaxi-phone.webp', alt: 'The Saudi Taxi booking form on a phone.', width: 780, height: 1560 },
   },
   {
-    // Two apps, one card: the Business Owner Portal and the Branch Manager Portal share a product and a stack.
-    name: 'Stampy',
-    context: 'IR Solutions, 2026',
+    name: 'ioPortal',
+    context: 'XtecSoft, 2024',
     summary:
-      'Digital stamp cards for cafés and retailers: buy nine coffees, get the tenth free, no paper. I built both of its web apps, the Business Owner Portal and the Branch Manager Portal.',
-    role: 'Sole frontend developer on both apps, development to deployment',
+      'Client portal software inside ioMoVo, an award-winning AI-powered digital asset management platform shown at IBC 2024 in Amsterdam.',
+    role: 'Built the module end to end',
     points: [
-      'Owner portal: onboarding and subscription billing with Stripe Elements, including payment retry and plan upgrades.',
-      'Branches on a Google Maps location picker with a QR code each; campaigns, rewards, staff roles and Recharts analytics.',
-      'Manager portal: salespeople, customer lookup with stamp history, and the business’s products, campaigns and rewards.',
-      '25+ REST endpoints in each app, from auth and billing to branches, stamps and notifications.',
+      'Shareable portals with secure file management and rich previews.',
+      'Role-based access on every portal, from read-only guests to contributors.',
+      'Shipped in English and right-to-left Arabic, in a codebase I migrated to TypeScript.',
     ],
-    stack: ['React', 'TypeScript', 'TanStack Query', 'Zustand', 'Ant Design', 'Tailwind CSS', 'Stripe', 'Google Maps'],
-    // The portals are private; the only public link is the product site, which I didn't build.
-    links: [{ label: 'stampyapp.me (product site)', href: 'https://stampyapp.me' }],
+    stack: ['React', 'TypeScript', 'Redux Toolkit', 'Material UI'],
+    url: 'iomovo.io/products/ioportal',
+    links: [{ label: 'Visit ioPortal', href: 'https://www.iomovo.io/products/ioportal' }],
+    images: [{ src: 'ioportal', alt: 'ioPortal product page: "Client Portal Software for Enterprise Content".', width: 1600, height: 741 }],
   },
 ];
 

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Menu, X } from 'lucide-react';
+import { ArrowUpRight, Menu, Moon, Sun, X } from 'lucide-react';
 import { profile } from '../content';
+import { useTheme } from '../theme';
 import { useActiveSection } from '../hooks/useActiveSection';
 import { stagger } from '../hooks/useReveal';
 
@@ -13,6 +14,27 @@ const NAV = [
 ] as const;
 
 const IDS = NAV.map((item) => item.id);
+
+/** Light/dark switch. The icon shows where you'll go: a moon in light mode, a sun in dark mode. */
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  const dark = theme === 'dark';
+  return (
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      className="grid size-10 place-items-center rounded-lg text-ink-2 transition-colors duration-200 hover:text-ink"
+    >
+      {/* Keyed so the new icon plays the swap-in animation. */}
+      {dark ? (
+        <Sun key="sun" aria-hidden="true" className="swap-in size-4.5" />
+      ) : (
+        <Moon key="moon" aria-hidden="true" className="swap-in size-4.5" />
+      )}
+    </button>
+  );
+}
 
 export function SiteHeader() {
   const active = useActiveSection(IDS);
@@ -50,7 +72,7 @@ export function SiteHeader() {
             <path
               d="M8.5 8.5h10.5L8.5 19.5h8"
               fill="none"
-              stroke="#f7f7f5"
+              className="stroke-paper"
               strokeWidth="2.4"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -74,26 +96,29 @@ export function SiteHeader() {
               </li>
             ))}
           </ul>
-          <a
-            href={profile.resume}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-line h-9 gap-1.5 px-4 text-sm max-md:hidden"
-          >
-            Résumé
-            <ArrowUpRight aria-hidden="true" className="arrow size-3.5" />
-          </a>
-          <button
-            ref={toggleRef}
-            type="button"
-            aria-expanded={open}
-            aria-controls="mobile-menu"
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            onClick={() => setOpen((v) => !v)}
-            className="-mr-2 grid size-11 place-items-center rounded-lg md:hidden"
-          >
-            {open ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-line h-9 gap-1.5 px-4 text-sm max-md:hidden"
+            >
+              Résumé
+              <ArrowUpRight aria-hidden="true" className="arrow size-3.5" />
+            </a>
+            <button
+              ref={toggleRef}
+              type="button"
+              aria-expanded={open}
+              aria-controls="mobile-menu"
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              onClick={() => setOpen((v) => !v)}
+              className="-mr-2 grid size-11 place-items-center rounded-lg md:hidden"
+            >
+              {open ? <X aria-hidden="true" className="size-5" /> : <Menu aria-hidden="true" className="size-5" />}
+            </button>
+          </div>
         </div>
       </nav>
 
