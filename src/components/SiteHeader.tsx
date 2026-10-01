@@ -24,7 +24,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
-      className="grid size-10 place-items-center rounded-lg text-ink-2 transition-colors duration-200 hover:text-ink"
+      className="grid size-11 place-items-center rounded-lg text-ink-2 transition-colors duration-200 hover:text-ink"
     >
       {/* Keyed so the new icon plays the swap-in animation. */}
       {dark ? (
@@ -40,8 +40,10 @@ export function SiteHeader() {
   const active = useActiveSection(IDS);
   const [open, setOpen] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
 
-  // While the mobile menu is open: Escape closes it (focus back on the toggle), and so does widening past md.
+  // While the mobile menu is open: Escape closes it (focus back on the toggle), and so do a tap outside the
+  // header and widening past md.
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
@@ -49,12 +51,17 @@ export function SiteHeader() {
       setOpen(false);
       toggleRef.current?.focus();
     };
+    const onPointer = (e: PointerEvent) => {
+      if (!headerRef.current?.contains(e.target as Node)) setOpen(false);
+    };
     const wide = window.matchMedia('(min-width: 48rem)');
     const onWide = () => wide.matches && setOpen(false);
     window.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onPointer);
     wide.addEventListener('change', onWide);
     return () => {
       window.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onPointer);
       wide.removeEventListener('change', onWide);
     };
   }, [open]);
@@ -63,7 +70,7 @@ export function SiteHeader() {
 
   return (
     // Background and border come from CSS (.site-header), driven by scroll position rather than state.
-    <header className="site-header sticky top-0 z-30">
+    <header ref={headerRef} className="site-header sticky top-0 z-30">
       <nav aria-label="Main" className="container-page flex h-16 items-center justify-between gap-6">
         {/* Brand: a Z monogram with an emerald cursor block (the site's "live" colour), then the full name. */}
         <a href="#top" onClick={close} aria-label={`${profile.name}, back to top`} className="flex items-center gap-2.5">
@@ -79,18 +86,22 @@ export function SiteHeader() {
             />
             <rect x="18.2" y="17.3" width="3.4" height="4.4" rx="0.8" className="brand-cursor fill-accent-bright" />
           </svg>
-          <span className="text-sm font-semibold tracking-[-0.015em]">{profile.name}</span>
+          <span className="text-sm font-semibold tracking-[-0.015em] whitespace-nowrap">{profile.name}</span>
         </a>
 
-        <div className="flex items-center gap-9">
-          <ul className="hidden items-center gap-8 md:flex">
-            {NAV.map(({ id, label }) => (
+        <div className="flex items-center gap-5 lg:gap-9">
+          {/* Indexed like the hero's callouts. */}
+          <ul className="hidden items-center gap-5 md:flex lg:gap-8">
+            {NAV.map(({ id, label }, i) => (
               <li key={id}>
                 <a
                   href={`#${id}`}
-                  aria-current={active === id ? 'true' : undefined}
+                  aria-current={active === id ? 'location' : undefined}
                   className="nav-link text-sm text-ink-2 transition-colors duration-200 hover:text-ink aria-[current]:text-ink"
                 >
+                  <span aria-hidden="true" className="me-1.5 text-xs text-ink-3 tabular-nums max-lg:hidden">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                   {label}
                 </a>
               </li>
@@ -106,6 +117,7 @@ export function SiteHeader() {
             >
               Resume
               <ArrowUpRight aria-hidden="true" className="arrow size-3.5" />
+              <span className="sr-only">(PDF, opens in a new tab)</span>
             </a>
             <button
               ref={toggleRef}
@@ -135,7 +147,7 @@ export function SiteHeader() {
                 tabIndex={open ? undefined : -1}
                 onClick={close}
                 style={stagger(i)}
-                aria-current={active === id ? 'true' : undefined}
+                aria-current={active === id ? 'location' : undefined}
                 className="flex items-center justify-between py-4 text-lg font-medium aria-[current]:text-accent"
               >
                 {label}
@@ -153,6 +165,7 @@ export function SiteHeader() {
               className="btn btn-solid w-full"
             >
               Resume (PDF)
+              <span className="sr-only">(opens in a new tab)</span>
             </a>
           </li>
         </ul>
