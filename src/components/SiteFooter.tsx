@@ -2,7 +2,7 @@ import { ArrowUp } from 'lucide-react';
 import { profile } from '../content';
 import { useLocalTime } from '../hooks/useLocalTime';
 
-/** Closes the dark Contact stage: signature, local time, back to top, then a name that bleeds off the page. */
+/** Closes the dark Contact stage: signature, local time, back to top, then an oversized name. */
 export function SiteFooter() {
   const time = useLocalTime(profile.timeZone);
 
@@ -15,7 +15,7 @@ export function SiteFooter() {
               © {new Date().getFullYear()} {profile.name}
             </span>
             {/* My name in Urdu, as a small signature. */}
-            <span lang="ur" dir="rtl" aria-hidden="true" className="font-urdu text-base leading-none text-snow-2">
+            <span lang="ur" dir="rtl" aria-hidden="true" className="font-sans text-base leading-none text-snow-2">
               {profile.nameUrdu}
             </span>
           </p>
