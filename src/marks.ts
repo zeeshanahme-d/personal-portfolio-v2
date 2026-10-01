@@ -48,4 +48,9 @@ export const marks: Record<string, { id: string; hex: string; wide?: boolean }> 
   "Recharts": { id: 'recharts', hex: '8884D8' },
   "ChatGPT / Codex": { id: 'openai', hex: '10A37F' },
   "Google Antigravity": { id: 'antigravity', hex: '4285F4' },
+  "Stripe": { id: 'stripe', hex: '635BFF' },
+  "Google Maps": { id: 'googlemaps', hex: '4285F4' },
+  "React Router": { id: 'reactrouter', hex: 'CA4245' },
+  "AWS S3": { id: 'amazons3', hex: '569A31' },
+  "CloudFront": { id: 'amazonwebservices', hex: 'FF9900' },
 };
