@@ -27,7 +27,7 @@ export function setTheme(theme: Theme) {
   }
   const apply = () => {
     document.documentElement.dataset.theme = theme;
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#111113' : '#f7f7f5');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme === 'dark' ? '#0b1712' : '#eef0ea');
     listeners.forEach((listener) => listener());
   };
   // Cross-fade where the browser supports it, unless the visitor prefers reduced motion.
