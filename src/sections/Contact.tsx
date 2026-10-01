@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { profile, socials } from '../content';
 import { ExternalLink } from '../components/ExternalLink';
-import { SiteFooter } from '../components/SiteFooter';
 import { stagger } from '../hooks/useReveal';
 
 type CopyState = 'idle' | 'copied' | 'failed';
@@ -39,7 +38,7 @@ function CopyEmail() {
   );
 }
 
-/** The dark close of the page: one ask, the ways to reach me, then the footer. */
+/** The dark close of the page: one ask and the ways to reach me. SiteFooter continues the same dark stage below. */
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="dark bg-night text-snow">
