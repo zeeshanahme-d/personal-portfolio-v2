@@ -3,6 +3,7 @@ import { ArrowUpRight, ChevronLeft, ChevronRight, Lock } from 'lucide-react';
 import { builds, cases, showScreenshots, type CaseStudy } from '../content';
 import { ExternalLink } from '../components/ExternalLink';
 import { Screenshot } from '../components/Screenshot';
+import { Tool } from '../components/Tool';
 import { stagger } from '../hooks/useReveal';
 
 /**
@@ -43,7 +44,7 @@ function Frame({ project, sizes }: { project: CaseStudy; sizes: string }) {
             </button>
           </span>
         )}
-        <span aria-hidden="true" className="ml-2 flex min-w-0 flex-1 items-center gap-1.5 font-mono text-[0.6875rem] text-snow-3">
+        <span aria-hidden="true" className="ml-2 flex min-w-0 flex-1 items-center gap-1.5 font-mono text-xs text-snow-3">
           {/* Private apps have no public domain: a lock and the page path stand in for it. */}
           {!project.url && <Lock className="size-3 shrink-0" />}
           <span className="truncate">
@@ -52,7 +53,7 @@ function Frame({ project, sizes }: { project: CaseStudy; sizes: string }) {
           </span>
         </span>
         {many && (
-          <span aria-live="polite" className="shrink-0 text-[0.6875rem] tabular-nums text-snow-3">
+          <span aria-live="polite" className="shrink-0 text-xs tabular-nums text-snow-3">
             {index + 1} / {shots.length}
           </span>
         )}
@@ -115,14 +116,14 @@ function Case({ project }: { project: CaseStudy }) {
           <p data-reveal="up" className="text-sm text-snow-3">
             {project.context}
           </p>
-          <h3 data-reveal="up" style={stagger(1)} className="mt-2 text-h3 font-semibold">
+          <h3 data-reveal="up" style={stagger(1)} className="mt-2 text-2xl font-semibold">
             {project.name}
           </h3>
-          <p data-reveal="up" style={stagger(2)} className="mt-4 leading-relaxed text-snow-2">
+          <p data-reveal="up" style={stagger(2)} className="mt-4 text-snow-2">
             {project.summary}
           </p>
           {project.links.length > 0 && (
-            <div data-reveal="up" style={stagger(3)} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-[0.9375rem] font-medium">
+            <div data-reveal="up" style={stagger(3)} className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-medium">
               {project.links.map((l) => (
                 <ExternalLink key={l.href} href={l.href}>
                   {l.label}
@@ -133,13 +134,18 @@ function Case({ project }: { project: CaseStudy }) {
         </div>
 
         <div data-reveal="up" style={stagger(2)} className="lg:col-span-7">
-          <p className="text-sm font-medium text-accent-bright">{project.role}</p>
-          <ul className="bullets mt-3 text-[0.9375rem] leading-relaxed text-snow-2">
+          {/* Green is kept for "live" signals only; the role is plain, bright text. */}
+          <p className="text-sm font-semibold text-snow">{project.role}</p>
+          <ul className="bullets mt-3 max-w-prose text-snow-2">
             {project.points.map((p) => (
               <li key={p}>{p}</li>
             ))}
           </ul>
-          <p className="mt-5 text-sm text-snow-3">{project.stack.join(', ')}</p>
+          <ul aria-label="Built with" className="mt-6 flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-snow-2">
+            {project.stack.map((name) => (
+              <Tool key={name} name={name} />
+            ))}
+          </ul>
         </div>
       </div>
     </article>
@@ -190,7 +196,7 @@ export function Work() {
     <section id="work" aria-labelledby="work-title" className="dark bg-night text-snow">
       <div className="container-page py-24 md:py-32">
         <header className="flex flex-col gap-3 border-b border-night-line pb-8 md:flex-row md:items-end md:justify-between">
-          <h2 id="work-title" data-reveal="up" className="text-h2 font-semibold">
+          <h2 id="work-title" data-reveal="up" className="text-3xl font-semibold">
             Selected work
           </h2>
           <p data-reveal="up" style={stagger(1)} className="max-w-md text-snow-2">
