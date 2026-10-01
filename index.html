@@ -9,7 +9,7 @@
       content="Zeeshan Ahmed, frontend developer in Islamabad. CRMs, admin panels and product UI built with React, Next.js and TypeScript. Available to join immediately."
     />
     <link rel="canonical" href="https://zeeshanahmed.dev/" />
-    <meta name="theme-color" content="#F7F7F5" />
+    <meta name="theme-color" content="#EEF0EA" />
     <meta name="color-scheme" content="light dark" />
     <script>
       // Apply the saved theme (or the system one) before first paint, so a reload never flashes.
@@ -21,11 +21,12 @@
         } catch (e) {}
         if (theme !== 'light' && theme !== 'dark') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         document.documentElement.dataset.theme = theme;
-        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#111113');
+        if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0B1712');
       })();
     </script>
-    <!-- The text font, preloaded so text never paints in a fallback face first. -->
+    <!-- The text font and the headline font, preloaded so neither paints in a fallback face first. -->
     <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/besley.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
