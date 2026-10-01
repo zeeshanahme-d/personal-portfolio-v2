@@ -1,5 +1,8 @@
 @import 'tailwindcss';
 
+/* dark: follows the theme toggle (<html data-theme>), not the OS setting. */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 /*
  * Mona Sans (GitHub, OFL): one variable family for everything. Trimmed to Latin, weights 400-700 and
  * widths 100-112.5% (the only ones used), which takes it from 98 KB to 54 KB. Headlines use the wider cut.
@@ -13,13 +16,13 @@
   src: url('/fonts/mona-sans.woff2') format('woff2-variations');
 }
 
-/* Only the glyphs of ذیشان احمد (Google Fonts text= subset, OFL). Used for the footer signature. */
+/* Besley (OFL), a Clarendon: the face of carved trail signs. Display sizes only. Latin subset, variable weight. */
 @font-face {
-  font-family: 'Noto Nastaliq Urdu';
-  font-weight: 500;
+  font-family: 'Besley';
+  font-style: normal;
+  font-weight: 400 900;
   font-display: swap;
-  src: url('/fonts/nastaliq-name.woff2') format('woff2');
-  unicode-range: U+20, U+627, U+62D, U+62F-630, U+634, U+645-646, U+6CC;
+  src: url('/fonts/besley.woff2') format('woff2');
 }
 
 /* Only the glyphs of the hero's Arabic version (Google Fonts text= subset, OFL). unicode-range keeps
@@ -42,42 +45,52 @@
 
 @theme {
   --font-sans: 'Mona Sans', ui-sans-serif, system-ui, sans-serif;
+  /* Besley has no Arabic, so Arabic headlines fall through to Plex Arabic glyph by glyph. */
+  --font-display: 'Besley', 'IBM Plex Sans Arabic', Georgia, serif;
   --font-mono: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
-  --font-urdu: 'Noto Nastaliq Urdu', serif;
 
-  /* Light sections */
-  --color-paper: #f7f7f5;
-  --color-surface: #ffffff;
-  --color-ink: #0e0e10;
-  /* Both greys pass 4.5:1 on paper, so small grey text stays readable. */
-  --color-ink-2: #4a4a51;
-  --color-ink-3: #6b6b72;
-  --color-line: #e5e5e1;
+  /*
+   * Margalla: the hills over Islamabad. Limestone sky, pine ridge, marigold for the few things that
+   * should catch the eye. The token names (paper, night, snow) predate the palette and are kept.
+   */
+  --color-paper: #eef0ea;
+  --color-surface: #f7f8f4;
+  --color-ink: #0f231a;
+  /* Both greys pass 4.5:1 on paper (6.4:1 and 4.7:1), so small grey text stays readable. */
+  --color-ink-2: #4a5a50;
+  --color-ink-3: #5f6e64;
+  --color-line: #d5dacf;
 
-  /* Dark sections (work, contact) */
-  --color-night: #0d0d0f;
-  --color-night-2: #17171a;
-  --color-night-line: #26262a;
-  --color-snow: #f3f3f1;
-  --color-snow-2: #a4a4ab;
-  --color-snow-3: #8b8b93;
+  /* Pine sections (work, contact, footer) */
+  --color-night: #12372a;
+  --color-night-2: #0e2d22;
+  --color-night-line: #2a4d3f;
+  --color-snow: #eef0ea;
+  --color-snow-2: #b5c2b9;
+  --color-snow-3: #93a598;
 
-  /* Emerald: the colour of "live". Deep on light, bright on dark. */
-  --color-accent: #047857;
-  --color-accent-bright: #34d399;
+  /* Marigold is too light for text on limestone, so light sections use its deep ochre (5.2:1). */
+  --color-accent: #8f5600;
+  --color-accent-bright: #f2a93b;
+
+  /* The drawing system's colours, on limestone; .dark re-points them for the pine sections. */
+  --color-rule: var(--color-line);
+  --color-label: var(--color-ink-3);
+  --color-body: var(--color-ink);
+  --color-body-2: var(--color-ink-2);
 
   /*
    * The type scale: every text size on the site is one of these (Tailwind's defaults are cleared, so a
    * size outside the scale can't sneak in). Small sizes are fixed; display sizes are fluid.
    *   xs    13px       frame bar, tiny meta
    *   sm    15px       labels, dates, notes, nav, buttons
-   *   base  17px       body copy and bullets
-   *   lg    18–20px    hero intro, contact links
-   *   xl    22px       row titles (company, "How I work")
-   *   2xl   26–32px    project names, About intro, contact email
-   *   3xl   34–48px    section titles
-   *   4xl   44–76px    contact headline
-   *   5xl   44–100px   hero headline
+   *   base  17px       body copy and notes
+   *   lg    18–20px    contact links
+   *   xl    22px       project and role summaries, contact email
+   *   2xl   26–32px    About statement, contact email on wide screens
+   *   3xl   34–48px    hero statement, Smaller builds
+   *   4xl   44–76px    section titles, contact headline
+   *   5xl   40–96px    spare (3xl and up are set in Besley; the hero name and project names have their own sizes)
    */
   --text-*: initial;
   --text-xs: 0.8125rem;
@@ -95,14 +108,14 @@
   --text-2xl--line-height: 1.25;
   --text-2xl--letter-spacing: -0.025em;
   --text-3xl: clamp(2.125rem, 3.8vw, 3rem);
-  --text-3xl--line-height: 1.05;
-  --text-3xl--letter-spacing: -0.035em;
+  --text-3xl--line-height: 1.08;
+  --text-3xl--letter-spacing: -0.015em;
   --text-4xl: clamp(2.75rem, 5.6vw, 4.75rem);
-  --text-4xl--line-height: 1.02;
-  --text-4xl--letter-spacing: -0.042em;
-  --text-5xl: clamp(2.75rem, 7.2vw, 6.25rem);
-  --text-5xl--line-height: 1;
-  --text-5xl--letter-spacing: -0.045em;
+  --text-4xl--line-height: 1.04;
+  --text-4xl--letter-spacing: -0.02em;
+  --text-5xl: clamp(2.5rem, 6.4vw, 6rem);
+  --text-5xl--line-height: 1.02;
+  --text-5xl--letter-spacing: -0.025em;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -116,18 +129,16 @@
   color-scheme: light;
 }
 
+/* Dark: the same hills at night. The pine sections keep their colour and now sit lighter than the page. */
 :root[data-theme='dark'] {
   color-scheme: dark;
-  --color-paper: #111113;
-  --color-surface: #1a1a1d;
-  --color-ink: #f3f3f1;
-  --color-ink-2: #a9a9b0;
-  --color-ink-3: #8a8a92;
-  --color-line: #29292d;
-  --color-accent: #34d399;
-  --color-night: #09090b;
-  --color-night-2: #151518;
-  --color-night-line: #232327;
+  --color-paper: #0b1712;
+  --color-surface: #12211a;
+  --color-ink: #e8ece4;
+  --color-ink-2: #a9b6ac;
+  --color-ink-3: #8c9a90;
+  --color-line: #213229;
+  --color-accent: #f2a93b;
 }
 
 html {
@@ -140,22 +151,22 @@ html {
 }
 
 :root[data-theme='dark']::-webkit-scrollbar-thumb {
-  background-color: #3a3a40;
+  background-color: #2c3d34;
 }
 
 :root[data-theme='dark']::-webkit-scrollbar-thumb:hover {
-  background-color: #5a5a61;
+  background-color: #4a5d52;
 }
 
 @supports not selector(::-webkit-scrollbar) {
   :root[data-theme='dark'] {
-    scrollbar-color: #3a3a40 var(--color-paper);
+    scrollbar-color: #2c3d34 var(--color-paper);
   }
 }
 
 @media (hover: hover) {
   [data-theme='dark'] .btn-solid:hover {
-    color: var(--color-night);
+    color: var(--color-paper);
   }
 
   /* Near-black brand marks (Next.js, Vercel, GitHub…) would vanish on dark: light them instead. */
@@ -166,11 +177,6 @@ html {
   .dark .tool[data-dark-brand]:hover .tool-icon {
     color: var(--color-snow);
   }
-}
-
-/* In the dark theme the Work and Contact stages are close to the page colour, so a hairline marks their edges. */
-:root[data-theme='dark'] section.dark {
-  border-block: 1px solid var(--color-night-line);
 }
 
 @layer base {
@@ -186,7 +192,7 @@ html {
   @supports not selector(::-webkit-scrollbar) {
     html {
       scrollbar-width: thin;
-      scrollbar-color: #b9b9be var(--color-paper);
+      scrollbar-color: #b7c0b4 var(--color-paper);
     }
   }
 
@@ -197,18 +203,18 @@ html {
   }
 
   ::-webkit-scrollbar-track {
-    background: var(--color-paper);
+    background: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #c3c3c8;
+    background: #c2c9bf;
     background-clip: padding-box;
     border: 2px solid transparent;
     border-radius: 999px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: #8f8f96;
+    background: #8a968c;
     background-clip: padding-box;
     border: 2px solid transparent;
   }
@@ -294,8 +300,9 @@ html {
     color: var(--color-ink);
   }
 
+  /* On pine, the main ask is marigold. */
   .dark .btn-solid {
-    background: var(--color-snow);
+    background: var(--color-accent-bright);
     color: var(--color-night);
   }
 
@@ -383,8 +390,10 @@ html {
     transition: background-color var(--dur-quick) ease, color var(--dur-quick) ease;
   }
 
-  .frame-nav:disabled {
+  /* aria-disabled, not disabled: a disabled button drops keyboard focus to <body> at the carousel's ends. */
+  .frame-nav[aria-disabled='true'] {
     color: var(--color-night-line);
+    cursor: default;
   }
 
   .live-dot {
@@ -393,28 +402,7 @@ html {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
-    background: #10b981;
-  }
-
-  .bullets > li {
-    position: relative;
-    padding-left: 1.125rem;
-  }
-
-  .bullets > li + li {
-    margin-top: 0.5rem;
-  }
-
-  .bullets > li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 0.375rem;
-    height: 0.375rem;
-    border-radius: 999px;
-    background: currentColor;
-    opacity: 0.35;
+    background: var(--color-accent-bright);
   }
 
   /* Nav: an accent underline grows from the left on hover and marks the current section. */
@@ -440,77 +428,95 @@ html {
   }
 }
 
-/* Arabic: Plex Arabic for the letters, Geist for Latin words inside (CRM, IBC 2024). Arabic letters join,
+/* Arabic: Plex Arabic for the letters, Mona Sans for Latin words inside (CRM, React). Arabic letters join,
    so no negative tracking, and they need taller lines than Latin. */
 [lang='ar'] {
   font-family: 'IBM Plex Sans Arabic', var(--font-sans);
   letter-spacing: 0;
 }
 
-/* Display sizes use Mona Sans's wider cut: the one bold typographic move on the page. */
+/* Display sizes are set in Besley; everything smaller stays in Mona Sans. */
 .text-3xl,
 .text-4xl,
 .text-5xl {
-  font-stretch: 112.5%;
+  font-family: var(--font-display);
 }
 
-/* Arabic letterforms read larger than Latin at the same size, so the headline steps down a little. */
-[lang='ar'] .text-5xl {
-  font-size: calc(var(--text-5xl) * 0.86);
+/* The display sizes' negative tracking and tight leading are for Latin; joined Arabic letters need neither. */
+[lang='ar'] .text-3xl {
   letter-spacing: 0;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
-[lang='ar'] .text-lg {
-  line-height: 1.85;
+/*
+ * The drawing system used by the redesigned sections. Its colours (border-rule, text-label, text-body, text-body-2,
+ * defined in @theme) re-point inside the pine (.dark) sections, so the same utilities work on limestone and pine.
+ */
+.dark {
+  --color-rule: var(--color-night-line);
+  --color-label: var(--color-snow-3);
+  --color-body: var(--color-snow);
+  --color-body-2: var(--color-snow-2);
 }
 
-/* Hero language switch: a two-option pill whose ink thumb slides to the chosen language. */
-.lang-switch {
-  position: relative;
-  display: inline-grid;
-  grid-template-columns: 1fr 1fr;
-  padding: 3px;
-  border: 1px solid var(--color-line);
-  border-radius: 999px;
-  background: var(--color-surface);
+/*
+ * Hero geometry (Hero.tsx), in vw so the composition holds at every width. --name is the type size, --name-h the
+ * height of its line boxes (one line on wide screens, ZEE / SHAN on phones), --cover how much of that height the
+ * foreground hides, --edge the depth of the foreground's plotted top edge, --callouts the room above the name, and
+ * --overlap how far the foreground rides up over it.
+ */
+.hero-stage {
+  --name: 21vw;
+  --name-h: calc(var(--name) * 0.8);
+  --cover: 0.4;
+  --edge: 6vw;
+  --callouts: 3.5rem;
+  --overlap: calc(var(--cover) * var(--name-h) + var(--edge) / 2);
 }
 
-.lang-switch::before {
-  content: '';
-  position: absolute;
-  inset: 3px auto 3px 3px;
-  width: calc(50% - 3px);
-  border-radius: 999px;
-  background: var(--color-ink);
-  transition: transform var(--dur-slow) var(--ease-out);
+@media (max-width: 47.99rem) {
+  .hero-stage {
+    --name: 31vw;
+    --name-h: calc(var(--name) * 1.6);
+    --cover: 0.24;
+    --edge: 10vw;
+    --callouts: 1.25rem;
+  }
 }
 
-.lang-switch[data-ar]::before {
-  transform: translateX(100%);
+/* The hero foreground's top edge, a plotted line: the edge band, then solid (overlapping by 1px, so no seam). */
+.edge-mask {
+  -webkit-mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 78L30 76L60 68L90 62L120 55L150 57L180 61L210 62L240 64L270 56L300 55L330 47L360 46L390 48L420 57L450 58L480 58L510 55L540 59L570 55L600 45L630 41L660 36L690 34L720 40L750 38L780 43L810 43L840 37L870 33L900 29L930 30L960 30L978 23L995 17L1013 18L1030 14L1048 13L1065 13L1083 15L1100 14L1120 11L1140 7L1160 10L1180 10L1200 18L1220 28L1240 36L1260 36L1283 36L1305 32L1328 30L1350 28L1373 32L1395 38L1418 40L1440 46V100H0Z'/%3E%3C/svg%3E") top / 100% var(--edge) no-repeat,
+    linear-gradient(#000 0 0) 0 calc(var(--edge) - 1px) / 100% 100% no-repeat;
+  mask:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 100' preserveAspectRatio='none'%3E%3Cpath d='M0 78L30 76L60 68L90 62L120 55L150 57L180 61L210 62L240 64L270 56L300 55L330 47L360 46L390 48L420 57L450 58L480 58L510 55L540 59L570 55L600 45L630 41L660 36L690 34L720 40L750 38L780 43L810 43L840 37L870 33L900 29L930 30L960 30L978 23L995 17L1013 18L1030 14L1048 13L1065 13L1083 15L1100 14L1120 11L1140 7L1160 10L1180 10L1200 18L1220 28L1240 36L1260 36L1283 36L1305 32L1328 30L1350 28L1373 32L1395 38L1418 40L1440 46V100H0Z'/%3E%3C/svg%3E") top / 100% var(--edge) no-repeat,
+    linear-gradient(#000 0 0) 0 calc(var(--edge) - 1px) / 100% 100% no-repeat;
 }
 
-.lang-switch button {
-  position: relative;
-  padding: 0.3125rem 0.875rem;
-  border-radius: 999px;
-  font-size: var(--text-xs);
-  font-weight: 500;
-  color: var(--color-ink-2);
-  transition: color var(--dur-base) ease;
+/* About: the portrait plate's printer's crop marks, eight hairline gradients, two per corner. */
+.plate {
+  --mark: 0.875rem;
+  padding: 0.625rem;
+  background:
+    linear-gradient(var(--color-body) 0 0) top left / var(--mark) 1px,
+    linear-gradient(var(--color-body) 0 0) top left / 1px var(--mark),
+    linear-gradient(var(--color-body) 0 0) top right / var(--mark) 1px,
+    linear-gradient(var(--color-body) 0 0) top right / 1px var(--mark),
+    linear-gradient(var(--color-body) 0 0) bottom left / var(--mark) 1px,
+    linear-gradient(var(--color-body) 0 0) bottom left / 1px var(--mark),
+    linear-gradient(var(--color-body) 0 0) bottom right / var(--mark) 1px,
+    linear-gradient(var(--color-body) 0 0) bottom right / 1px var(--mark);
+  background-repeat: no-repeat;
 }
 
-.lang-switch button[aria-pressed='true'] {
-  color: var(--color-paper);
-}
-
-/* White slot where a screenshot or photo goes until the real one is added. */
+/* Surface tint where a screenshot or photo goes until the real one is added. */
 .placeholder {
   display: grid;
   place-items: center;
   align-content: center;
   gap: 0.5rem;
-  background: #fff;
+  background: var(--color-surface);
   color: var(--color-ink-3);
   font-size: var(--text-xs);
 }
@@ -518,12 +524,12 @@ html {
 /* Hover only for real pointers, so taps never leave a stuck hover state. */
 @media (hover: hover) {
   .btn-solid:hover {
-    background: var(--color-accent);
-    color: #fff;
+    background: var(--color-accent-bright);
+    color: var(--color-ink);
   }
 
   .dark .btn-solid:hover {
-    background: var(--color-accent-bright);
+    background: var(--color-snow);
     color: var(--color-night);
   }
 
@@ -560,7 +566,7 @@ html {
     transform-origin: left;
   }
 
-  .frame-nav:not(:disabled):hover {
+  .frame-nav:not([aria-disabled='true']):hover {
     background: var(--color-night-line);
     color: var(--color-snow);
   }
@@ -642,13 +648,140 @@ html {
   }
 }
 
+/* A full line box down puts every letter below its own baseline, behind the foreground: nothing shows at first. */
+@keyframes emerge {
+  from {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}
+
+/*
+ * Hero parallax: four planes, four rates, over the first screen of scroll. The page stays put, the name sinks,
+ * the contour sinks half as fast, the foreground rises, so more of the name passes behind it. Native
+ * scroll-driven animation; browsers without it keep a still composition. Off on phones and for reduced motion.
+ */
+@keyframes plx-name {
+  to {
+    translate: 0 60px;
+  }
+}
+
+@keyframes plx-contour {
+  to {
+    translate: 0 28px;
+  }
+}
+
+@keyframes plx-fore {
+  to {
+    translate: 0 -24px;
+  }
+}
+
+/* The outlines live inside the foreground, so they move 60 - (-24) relative to it: in step with the name. */
+@keyframes plx-xray {
+  to {
+    translate: 0 84px;
+  }
+}
+
+/*
+ * Work: each project name arrives as hidden-line outlines (as the covered part of the hero's name is drawn) and
+ * fills in solid, left to right, as its sheet scrolls into view. Browsers without view timelines, and reduced
+ * motion, just show it solid.
+ */
+@keyframes fill-in {
+  from {
+    background-size: 0% 100%;
+  }
+}
+
+/* Experience: the dimension lines are drafted one after another, oldest first, as the drawing scrolls up. */
+@keyframes dim-draw {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .dims {
+      view-timeline-name: --dims;
+    }
+
+    .dim-line,
+    .dim-label {
+      animation: dim-draw linear both;
+      animation-timeline: --dims;
+      animation-range: cover calc(8% + var(--i) * 6%) cover calc(26% + var(--i) * 6%);
+    }
+
+    .dim-line {
+      transform-origin: left;
+    }
+
+    .dim-label {
+      animation-name: fade;
+    }
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .sheet-name {
+      color: transparent;
+      -webkit-text-stroke: 1px rgb(238 240 234 / 0.45);
+      background: linear-gradient(var(--color-snow) 0 0) no-repeat 0 0 / 100% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: fill-in linear both;
+      animation-timeline: view();
+      animation-range: entry 15% cover 45%;
+    }
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) and (min-width: 48rem) {
+    .hero-name-plane {
+      animation: plx-name linear both;
+    }
+
+    .hero-contour {
+      animation: plx-contour linear both;
+    }
+
+    .hero-fore {
+      animation: plx-fore linear both;
+    }
+
+    .hero-xray-plane {
+      animation: plx-xray linear both;
+    }
+
+    .hero-name-plane,
+    .hero-contour,
+    .hero-fore,
+    .hero-xray-plane {
+      animation-timeline: scroll(root);
+      animation-range: 0 100vh;
+    }
+  }
+}
+
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(16 185 129 / 0.5);
+    box-shadow: 0 0 0 0 rgb(242 169 59 / 0.55);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 6px rgb(16 185 129 / 0);
+    box-shadow: 0 0 0 6px rgb(242 169 59 / 0);
   }
 }
 
@@ -661,6 +794,22 @@ html {
 
   .swap-in {
     animation: swap-in var(--dur-base) var(--ease-out);
+  }
+
+  /* Hero load, in order and never all at once: the contour draws, the name rises from behind the foreground,
+     the statement enters (.enter delays in Hero.tsx), then the callouts settle. The navigation is never hidden. */
+  .hero-contour path {
+    stroke-dasharray: 1;
+    animation: draw 1400ms var(--ease-out) 100ms backwards;
+  }
+
+  .hero-name {
+    animation: emerge 1600ms cubic-bezier(0.25, 1, 0.5, 1) 300ms backwards;
+  }
+
+  .callout {
+    animation: enter 600ms var(--ease-out) backwards;
+    animation-delay: calc(1100ms + var(--i, 0) * 70ms);
   }
 
   a:hover .brand-cursor {
@@ -746,6 +895,14 @@ html {
   .enter {
     animation: fade 500ms ease backwards;
     animation-delay: var(--delay, 0ms);
+  }
+
+  .hero-name {
+    animation: fade 900ms ease 150ms backwards;
+  }
+
+  .callout {
+    animation: fade 600ms ease 700ms backwards;
   }
 
   [data-reveal]:not([data-pending]) {
