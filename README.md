@@ -2,7 +2,7 @@
 
 Personal site of Zeeshan Ahmed, frontend developer.
 
-React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Geist. Icons: Lucide (UI); technology marks in `public/marks.svg`, a sprite kept out of the JS bundle: simple-icons (CC0), plus a few from Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons (MIT, ISC, Apache-2.0) for tools simple-icons doesn't cover.
+React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Mona Sans (self-hosted in `public/fonts`, trimmed to Latin, weights 400–700 and widths 100–112.5%). Text sizes come from one scale in `src/index.css` (`text-xs` … `text-5xl`). Icons: Lucide (UI); technology marks in `public/marks.svg`, a sprite kept out of the JS bundle: simple-icons (CC0), plus a few from Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons (MIT, ISC, Apache-2.0) for tools simple-icons doesn't cover.
 
 ## Scripts
 
@@ -24,7 +24,7 @@ src/hooks/                useReveal (scroll reveals), useActiveSection (nav stat
 src/index.css             design tokens (@theme), components (buttons, links, browser frame) and the motion system
 scripts/prerender.js      renders the app into dist/index.html and preloads the text font
 public/work/              project screenshots, 800w and 1600w WebP
-public/resume/            résumé PDF
+public/resume/            Resume PDF
 ```
 
 To change copy or add a project, edit `src/content.ts`.

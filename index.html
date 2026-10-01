@@ -24,6 +24,8 @@
         if (theme === 'dark') document.querySelector('meta[name="theme-color"]').setAttribute('content', '#111113');
       })();
     </script>
+    <!-- The text font, preloaded so text never paints in a fallback face first. -->
+    <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
     <meta property="og:type" content="website" />
