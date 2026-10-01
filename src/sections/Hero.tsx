@@ -3,14 +3,14 @@ import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import { experience, profile } from '../content';
 import { delay } from '../hooks/useReveal';
 
-// The intro in both languages. The Arabic version is a live demo of the RTL work on my résumé.
+// The intro in both languages. The Arabic version is a live demo of the RTL work on my Resume.
 const copy = {
   en: {
     status: profile.status,
     title: 'I build the front ends that businesses run on.',
     lede: 'Frontend developer in Islamabad with two and a half years in production and 7+ shipped apps: CRMs, admin panels, a loyalty platform, and a module of an enterprise asset platform shown at IBC 2024 in Amsterdam. On most of them I was the only frontend developer.',
     work: 'See the work',
-    resume: 'Résumé',
+    resume: 'Resume',
     newTab: '(PDF, opens in a new tab)',
   },
   ar: {
@@ -39,11 +39,11 @@ export function Hero() {
           <span className="live-dot" aria-hidden="true" />
           {t.status}
         </p>
-        <h1 className="enter mt-7 text-hero font-semibold" style={delay(80)}>
+        <h1 className="enter mt-7 text-5xl font-semibold" style={delay(80)}>
           {t.title}
         </h1>
         <div className="mt-10 grid gap-8 lg:grid-cols-12 lg:items-end">
-          <p className="enter max-w-[38rem] text-lede text-ink-2 lg:col-span-7" style={delay(160)}>
+          <p className="enter max-w-[38rem] text-lg text-ink-2 lg:col-span-7" style={delay(160)}>
             {t.lede}
           </p>
           <div className="enter flex flex-wrap items-center gap-3 lg:col-span-5 lg:justify-end" style={delay(240)}>
