@@ -29,11 +29,13 @@ export type Screenshot = {
   path?: string;
 };
 
-/** About photo. null shows a white placeholder: drop a 4:5 photo in public/ and set it here. */
-export const portrait: { src: string; alt: string } | null = { src: '/my-profile.jpg', alt: 'Zeeshan Ahmed, smiling, wearing a grey t-shirt.' };
+/** About photo (an 800px WebP of my-profile.jpg). null shows a placeholder: drop a 4:5 photo in public/ and set it here. */
+export const portrait: { src: string; alt: string } | null = { src: '/my-profile.webp', alt: 'Zeeshan Ahmed, smiling, in a grey sweater.' };
 
 export type CaseStudy = {
   name: string;
+  /** The kind of product, as it appears in the Work index and on the sheet. */
+  kind: string;
   context: string;
   summary: string;
   role: string;
@@ -49,16 +51,14 @@ export type CaseStudy = {
   phone?: { src: string; alt: string; width: number; height: number };
 };
 
-/**
- * Project screenshots stay hidden until the companies approve showing them. Set to true to bring back
- * every browser frame and carousel; the images below are kept ready.
- */
-export const showScreenshots = false;
+/** Project screenshots in browser frames (a carousel where there are several). Set to false to hide them all. */
+export const showScreenshots = true;
 
 // Selected work, in page order: IR Solutions projects first, then XtecSoft.
 export const cases: CaseStudy[] = [
   {
     name: 'Partner Portal',
+    kind: 'CRM, real-time',
     context: 'IR Solutions, 2025',
     summary:
       'A business platform for a software agency: leads, clients, partners, projects, documents and payments in one app. Admins, sales executives, partners and clients each get their own dashboard and menu.',
@@ -87,6 +87,7 @@ export const cases: CaseStudy[] = [
   {
     // Two apps, one card: the Business Owner Portal and the Branch Manager Portal share a product and a stack.
     name: 'Stampy',
+    kind: 'Loyalty',
     context: 'IR Solutions, 2026',
     summary:
       'Digital stamp cards for cafés and retailers: buy nine coffees, get the tenth free, no paper. I built both of its web apps, the Business Owner Portal and the Branch Manager Portal.',
@@ -103,6 +104,7 @@ export const cases: CaseStudy[] = [
   },
   {
     name: 'Scalezy Admin Panel',
+    kind: 'Admin systems',
     context: 'IR Solutions, 2026',
     summary:
       'Admin panel for a community and e-learning platform. Admins manage users, build courses and tests, run communities and schedule workshops from one dashboard.',
@@ -130,6 +132,7 @@ export const cases: CaseStudy[] = [
   },
   {
     name: 'Saudi Taxi',
+    kind: 'Bookings',
     context: 'IR Solutions, 2026',
     summary: 'Taxi booking for Umrah and Hajj travellers moving between Jeddah, Makkah and Madinah.',
     role: 'Sole frontend developer, development to deployment',
@@ -146,6 +149,7 @@ export const cases: CaseStudy[] = [
   },
   {
     name: 'ioPortal',
+    kind: 'Asset management, RTL UI',
     context: 'XtecSoft, 2024',
     summary:
       'Client portal software inside ioMoVo, an award-winning AI-powered digital asset management platform shown at IBC 2024 in Amsterdam.',
@@ -223,9 +227,10 @@ export const experience: Role[] = [
   },
 ];
 
+// short: the label on the Experience timeline.
 export const education = [
-  { title: 'Website Development, full-stack certification', place: 'Saylani Mass IT Training, Karachi', period: 'Dec 2022 – Dec 2023' },
-  { title: 'Intermediate (HSC) in Computer Science', place: 'Govt. Dehli Science College, Karachi', period: 'Jun 2021 – Jun 2023' },
+  { short: 'Saylani', title: 'Website Development, full-stack certification', place: 'Saylani Mass IT Training, Karachi', period: 'Dec 2022 – Dec 2023' },
+  { short: 'Intermediate (HSC)', title: 'Intermediate (HSC) in Computer Science', place: 'Govt. Dehli Science College, Karachi', period: 'Jun 2021 – Jun 2023' },
 ];
 
 // What I'm good at, in the words of the work itself (About section).
