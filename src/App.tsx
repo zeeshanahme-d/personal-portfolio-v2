@@ -29,7 +29,7 @@ export function App() {
         <About />
         <Contact />
       </main>
-            <SiteFooter />
+      <SiteFooter />
     </ThemeProvider>
   );
 }
