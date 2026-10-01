@@ -1,50 +1,65 @@
 import { ImageIcon } from 'lucide-react';
 import { capabilities, portrait } from '../content';
-import { stagger } from '../hooks/useReveal';
+import { label } from '../styles';
 
 /**
- * About breaks the sticky-heading rhythm of Experience and Skills on purpose: photo and intro side by side,
- * two short notes on how I work, then the four strengths as one band across the full width.
+ * The author's sheet, closing the drawing set: the portrait as a figure plate with crop marks, the intro as the
+ * statement, two notes on how I work, then the four strengths as the set's specification clauses.
  */
 export function About() {
   return (
-    <section id="about" aria-labelledby="about-title" className="container-page py-16 md:py-20">
-      <div className="grid gap-10 lg:grid-cols-12">
-        <div className="lg:col-span-4 xl:col-span-3">
-          <h2 id="about-title" data-reveal="up" className="text-3xl font-semibold">
-            About
-          </h2>
-          <div data-reveal="up" style={stagger(1)} className="mt-8 w-full max-w-68">
+    <section id="about" aria-labelledby="about-title" className="container-page py-20 md:py-28">
+      <div className="border-t border-line pt-8">
+        <p className={label}>
+          <span className="tabular-nums">04</span> / About
+        </p>
+        <h2 id="about-title" className="mt-5 text-4xl font-semibold">
+          About
+        </h2>
+      </div>
+
+      <div className="mt-14 grid gap-x-10 gap-y-12 md:mt-20 lg:grid-cols-12">
+        <figure className="w-full max-w-80 lg:col-span-4 xl:col-span-3">
+          <div className="plate">
             {portrait ? (
-              <img src={portrait.src} alt={portrait.alt} width={800} height={1000} className="aspect-4/5 w-full rounded-xl object-contain" />
+              <img
+                src={portrait.src}
+                alt={portrait.alt}
+                width={800}
+                height={993}
+                loading="lazy"
+                decoding="async"
+                className="aspect-4/5 w-full object-cover"
+              />
             ) : (
-              <div className="placeholder aspect-4/5 rounded-xl ring-1 ring-line">
+              <div className="placeholder aspect-4/5">
                 <ImageIcon aria-hidden="true" className="size-5" />
                 Photo
               </div>
             )}
           </div>
-        </div>
+          <figcaption className={`${label} mt-3`}>Fig. 04.1 / Zeeshan Ahmed, Islamabad</figcaption>
+        </figure>
 
-        <div className="lg:col-span-8 lg:pt-2 xl:col-span-9">
-          <p data-reveal="up" className="max-w-[40ch] text-2xl font-medium">
-            I&apos;m Zeeshan Ahmed, a frontend developer in Islamabad. I trained as a full-stack web developer at Saylani in
+        <div className="lg:col-span-8 xl:col-span-8 xl:col-start-5">
+          <p className="max-w-[36ch] font-display text-2xl font-medium">
+            I’m Zeeshan Ahmed, a frontend developer in Islamabad. I trained as a full-stack web developer at Saylani in
             Karachi, joined XtecSoft in 2024 to work on ioMoVo, then shipped 7+ production apps at IR Solutions, most of
             them as the only frontend developer on the team.
           </p>
 
-          <div className="mt-10 grid gap-8 border-t border-ink pt-8 md:grid-cols-2 md:gap-10">
-            <div data-reveal="up">
-              <h3 className="font-semibold">How I work</h3>
-              <p className="mt-2 text-ink-2">
+          <div className="mt-12 grid gap-x-10 border-t border-line md:grid-cols-2">
+            <div className="border-b border-line py-6 md:border-b-0">
+              <h3 className={label}>How I work</h3>
+              <p className="mt-3 text-ink-2">
                 I like the hard, unglamorous parts of product work: permissions, data-heavy screens and layouts that have
                 to work right to left. I usually own the whole front end, from structure and state to API integration,
                 code review and deployment, working closely with designers and backend engineers.
               </p>
             </div>
-            <div data-reveal="up" style={stagger(1)}>
-              <h3 className="font-semibold">Working with AI</h3>
-              <p className="mt-2 text-ink-2">
+            <div className="py-6">
+              <h3 className={label}>Working with AI</h3>
+              <p className="mt-3 text-ink-2">
                 Claude Code, Cursor, ChatGPT and GitHub Copilot are part of my daily setup for debugging, refactoring and
                 writing tests. They make me faster; the architecture decisions and the final review stay with me.
               </p>
@@ -53,16 +68,16 @@ export function About() {
         </div>
       </div>
 
-      {/* The strengths, as one band under everything. */}
-      <h3 className="sr-only">Strengths</h3>
-      <ul className="mt-14 grid gap-x-10 gap-y-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
+      <h3 className={`${label} mt-20 md:mt-24`}>Specification</h3>
+      <ol className="mt-4 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-4">
         {capabilities.map((c, i) => (
-          <li key={c.title} data-reveal="up" style={stagger(i)}>
-            <p className="font-semibold">{c.title}</p>
+          <li key={c.title} className="border-t border-body pt-5 pb-7">
+            <span className={`${label} tabular-nums`}>Spec {String(i + 1).padStart(2, '0')}</span>
+            <p className="mt-4 font-semibold">{c.title}</p>
             <p className="mt-1.5 text-sm text-ink-2">{c.body}</p>
           </li>
         ))}
-      </ul>
+      </ol>
     </section>
   );
 }
