@@ -1,5 +1,6 @@
 import { education, experience, profile } from '../content';
 import { ExternalLink } from '../components/ExternalLink';
+import { Tool } from '../components/Tool';
 import { stagger } from '../hooks/useReveal';
 
 export function Experience() {
@@ -8,14 +9,14 @@ export function Experience() {
       <div className="grid gap-10 lg:grid-cols-12 lg:gap-10">
         {/* The heading stays in view while the roles scroll past on wide screens. */}
         <div className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start xl:col-span-3">
-          <h2 id="experience-title" data-reveal="up" className="text-h2 font-semibold">
+          <h2 id="experience-title" data-reveal="up" className="text-3xl font-semibold">
             Experience
           </h2>
           <p data-reveal="up" style={stagger(1)} className="mt-4 max-w-xs text-ink-2">
             2.5 years building and shipping production front ends across SaaS, dashboards, CRM systems and client products.
           </p>
           <p data-reveal="up" style={stagger(2)} className="mt-6 font-medium">
-            <ExternalLink href={profile.resume}>Full résumé (PDF)</ExternalLink>
+            <ExternalLink href={profile.resume}>Full Resume (PDF)</ExternalLink>
           </p>
         </div>
 
@@ -25,7 +26,7 @@ export function Experience() {
               <li key={role.company} data-reveal="up" className="grid gap-4 border-b border-line py-8 md:grid-cols-8 md:gap-6">
                 <div className="md:col-span-2">
                   <h3 className="text-xl font-semibold tracking-tight">{role.company}</h3>
-                  <p className="text-[0.9375rem] text-ink-2">{role.title}</p>
+                  <p className="text-sm text-ink-2">{role.title}</p>
                   <p className="mt-2 text-sm text-ink-3">
                     {role.period}
                     <br />
@@ -34,12 +35,16 @@ export function Experience() {
                 </div>
                 <div className="md:col-span-6">
                   <p className="font-medium">{role.summary}</p>
-                  <ul className="bullets mt-3 text-[0.9375rem] leading-relaxed text-ink-2">
+                  <ul className="bullets mt-3 max-w-prose text-ink-2">
                     {role.points.map((p) => (
                       <li key={p}>{p}</li>
                     ))}
                   </ul>
-                  <p className="mt-4 text-sm text-ink-3">{role.stack.join(', ')}</p>
+                  <ul aria-label="Built with" className="mt-5 flex flex-wrap gap-x-5 gap-y-2.5 text-sm text-ink-2">
+                    {role.stack.map((name) => (
+                      <Tool key={name} name={name} />
+                    ))}
+                  </ul>
                 </div>
               </li>
             ))}
