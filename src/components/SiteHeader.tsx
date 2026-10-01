@@ -79,7 +79,7 @@ export function SiteHeader() {
             />
             <rect x="18.2" y="17.3" width="3.4" height="4.4" rx="0.8" className="brand-cursor fill-accent-bright" />
           </svg>
-          <span className="text-[0.9375rem] font-semibold tracking-[-0.015em]">{profile.name}</span>
+          <span className="text-sm font-semibold tracking-[-0.015em]">{profile.name}</span>
         </a>
 
         <div className="flex items-center gap-9">
@@ -89,7 +89,7 @@ export function SiteHeader() {
                 <a
                   href={`#${id}`}
                   aria-current={active === id ? 'true' : undefined}
-                  className="nav-link text-[0.9375rem] text-ink-2 transition-colors duration-200 hover:text-ink aria-[current]:text-ink"
+                  className="nav-link text-sm text-ink-2 transition-colors duration-200 hover:text-ink aria-[current]:text-ink"
                 >
                   {label}
                 </a>
@@ -104,7 +104,7 @@ export function SiteHeader() {
               rel="noopener noreferrer"
               className="btn btn-line h-9 gap-1.5 px-4 text-sm max-md:hidden"
             >
-              Résumé
+              Resume
               <ArrowUpRight aria-hidden="true" className="arrow size-3.5" />
             </a>
             <button
@@ -152,7 +152,7 @@ export function SiteHeader() {
               style={stagger(NAV.length)}
               className="btn btn-solid w-full"
             >
-              Résumé (PDF)
+              Resume (PDF)
             </a>
           </li>
         </ul>

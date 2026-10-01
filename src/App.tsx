@@ -7,6 +7,7 @@ import { Hero } from './sections/Hero';
 import { Skills } from './sections/Skills';
 import { Work } from './sections/Work';
 import { useReveal } from './hooks/useReveal';
+import { SiteFooter } from './components/SiteFooter';
 
 export function App() {
   useReveal();
@@ -28,6 +29,7 @@ export function App() {
         <About />
         <Contact />
       </main>
+            <SiteFooter />
     </ThemeProvider>
   );
 }
