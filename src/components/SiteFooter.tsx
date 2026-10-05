@@ -2,12 +2,12 @@ import { ArrowUp } from 'lucide-react';
 import { profile } from '../content';
 import { useLocalTime } from '../hooks/useLocalTime';
 
-/** Closes the dark Contact stage: signature, local time, back to top, then an oversized name. */
+/** Closes the page on Contact's pine: signature, local time, back to top. The big name lives in the hero only. */
 export function SiteFooter() {
   const time = useLocalTime(profile.timeZone);
 
   return (
-    <footer className="overflow-hidden dark bg-night text-snow">
+    <footer className="dark bg-night text-snow">
       <div className="container-page">
         <div className="flex flex-col gap-4 border-t border-night-line py-8 text-sm text-snow-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="flex items-center gap-3">
@@ -28,13 +28,6 @@ export function SiteFooter() {
           </p>
         </div>
       </div>
-
-      <p
-        aria-hidden="true"
-        className="pointer-events-none bg-linear-to-b from-white/10 to-transparent bg-clip-text text-center text-[20vw] leading-[0.8] font-semibold tracking-[-0.04em] whitespace-nowrap text-transparent select-none"
-      >
-        ZEESHAN
-      </p>
     </footer>
   );
 }

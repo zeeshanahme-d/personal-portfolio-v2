@@ -37,12 +37,13 @@ export function Skills() {
             <p className={label}>
               <span className="tabular-nums">03</span> / Skills
             </p>
-            <h2 id="skills-title" className="mt-5 text-4xl font-semibold">
-              Skills
+            {/* The count comes from the schedule below, so it stays true as projects change. */}
+            <h2 id="skills-title" className="mt-5 max-w-[20ch] text-3xl font-semibold">
+              {shipped.length} tools shipped in real projects.
             </h2>
           </div>
           <p className="max-w-md text-snow-2 lg:col-span-5 lg:col-start-8 lg:self-end">
-            The tools I’ve shipped with, project by project, then the rest of the kit.
+            Each one marked against the project it shipped in, then the rest of the kit.
           </p>
         </div>
 

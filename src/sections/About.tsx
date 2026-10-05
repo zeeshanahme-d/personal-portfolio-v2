@@ -13,8 +13,8 @@ export function About() {
         <p className={label}>
           <span className="tabular-nums">04</span> / About
         </p>
-        <h2 id="about-title" className="mt-5 text-4xl font-semibold">
-          About
+        <h2 id="about-title" className="mt-5 max-w-[24ch] text-3xl font-semibold">
+          Trained in Karachi, shipping from Islamabad.
         </h2>
       </div>
 

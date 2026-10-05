@@ -113,13 +113,13 @@ export function Experience() {
           <p className={label}>
             <span className="tabular-nums">02</span> / Experience
           </p>
-          <h2 id="experience-title" className="mt-5 text-4xl font-semibold">
-            Experience
+          <h2 id="experience-title" className="mt-5 max-w-[20ch] text-3xl font-semibold">
+            Two companies, two and a half years.
           </h2>
         </div>
         <div className="lg:col-span-5 lg:col-start-8 lg:self-end">
           <p className="text-ink-2">
-            2.5 years building and shipping production front ends across SaaS, dashboards, CRM systems and client products.
+            Building and shipping production front ends for SaaS, dashboards, CRM systems and client products.
           </p>
           <p className="mt-4 font-medium">
             <ExternalLink href={profile.resume}>Full Resume (PDF)</ExternalLink>

@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Check, Copy } from 'lucide-react';
 import { profile, socials } from '../content';
+import { Fact } from '../components/Drawing';
 import { ExternalLink } from '../components/ExternalLink';
-import { stagger } from '../hooks/useReveal';
+import { label } from '../styles';
 
 type CopyState = 'idle' | 'copied' | 'failed';
 
@@ -38,44 +39,55 @@ function CopyEmail() {
   );
 }
 
-/** The dark close of the page: one ask and the ways to reach me. SiteFooter continues the same dark stage below. */
+/**
+ * The close of the page, as the set's last sheet: the one ask on the left (headline, what I'm looking for, the email
+ * and two ways to send it), a title block of the other ways to reach me on the right. SiteFooter continues the pine.
+ */
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="dark bg-night text-snow">
-      <div className="container-page pt-24 md:pt-32">
-        <p data-reveal="up" className="flex items-center gap-2.5 text-snow-2">
-          <span className="live-dot" aria-hidden="true" />
-          {profile.status}
+      <div className="container-page py-20 md:py-28">
+        <p className={`${label} border-t border-night-line pt-8`}>
+          <span className="tabular-nums">05</span> / Contact
         </p>
-        <h2 id="contact-title" data-reveal="up" style={stagger(1)} className="mt-6 max-w-[18ch] text-4xl font-semibold">
-          Need someone to own your front end?
-        </h2>
 
-        <div data-reveal="up" style={stagger(2)} className="mt-12 flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <a
-            href={`mailto:${profile.email}`}
-            className="link text-xl font-medium break-all md:text-2xl md:break-normal"
-          >
-            {profile.email}
-          </a>
-          <div className="flex flex-wrap gap-3">
-            <CopyEmail />
-            <a href={`mailto:${profile.email}`} className="btn btn-solid">
-              Email me
+        <div className="mt-5 grid gap-x-10 gap-y-14 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            {/* The page's one large headline after the hero: this is the ask. */}
+            <h2 id="contact-title" className="max-w-[18ch] text-4xl font-semibold">
+              Need someone to own your front end?
+            </h2>
+            <p className="mt-6 flex items-center gap-2.5 text-snow-2">
+              <span className="live-dot" aria-hidden="true" />
+              {profile.status}
+            </p>
+            <a href={`mailto:${profile.email}`} className="link mt-12 inline-block text-xl font-medium break-all md:text-2xl md:break-normal">
+              {profile.email}
             </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <CopyEmail />
+              <a href={`mailto:${profile.email}`} className="btn btn-solid">
+                Email me
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div
-          data-reveal="up"
-          style={stagger(3)}
-          className="mt-14 grid gap-8 border-t border-night-line py-8 sm:grid-cols-2 md:grid-cols-4"
-        >
-          {[...socials, { label: 'Resume', href: profile.resume }].map((s) => (
-            <ExternalLink key={s.label} href={s.href} className="justify-between text-lg font-medium">
-              {s.label}
-            </ExternalLink>
-          ))}
+          {/* The title block: where I am and the other ways to reach me, as handles (short enough for one line). */}
+          <dl className="lg:col-span-5 lg:col-start-8 lg:self-end">
+            <Fact term="Based in">Islamabad, Pakistan (GMT+5)</Fact>
+            {socials.map((s) => (
+              <Fact key={s.label} term={s.label}>
+                <ExternalLink href={s.href} className="font-medium">
+                  @{s.href.split('/').pop()}
+                </ExternalLink>
+              </Fact>
+            ))}
+            <Fact term="Resume">
+              <ExternalLink href={profile.resume} className="font-medium">
+                Download (PDF)
+              </ExternalLink>
+            </Fact>
+          </dl>
         </div>
       </div>
     </section>

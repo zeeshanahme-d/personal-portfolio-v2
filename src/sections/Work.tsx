@@ -263,11 +263,11 @@ export function Work() {
             <p className={label}>
               <span className="tabular-nums">01</span> / Work
             </p>
-            <h2 id="work-title" className="mt-5 text-4xl font-semibold">
-              Selected work
+            <h2 id="work-title" className="mt-5 max-w-[20ch] text-3xl font-semibold">
+              Products used by real businesses.
             </h2>
             <p className="mt-5 max-w-md text-snow-2">
-              Products I’ve built for real users, from enterprise asset management to pilgrim taxi bookings.
+              From enterprise asset management to pilgrim taxi bookings. On most of them, I was the only frontend developer.
             </p>
           </div>
 

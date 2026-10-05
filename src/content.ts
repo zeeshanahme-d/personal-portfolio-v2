@@ -7,7 +7,8 @@ export const profile = {
   timeZone: 'Asia/Karachi',
   email: 'dev.zeeshanahmed@gmail.com',
   resume: '/resume/Zeeshan_Ahmed_Resume.pdf',
-  status: 'Available to join immediately',
+  // What I'm looking for, in one line: shown at the top of the hero and in Contact.
+  status: 'Available now for frontend roles, remote or on-site',
 };
 
 export const socials = [
@@ -29,7 +30,7 @@ export type Screenshot = {
   path?: string;
 };
 
-/** About photo (an 800px WebP of my-profile.jpg). null shows a placeholder: drop a 4:5 photo in public/ and set it here. */
+/** About photo (an 800px WebP). null shows a placeholder: drop a 4:5 photo in public/ and set it here. */
 export const portrait: { src: string; alt: string } | null = { src: '/my-profile.webp', alt: 'Zeeshan Ahmed, smiling, in a grey sweater.' };
 
 export type CaseStudy = {
