@@ -1,9 +1,9 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [{ "type": "host", "value": "www.zeeshanahmed.dev" }],
-      "destination": "https://zeeshanahmed.dev/:path*",
+      "destination": "https://zeeshanahmed.dev/$1",
       "permanent": true
     }
   ]
