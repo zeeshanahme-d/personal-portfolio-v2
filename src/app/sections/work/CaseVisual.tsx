@@ -1,3 +1,4 @@
+import { Screenshot } from '@/app/components/ui/Screenshot';
 import { showScreenshots, type CaseStudy } from '@/app/data/content';
 import { ScreenshotFrame } from './ScreenshotFrame';
 import { StampySchematic } from './StampySchematic';
@@ -14,13 +15,20 @@ export function CaseVisual({ project }: { project: CaseStudy }) {
       // the header, rule and name above it (about 19rem; the captures are 16:10). Extra room under a phone
       // capture, which hangs below the frame.
       <div className={`relative lg:col-span-8 lg:row-start-1 lg:max-w-[calc((100svh-19rem)*1.6)] ${project.phone ? 'md:mb-10' : ''}`}>
-        <ScreenshotFrame name={project.name} url={project.url} shots={project.images} sizes="(min-width: 64rem) 50rem, 92vw" />
+        <ScreenshotFrame
+          name={project.name}
+          url={project.url}
+          screens={project.images.map((s) => (
+            <Screenshot key={s.src} image={s} sizes="(min-width: 64rem) 50rem, 92vw" />
+          ))}
+          paths={project.images.map((s) => s.path)}
+        />
         {project.phone && (
           <img
             src={project.phone.src}
             width={project.phone.width}
             height={project.phone.height}
-            alt=""
+            alt={project.phone.alt}
             loading="lazy"
             decoding="async"
             className="absolute right-6 -bottom-12 hidden w-[15%] rounded-[1.25rem] border-[5px] border-night-2 shadow-[0_30px_60px_-20px_rgb(0_0_0/0.8)] ring-1 ring-white/10 md:block lg:right-10"

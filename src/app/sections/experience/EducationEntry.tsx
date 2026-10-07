@@ -1,4 +1,5 @@
 import { Notes } from '@/app/components/drawing/Notes';
+import { Period } from '@/app/components/ui/Period';
 import { education } from '@/app/data/content';
 import { label } from '@/app/lib/styles';
 import { entryBox } from './styles';
@@ -16,7 +17,7 @@ export function EducationEntry() {
           <span key={e.title}>
             <span className="block font-medium text-ink">{e.title}</span>
             <span className="text-sm text-ink-3">
-              {e.place}, {e.period}
+              {e.place}, <Period period={e.period} />
             </span>
           </span>
         ))}

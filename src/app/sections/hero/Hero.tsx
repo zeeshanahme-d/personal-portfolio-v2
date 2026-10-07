@@ -1,12 +1,19 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, type ReactNode } from 'react';
+import { Fact } from '@/app/components/drawing/Fact';
 import { delay } from '@/app/lib/motion';
 import { heroCopy, type Lang } from './copy';
-import { HeroContour } from './HeroContour';
-import { HeroFacts } from './HeroFacts';
 import { HeroIntro } from './HeroIntro';
 import { HeroName, nameType } from './HeroName';
+import { LanguageSwitch } from './LanguageSwitch';
+
+type Props = {
+  /** The survey contour behind the name (HeroContour). Static, so rendered on the server and passed in. */
+  contour: ReactNode;
+  /** The title block's fixed rows (HeroFacts), likewise; the language row is added here. */
+  facts: ReactNode;
+};
 
 /**
  * The interface is built around the name. Four planes, each with its own scroll rate (styles/globals.css, "Hero"):
@@ -14,8 +21,9 @@ import { HeroName, nameType } from './HeroName';
  * Where the foreground covers the name, the letters carry on as cream outlines, like hidden lines in a
  * technical drawing; as you scroll the name sinks and the foreground rises, so more of it turns to outline.
  * A client component: the language switch re-renders the name, the status and the introduction together.
+ * The parts that never change with the language come in as server-rendered props.
  */
-export function Hero() {
+export function Hero({ contour, facts }: Props) {
   const [lang, setLang] = useState<Lang>('en');
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
 
@@ -35,7 +43,7 @@ export function Hero() {
 
       {/* .hero-stage holds the geometry (--name, --overlap…) in styles/globals.css. */}
       <div className="hero-stage relative">
-        <HeroContour />
+        {contour}
 
         <div className="hero-name-plane relative z-1 pt-(--callouts)">
           {/* Keyed by language: flipping replays the rise, now in Arabic letters. */}
@@ -60,7 +68,13 @@ export function Hero() {
           <div className="container-page grid gap-x-10 gap-y-12 pt-[calc(var(--overlap)+2.75rem)] pb-2 lg:grid-cols-12" dir={dir}>
             {/* Keyed by language, so the introduction plays its entrance again in the new language. */}
             <HeroIntro key={lang} lang={lang} />
-            <HeroFacts lang={lang} onLangChange={setLang} />
+            {/* The hero's title block. Always left to right. */}
+            <dl dir="ltr" className="enter lg:col-span-4 lg:col-start-9 lg:self-end" style={delay(1000)}>
+              {facts}
+              <Fact term="Languages">
+                <LanguageSwitch lang={lang} onChange={setLang} />
+              </Fact>
+            </dl>
           </div>
         </div>
       </div>

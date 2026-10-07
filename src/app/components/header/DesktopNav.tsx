@@ -1,8 +1,12 @@
-import { NAV } from '@/app/data/navigation';
+'use client';
+
+import { NAV, NAV_IDS } from '@/app/data/navigation';
+import { useActiveSection } from '@/app/hooks/useActiveSection';
 import { twoDigits } from '@/app/lib/format';
 
 /** The section links from md up, indexed like the hero's callouts; the current section is underlined. */
-export function DesktopNav({ active }: { active: string | null }) {
+export function DesktopNav() {
+  const active = useActiveSection(NAV_IDS);
   return (
     <ul className="hidden items-center gap-5 md:flex lg:gap-8">
       {NAV.map(({ id, label }, i) => (

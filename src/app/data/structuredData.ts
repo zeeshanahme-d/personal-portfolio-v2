@@ -1,4 +1,21 @@
+import { cases, skills } from './content';
 import { SITE_TITLE, SITE_URL } from './site';
+
+// What the person knows: the page's practices, then every skill listed and every tool shipped in a project. Built
+// from the content, so the structured data never claims more than the page shows.
+const knowsAbout = [
+  ...new Set([
+    'Frontend development',
+    'Web accessibility',
+    'Web performance',
+    'Responsive web design',
+    'Internationalization and RTL localisation',
+    'SEO',
+    'AI-assisted development',
+    ...skills.flatMap((g) => g.items),
+    ...cases.flatMap((c) => c.stack),
+  ]),
+];
 
 /*
  * One linked graph: the site (Google's site name), this page as a profile, and the person it is about.
@@ -41,7 +58,7 @@ export const structuredData = {
         { '@type': 'EducationalOrganization', name: 'Saylani Mass IT Training' },
         { '@type': 'EducationalOrganization', name: 'Govt. Dehli Science College' },
       ],
-      knowsAbout: ['Frontend development', 'React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+      knowsAbout,
       sameAs: ['https://github.com/zeeshanahme-d', 'https://www.linkedin.com/in/zeeshanahme-d', 'https://x.com/Zeeshanahme_d'],
     },
   ],

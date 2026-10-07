@@ -1,11 +1,11 @@
 import { profile } from '@/app/data/content';
 
 /** Brand: a Z monogram with a marigold cursor block (the site's "live" colour), then the full name. */
-export function Brand({ onClick }: { onClick: () => void }) {
+export function Brand() {
   return (
     // A section link like the nav's: on the home page the browser just scrolls, from the 404 page it goes home.
     // eslint-disable-next-line @next/next/no-html-link-for-pages -- native fragment scroll, not a page navigation
-    <a href="/#top" onClick={onClick} aria-label={`${profile.name}, back to top`} className="flex items-center gap-2.5">
+    <a href="/#top" aria-label={`${profile.name}, back to top`} className="flex items-center gap-2.5">
       <svg viewBox="0 0 28 28" aria-hidden="true" className="size-7 shrink-0">
         <rect width="28" height="28" rx="7" className="fill-ink" />
         <path

@@ -1,4 +1,5 @@
 import { Notes } from '@/app/components/drawing/Notes';
+import { Period } from '@/app/components/ui/Period';
 import { Tool } from '@/app/components/ui/Tool';
 import type { Role } from '@/app/data/content';
 import { twoDigits } from '@/app/lib/format';
@@ -16,7 +17,9 @@ export function RoleEntry({ role, index }: { role: Role; index: number }) {
         <p className={`${label} tabular-nums`}>E-{twoDigits(index + 1)}</p>
         <h3 className={`${wideCaps} mt-4 text-[clamp(2rem,4vw,3.25rem)] leading-[0.95]`}>{role.company}</h3>
         <p className="mt-4 font-medium">{role.title}</p>
-        <p className="text-sm text-ink-2">{role.period}</p>
+        <p className="text-sm text-ink-2">
+          <Period period={role.period} />
+        </p>
         <p className="text-sm text-ink-3">
           {role.place}, {formatMonths(end - start)}
         </p>
