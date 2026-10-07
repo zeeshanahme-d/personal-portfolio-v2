@@ -2,44 +2,52 @@
 
 Personal site of Zeeshan Ahmed, frontend developer.
 
-React 19, TypeScript, Tailwind CSS 4 and Vite. Font: Mona Sans (self-hosted in `public/fonts`, trimmed to Latin, weights 400–700 and widths 100–112.5%). Text sizes come from one scale in `src/index.css` (`text-xs` … `text-5xl`). Icons: Lucide (UI); technology marks in `public/marks.svg`, a sprite kept out of the JS bundle: simple-icons (CC0), plus a few from Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons (MIT, ISC, Apache-2.0) for tools simple-icons doesn't cover.
+Next.js 16 (App Router, Cache Components, React Compiler), React 19, TypeScript and Tailwind CSS 4. One static page
+plus a custom 404. Fonts are self-hosted in `public/fonts`: Mona Sans for text, Besley for display sizes and a subset of
+IBM Plex Sans Arabic for the hero's Arabic version. Icons: Lucide (UI); technology marks in `public/marks.svg`, a
+sprite kept out of the JS bundle.
 
 ## Scripts
 
 ```bash
 npm install
-npm run dev        # local dev server
-npm run build      # typecheck, build, then prerender the page to static HTML
-npm run preview    # serve the production build
+npm run dev     # local dev server
+npm run build   # production build (the page is prerendered as static HTML)
+npm run start   # serve the production build
 npm run lint
 ```
 
 ## Where things live
 
 ```
-src/content.ts            every fact on the site: case studies, products, experience, stack, links
-src/sections/             Hero, Work (dark), Experience, Skills, About, Contact (dark, + footer)
-src/components/           SiteHeader (with mobile menu), Screenshot, ExternalLink
-src/hooks/                useReveal (scroll reveals), useActiveSection (nav state), useLocalTime
-src/index.css             design tokens (@theme), components (buttons, links, browser frame) and the motion system
-scripts/prerender.js      renders the app into dist/index.html and preloads the text font
+src/app/layout.tsx        <html>: site-wide metadata, the theme script, font preloads, header and footer
+src/app/page.tsx          the home page: its canonical URL, share cards and JSON-LD, then the sections
+src/app/not-found.tsx     the 404 page for every unknown URL (404 status, noindex)
+src/app/sections/         one folder per section; every sub-component in its own file
+src/app/components/       shared UI: header, footer, drawing primitives (Fact, Notes, IndexRow), links, Tool
+src/app/hooks/            useTheme, useActiveSection, useLocalTime, useReveal
+src/app/lib/              plain helpers: formatting, career scale, skills schedule, theme store, class lists
+src/app/data/             content.ts (every fact on the site), marks, navigation, site URL, structured data
+src/app/styles/           globals.css (imports the rest), fonts.css, variables.css (tokens), scrollbar.css
 public/work/              project screenshots, 800w and 1600w WebP
-public/resume/            Resume PDF
+vercel.json               redirects: www to the bare domain, /index.html to /
 ```
 
-To change copy or add a project, edit `src/content.ts`.
+To change copy or add a project, edit `src/app/data/content.ts`.
 
-Screenshots: a project's `images` is a list. One image is a still; several become a carousel in the browser frame
-(back/forward buttons, swipe, the address bar shows each screen's `path`). A project without `images` is shown as text
-only. All project screenshots are switched off until the companies approve them: set `showScreenshots` to `true` in
-`src/content.ts` to bring them back. Put files in `public/work/` (1600 x 1000 is ideal) and add `{ src: '/work/partner-portal.png', alt, width, height }`.
-A base name instead of a path (`src: 'ioportal'`) uses `<name>-800.webp` and `<name>-1600.webp`. The About photo works the
-same way: set `portrait` in `src/content.ts` (4:5, e.g. 800 x 1000).
+Components are Server Components unless they need the browser. Only the interactive ones are client components:
+`Hero` (language switch), `SiteHeader` and `ThemeToggle`, `LocalTime`, `ScreenshotFrame` (carousel) and `CopyEmail`.
+
+Screenshots: a project's `images` is a list. One image is a still; several become a carousel in the browser frame,
+whose address bar shows each screen's `path` (written without the leading slash, so the page carries no `/leads`-style
+strings that Google would try as URLs). A base name (`src: 'ioportal'`) uses `<name>-800.webp` and `<name>-1600.webp`
+in `public/work/`; a full path is one file. `showScreenshots` in `content.ts` switches them all off.
 
 ## Notes
 
-- The page is prerendered at build time, so the HTML is complete before JavaScript loads; React hydrates it.
-- Motion: a hero entrance sequence, scroll reveals and hover micro-interactions, all disabled under `prefers-reduced-motion`.
-- The footer signature uses a 22 KB subset of Noto Nastaliq Urdu, self-hosted in `public/fonts`.
-- The hero can flip to Arabic (right to left). Its font is a subset of IBM Plex Sans Arabic with only the glyphs
-  used; if you change the Arabic copy in `Hero.tsx`, regenerate `public/fonts/plex-arabic-*.woff2` with the new text.
+- The theme lives on `<html data-theme>`, set by an inline script before first paint, so a reload never flashes.
+- Motion: hero entrance, scroll reveals, scroll-driven parallax and hover details; fades only under
+  `prefers-reduced-motion`.
+- If you change the hero's Arabic copy (`sections/hero/copy.ts`), regenerate `public/fonts/plex-arabic-*.woff2`
+  with the new text: the font files only contain the glyphs in use. Fonts are cached for a year, so save the new
+  files under new names (e.g. `plex-arabic-600-2.woff2`) and update `styles/fonts.css`.

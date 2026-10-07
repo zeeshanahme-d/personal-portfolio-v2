@@ -1,0 +1,41 @@
+/*
+ * Mona Sans (GitHub, OFL): one variable family for everything. Trimmed to Latin, weights 400-700 and
+ * widths 100-112.5% (the only ones used), which takes it from 98 KB to 54 KB. Headlines use the wider cut.
+ * Mona Sans and Besley are preloaded in the root layout, so neither paints in a fallback face first.
+ * public/fonts is cached for a year (next.config.ts): a changed font needs a new file name here and in the layout.
+ */
+@font-face {
+  font-family: 'Mona Sans';
+  font-style: normal;
+  font-weight: 400 700;
+  font-stretch: 100% 112.5%;
+  font-display: swap;
+  src: url('/fonts/mona-sans.woff2') format('woff2-variations');
+}
+
+/* Besley (OFL), a Clarendon: the face of carved trail signs. Display sizes only. Latin subset, variable weight. */
+@font-face {
+  font-family: 'Besley';
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+  src: url('/fonts/besley.woff2') format('woff2');
+}
+
+/* Only the glyphs of the hero's Arabic version (Google Fonts text= subset, OFL). unicode-range keeps
+   the bold file from downloading until Arabic text actually renders in it. */
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/plex-arabic-400.woff2') format('woff2');
+  unicode-range: U+60C, U+621-631, U+633-639, U+641-648, U+64A-64B, U+64F, U+651, U+653-655;
+}
+
+@font-face {
+  font-family: 'IBM Plex Sans Arabic';
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plex-arabic-600.woff2') format('woff2');
+  unicode-range: U+60C, U+621-631, U+633-639, U+641-648, U+64A-64B, U+64F, U+651, U+653-655;
+}

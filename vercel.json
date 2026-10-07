@@ -5,6 +5,11 @@
       "has": [{ "type": "host", "value": "www.zeeshanahmed.dev" }],
       "destination": "https://zeeshanahmed.dev/$1",
       "permanent": true
+    },
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

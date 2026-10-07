@@ -1,0 +1,53 @@
+@layer base {
+  /* Reserve the scrollbar's space so the layout never shifts when it appears. One edge is enough:
+     both-edges would add an empty strip on the left for no benefit. */
+  html {
+    scrollbar-gutter: stable;
+  }
+
+  /* Firefox. (Chromium ignores ::-webkit-scrollbar once these are set, so they are Firefox-only.) */
+  @supports not selector(::-webkit-scrollbar) {
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: #b7c0b4 var(--color-paper);
+    }
+  }
+
+  /* Chromium and Safari: a slim, neutral thumb on a page-coloured track. */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #c2c9bf;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+    border-radius: 999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #8a968c;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+}
+
+/* Dark theme: a hard-coded light thumb would glare on the night page. Unlayered, so it wins over the base above. */
+:root[data-theme='dark']::-webkit-scrollbar-thumb {
+  background-color: #2c3d34;
+}
+
+:root[data-theme='dark']::-webkit-scrollbar-thumb:hover {
+  background-color: #4a5d52;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  :root[data-theme='dark'] {
+    scrollbar-color: #2c3d34 var(--color-paper);
+  }
+}
