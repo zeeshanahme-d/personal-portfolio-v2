@@ -11,9 +11,8 @@ export function HeroIntro({ lang }: { lang: Lang }) {
       <p className={`enter ${label}`} style={delay(700)}>
         <span className="tabular-nums">00</span> / {t.role}
       </p>
-      <p className="enter mt-5 max-w-[20ch] text-3xl font-semibold text-snow" style={delay(780)}>
-        {t.title}
-      </p>
+      {/* No entrance: the headline is the page's Largest Contentful Paint, and fading it in at 780ms held LCP back. */}
+      <p className="mt-5 max-w-[20ch] text-3xl font-semibold text-snow">{t.title}</p>
       <p className="enter mt-5 max-w-120 text-snow-2" style={delay(860)}>
         {t.lede}
       </p>
