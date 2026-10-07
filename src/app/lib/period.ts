@@ -1,4 +1,12 @@
+import { twoDigits } from './format';
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** 'Jun 2025' → '2025-06', for a <time dateTime>. */
+export const isoMonth = (date: string) => {
+  const [month, year] = date.split(' ');
+  return `${year}-${twoDigits(MONTHS.indexOf(month) + 1)}`;
+};
 
 /** 'Jun 2025' → months since year 0. */
 const toMonths = (date: string) => {

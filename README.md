@@ -36,7 +36,9 @@ vercel.json               framework preset (the Vercel project was set up for th
 To change copy or add a project, edit `src/app/data/content.ts`.
 
 Components are Server Components unless they need the browser. Only the interactive ones are client components:
-`Hero` (language switch), `SiteHeader` and `ThemeToggle`, `LocalTime`, `ScreenshotFrame` (carousel) and `CopyEmail`.
+`Hero` (language switch), `DesktopNav` and `MobileMenu` (current section, menu), `ThemeToggle`, `LocalTime`,
+`ScreenshotFrame` (carousel) and `CopyEmail`. Static parts inside them come in as server-rendered props: the hero's
+contour and fixed facts (`page.tsx`), and the screenshots (`CaseVisual`).
 
 Screenshots: a project's `images` is a list. One image is a still; several become a carousel in the browser frame,
 whose address bar shows each screen's `path` (written without the leading slash, so the page carries no `/leads`-style

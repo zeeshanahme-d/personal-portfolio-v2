@@ -1,15 +1,11 @@
 import { Fact } from '@/app/components/drawing/Fact';
 import { twoDigits } from '@/app/lib/format';
-import { delay } from '@/app/lib/motion';
-import { LETTERS, type Lang } from './copy';
-import { LanguageSwitch } from './LanguageSwitch';
+import { LETTERS } from './copy';
 
-type Props = { lang: Lang; onLangChange: (lang: Lang) => void };
-
-/** The hero's title block: role, stack, the index of builds, and the language switch. Always left to right. */
-export function HeroFacts({ lang, onLangChange }: Props) {
+/** The fixed rows of the hero's title block: role, stack and the index of builds. Hero adds the language switch. */
+export function HeroFacts() {
   return (
-    <dl dir="ltr" className="enter lg:col-span-4 lg:col-start-9 lg:self-end" style={delay(1000)}>
+    <>
       <Fact term="Role">Frontend Developer, 2.5 years in production</Fact>
       <Fact term="Stack">React / Next.js / TypeScript</Fact>
       {/* On phones the letters carry no callouts, so the same index lives here. Screen readers get it here on
@@ -23,9 +19,6 @@ export function HeroFacts({ lang, onLangChange }: Props) {
           ))}
         </ul>
       </Fact>
-      <Fact term="Languages">
-        <LanguageSwitch lang={lang} onChange={onLangChange} />
-      </Fact>
-    </dl>
+    </>
   );
 }

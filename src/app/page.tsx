@@ -5,6 +5,8 @@ import { About } from '@/app/sections/about/About';
 import { Contact } from '@/app/sections/contact/Contact';
 import { Experience } from '@/app/sections/experience/Experience';
 import { Hero } from '@/app/sections/hero/Hero';
+import { HeroContour } from '@/app/sections/hero/HeroContour';
+import { HeroFacts } from '@/app/sections/hero/HeroFacts';
 import { Skills } from '@/app/sections/skills/Skills';
 import { Work } from '@/app/sections/work/Work';
 
@@ -35,7 +37,7 @@ export default function Home() {
     <>
       <StructuredData />
       <main id="main">
-        <Hero />
+        <Hero contour={<HeroContour />} facts={<HeroFacts />} />
         <Work />
         <Experience />
         <Skills />
