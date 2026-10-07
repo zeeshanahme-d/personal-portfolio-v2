@@ -30,7 +30,7 @@ src/app/lib/              plain helpers: formatting, career scale, skills schedu
 src/app/data/             content.ts (every fact on the site), marks, navigation, site URL, structured data
 src/app/styles/           globals.css (imports the rest), fonts.css, variables.css (tokens), scrollbar.css
 public/work/              project screenshots, 800w and 1600w WebP
-vercel.json               redirects: www to the bare domain, /index.html to /
+vercel.json               framework preset (the Vercel project was set up for the Vite app); redirects: www to the bare domain, /index.html to /
 ```
 
 To change copy or add a project, edit `src/app/data/content.ts`.
