@@ -1,7 +1,8 @@
 // Technology marks for the Skills section. The paths live in public/marks.svg, a sprite that is cached like
 // an image and kept out of the JS bundle; here is only each mark's sprite id and brand colour.
-// Sources: simple-icons (CC0-1.0), plus Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons and Hugeicons via
-// Iconify (MIT, ISC, Apache-2.0); see the comment in public/marks.svg. Brand names and logos belong to their owners.
+// Sources: simple-icons (CC0-1.0; its Zod mark is MIT), plus Devicon, File Icons, Tabler, Lucide, Remix Icon, Boxicons
+// and Hugeicons via Iconify (MIT, ISC, Apache-2.0); see the comment in public/marks.svg. Brand names and logos belong
+// to their owners.
 // `wide` marks are wordmarks drawn in a wider box. Tools without a mark get a dot.
 
 export const marks: Record<string, { id: string; hex: string; wide?: boolean }> = {
@@ -53,4 +54,11 @@ export const marks: Record<string, { id: string; hex: string; wide?: boolean }> 
   "React Router": { id: 'reactrouter', hex: 'CA4245' },
   "AWS S3": { id: 'amazons3', hex: '569A31' },
   "CloudFront": { id: 'amazonwebservices', hex: 'FF9900' },
+  "Google Gemini": { id: 'googlegemini', hex: '8E75B2' },
+  "Cloudinary": { id: 'cloudinary', hex: '3448C5' },
+  "Paddle": { id: 'paddle', hex: 'FDDD35' },
+  "GSAP": { id: 'gsap', hex: '0AE448', wide: true },
+  "Mongoose": { id: 'mongoose', hex: '880000' },
+  "Zod": { id: 'zod', hex: '408AFF' },
+  "JWT": { id: 'jsonwebtokens', hex: '000000' },
 };

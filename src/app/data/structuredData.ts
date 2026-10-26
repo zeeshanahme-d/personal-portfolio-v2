@@ -5,7 +5,9 @@ import { SITE_TITLE, SITE_URL } from './site';
 // from the content, so the structured data never claims more than the page shows.
 const knowsAbout = [
   ...new Set([
+    'Full-stack development',
     'Frontend development',
+    'Backend development',
     'Web accessibility',
     'Web performance',
     'Responsive web design',
@@ -47,9 +49,9 @@ export const structuredData = {
       givenName: 'Zeeshan',
       familyName: 'Ahmed',
       alternateName: 'ذیشان احمد',
-      jobTitle: 'Frontend Developer',
+      jobTitle: 'Full-Stack Developer',
       description:
-        'Frontend developer in Islamabad, Pakistan, building CRMs, dashboards and admin panels with React, Next.js and TypeScript.',
+        'Full-stack developer in Islamabad, Pakistan, building CRMs, dashboards, admin panels and AI products with React, Next.js, TypeScript and Node.js.',
       url: SITE_URL,
       image: `${SITE_URL}my-profile.webp`,
       email: 'mailto:dev.zeeshanahmed@gmail.com',

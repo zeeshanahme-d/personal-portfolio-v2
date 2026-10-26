@@ -6,8 +6,8 @@ import { LETTERS } from './copy';
 export function HeroFacts() {
   return (
     <>
-      <Fact term="Role">Frontend Developer, 2.5 years in production</Fact>
-      <Fact term="Stack">React / Next.js / TypeScript</Fact>
+      <Fact term="Role">Full-Stack Developer, 2.5 years in production</Fact>
+      <Fact term="Stack">React / Next.js / TypeScript / Node.js</Fact>
       {/* On phones the letters carry no callouts, so the same index lives here. Screen readers get it here on
           every size (the callouts are hidden from them). */}
       <Fact term="Builds" className="md:sr-only">

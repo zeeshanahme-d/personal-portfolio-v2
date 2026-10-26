@@ -49,7 +49,7 @@ export function Hero({ contour, facts }: Props) {
           {/* Keyed by language: flipping replays the rise, now in Arabic letters. */}
           <h1 id="hero-name" key={lang} lang={lang} dir={dir} className={`${nameType(lang)} text-night dark:text-ink`}>
             <HeroName lang={lang} callouts />
-            <span className="sr-only"> Ahmed, frontend developer</span>
+            <span className="sr-only"> Ahmed, full-stack developer</span>
           </h1>
         </div>
 

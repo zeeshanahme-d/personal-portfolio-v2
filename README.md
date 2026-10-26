@@ -1,6 +1,6 @@
 # zeeshanahmed.dev
 
-Personal site of Zeeshan Ahmed, frontend developer.
+Personal site of Zeeshan Ahmed, full-stack developer.
 
 Next.js 16 (App Router, Cache Components, React Compiler), React 19, TypeScript and Tailwind CSS 4. One static page
 plus a custom 404. Fonts are self-hosted in `public/fonts`: Mona Sans for text, Besley for display sizes and a subset of

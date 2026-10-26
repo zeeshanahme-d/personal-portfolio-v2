@@ -21,7 +21,8 @@ export function Work() {
               Products used by real businesses.
             </h2>
             <p className="mt-5 max-w-md text-snow-2">
-              From enterprise asset management to pilgrim taxi bookings. On most of them, I was the only frontend developer.
+              From an AI thumbnail generator I built alone, front end to API, to enterprise asset management and pilgrim taxi
+              bookings. On most of the client work, I was the only frontend developer.
             </p>
           </div>
 
