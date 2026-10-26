@@ -19,7 +19,7 @@ export function Contact() {
           <div className="lg:col-span-7">
             {/* The page's one large headline after the hero: this is the ask. */}
             <h2 id="contact-title" className="max-w-[18ch] text-4xl font-semibold">
-              Need someone to own your front end?
+              Need someone to own the whole stack?
             </h2>
             <p className="mt-6 flex items-center gap-2.5 text-snow-2">
               <span className="live-dot" aria-hidden="true" />

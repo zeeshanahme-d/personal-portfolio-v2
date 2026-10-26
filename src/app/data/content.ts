@@ -3,12 +3,12 @@
 export const profile = {
   name: 'Zeeshan Ahmed',
   nameUrdu: 'ذیشان احمد',
-  role: 'Frontend developer',
+  role: 'Full-stack developer',
   timeZone: 'Asia/Karachi',
   email: 'dev.zeeshanahmed@gmail.com',
   resume: '/resume/Zeeshan_Ahmed_Resume.pdf',
   // What I'm looking for, in one line: shown at the top of the hero and in Contact.
-  status: 'Available now for frontend roles, remote or on-site',
+  status: 'Available now for full-stack and frontend roles, remote or on-site',
 };
 
 export const socials = [
@@ -58,8 +58,40 @@ export type CaseStudy = {
 /** Project screenshots in browser frames (a carousel where there are several). Set to false to hide them all. */
 export const showScreenshots = true;
 
-// Selected work, in page order: IR Solutions projects first, then XtecSoft.
+// Selected work, in page order: my own full-stack product first, then IR Solutions projects, then XtecSoft.
 export const cases: CaseStudy[] = [
+  {
+    name: 'Eyecatch AI',
+    kind: 'AI, full-stack',
+    context: 'Personal project, 2026',
+    summary:
+      'An AI thumbnail generator for YouTube, TikTok, Instagram, Facebook, X, Twitch and Vimeo. Describe the video, pick a format, style and colors, add a reference image if you have one, and Google Gemini makes the thumbnail.',
+    role: 'Sole developer, frontend and backend, development to deployment',
+    points: [
+      'Generator with 14 formats across 7 platforms, 16 categories, 5 styles and 8 color schemes, plus an Improve button that rewrites a rough idea into a prompt.',
+      'Credits can’t be overspent: one atomic MongoDB update charges them before Gemini is called, and a failed generation is refunded, by a scheduled job if the server crashes mid-way.',
+      'Auth in httpOnly cookies with rotating refresh tokens: reusing an old one signs that login out everywhere, and a password change ends every session.',
+      'Pro and Ultra plans and credit packs on Paddle (in test mode), with signed webhooks that never apply a retried or out-of-order event twice.',
+      'Gallery, a community feed with likes and a Trending sort, a YouTube feed preview, share links with image previews and a 30-day recycle bin.',
+      'Express 5 API in TypeScript with Zod validation, rate limits and uploads checked by their real bytes; the app on Vercel, the API on Oracle Cloud behind Nginx.',
+    ],
+    stack: ['React', 'TypeScript', 'TanStack Query', 'Zustand', 'Tailwind CSS', 'Node.js', 'Express', 'MongoDB', 'Google Gemini', 'Cloudinary', 'Paddle'],
+    url: 'eyecatch.zeeshanahmed.dev',
+    links: [
+      { label: 'Visit eyecatch.zeeshanahmed.dev', href: 'https://eyecatch.zeeshanahmed.dev' },
+      { label: 'Source code on GitHub', href: 'https://github.com/zeeshanahme-d/Ai-thumbnail-generator' },
+    ],
+    // Captured from the app running locally with sample data: the sample thumbnails in its repo, no real accounts.
+    images: [
+      { src: 'eyecatch-home', path: '', alt: 'Eyecatch AI home page: "Thumbnails that earn the click.", the prompt box with niche templates and what the generator offers.', width: 1600, height: 1000 },
+      { src: 'eyecatch-generate', path: 'dashboard/generate', alt: 'The generator with the Format & settings panel open: Instagram post, Reel and Story sizes, and the text-on-image switch.', width: 1600, height: 1000 },
+      { src: 'eyecatch-result', path: 'dashboard/generate', alt: 'A generated YouTube thumbnail with Download, Regenerate, Fullscreen, YouTube preview and Publish to community.', width: 1600, height: 1000 },
+      { src: 'eyecatch-gallery', path: 'dashboard/gallery', alt: 'My gallery: search, Trending, Newest and Most liked sorts, style filters and the thumbnail cards.', width: 1600, height: 1000 },
+      { src: 'eyecatch-community', path: 'community', alt: 'The public community page in dark mode, sorted by Trending, with a like count on each thumbnail.', width: 1600, height: 1000 },
+      { src: 'eyecatch-preview', path: 'youtube-style-preview', alt: 'YouTube preview: the thumbnail placed among other videos on a mock YouTube home feed.', width: 1600, height: 1000 },
+      { src: 'eyecatch-settings', path: 'dashboard/settings', alt: 'Settings: the Free plan, the Paddle test-mode note and the free credits used this cycle.', width: 1600, height: 1000 },
+    ],
+  },
   {
     name: 'Partner Portal',
     kind: 'CRM, real-time',
@@ -245,7 +277,7 @@ export const capabilities = [
   },
   {
     title: 'Built for production',
-    body: 'REST API integration, auth and onboarding, Stripe payments, and deployments I own end to end.',
+    body: 'REST APIs I build and integrate, auth and onboarding, Stripe and Paddle payments, and deployments I own end to end.',
   },
   {
     title: 'Fast by default',
@@ -261,10 +293,10 @@ export const capabilities = [
 export const skills = [
   { area: 'Languages & frameworks', note: 'Next.js for SSR and SSG', items: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'HTML5', 'CSS', 'Sass', 'Less'] },
   { area: 'State & data', note: 'Server state, client state, forms', items: ['TanStack Query', 'Redux Toolkit', 'Zustand', 'React Hook Form', 'Socket.io', 'REST APIs'] },
-  { area: 'UI & styling', note: 'Design systems and charts', items: ['Tailwind CSS', 'Ant Design', 'Material UI', 'shadcn/ui', 'Radix UI', 'Bootstrap', 'Framer Motion', 'Recharts'] },
+  { area: 'UI & styling', note: 'Design systems, charts, motion', items: ['Tailwind CSS', 'Ant Design', 'Material UI', 'shadcn/ui', 'Radix UI', 'Bootstrap', 'Framer Motion', 'GSAP', 'Recharts'] },
   { area: 'Testing & quality', note: 'Tests, linting, commit hooks', items: ['Jest', 'React Testing Library', 'ESLint', 'Prettier', 'Husky'] },
   { area: 'Tools & platforms', note: 'Build, auth, deploy', items: ['Git', 'GitHub', 'Vite', 'Vercel', 'Firebase', 'Clerk', 'Chrome DevTools', 'Figma'] },
-  { area: 'Backend', note: 'APIs and data', items: ['Node.js', 'Express', 'MongoDB'] },
+  { area: 'Backend', note: 'APIs, data and auth', items: ['Node.js', 'Express', 'MongoDB', 'Mongoose', 'Zod', 'JWT'] },
   { area: 'AI-assisted development', note: 'Debugging, refactoring, tests', items: ['Claude Code', 'Cursor', 'ChatGPT / Codex', 'GitHub Copilot', 'Google Antigravity'] },
 ];
 

@@ -23,9 +23,9 @@ export function About() {
 
         <div className="lg:col-span-8 xl:col-span-8 xl:col-start-5">
           <p className="max-w-[36ch] font-display text-2xl font-medium">
-            I’m Zeeshan Ahmed, a frontend developer in Islamabad. I trained as a full-stack web developer at Saylani in
-            Karachi, joined XtecSoft in 2024 to work on ioMoVo, then shipped 7+ production apps at IR Solutions, most of
-            them as the only frontend developer on the team.
+            I’m Zeeshan Ahmed, a full-stack developer in Islamabad, trained at Saylani in Karachi. I joined XtecSoft in
+            2024 to work on ioMoVo, then shipped 7+ production apps at IR Solutions, most of them as the only frontend
+            developer. I built Eyecatch AI alone, from the React app to the Node.js API.
           </p>
 
           <div className="mt-12 grid gap-x-10 border-t border-line md:grid-cols-2">
@@ -34,7 +34,8 @@ export function About() {
               <p className="mt-3 text-ink-2">
                 I like the hard, unglamorous parts of product work: permissions, data-heavy screens and layouts that have
                 to work right to left. I usually own the whole front end, from structure and state to API integration,
-                code review and deployment, working closely with designers and backend engineers.
+                code review and deployment, working closely with designers and backend engineers. On my own products I
+                build the backend too, with Node.js, Express and MongoDB.
               </p>
             </div>
             <div className="py-6">

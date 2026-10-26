@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     siteName: 'Zeeshan Ahmed',
     locale: 'en_US',
     url: SITE_URL,
-    title: 'Zeeshan Ahmed | Frontend Developer',
+    title: 'Zeeshan Ahmed | Full-Stack Developer',
     description:
-      'CRMs, dashboards and admin panels built with React, Next.js and TypeScript. Based in Islamabad, open to frontend roles.',
-    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Zeeshan Ahmed, Frontend Developer' }],
+      'CRMs, dashboards and AI products built with React, Next.js, TypeScript and Node.js. Based in Islamabad, open to full-stack and frontend roles.',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Zeeshan Ahmed, Full-Stack Developer' }],
     firstName: 'Zeeshan',
     lastName: 'Ahmed',
   },
