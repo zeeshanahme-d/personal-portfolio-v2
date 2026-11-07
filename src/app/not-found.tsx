@@ -29,7 +29,7 @@ const NOTES: Record<(typeof NAV)[number]['id'], string> = {
 export default function NotFound() {
   return (
     <main id="main" className="container-page grow py-20 md:py-28">
-      <div className="grid gap-x-10 gap-y-14 border-t border-line pt-8 lg:grid-cols-12">
+      <div className="grid grid-cols-1 gap-x-10 gap-y-14 border-t border-line pt-8 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <p className={label}>
             <span className="tabular-nums">404</span> / Not found

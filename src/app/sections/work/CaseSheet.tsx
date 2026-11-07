@@ -26,7 +26,7 @@ export function CaseSheet({ project, index }: { project: CaseStudy; index: numbe
         {project.name}
       </h3>
 
-      <div className="mt-10 grid gap-x-10 gap-y-10 lg:grid-cols-12">
+      <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-10 lg:grid-cols-12">
         <CaseVisual project={project} />
         <CaseTitleBlock project={project} />
         <CaseNotes points={project.points} />

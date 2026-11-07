@@ -284,6 +284,13 @@ html {
     --edge: 10vw;
     --callouts: 1.25rem;
   }
+
+  /* The Arabic name joins into one line, so it keeps a one-line box (and the outlines line up with it). */
+  .hero-stage:has(#hero-name:lang(ar)) {
+    --name: 36vw;
+    --name-h: calc(var(--name) * 0.8);
+    --cover: 0.4;
+  }
 }
 
 /* The hero foreground's top edge, a plotted line: the edge band, then solid (overlapping by 1px, so no seam). */

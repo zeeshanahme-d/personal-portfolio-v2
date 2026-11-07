@@ -14,7 +14,7 @@ export function Skills() {
   return (
     <section id="skills" aria-labelledby="skills-title" className="dark bg-night text-snow">
       <div className="container-page py-20 md:py-28">
-        <div className="grid gap-x-10 gap-y-6 border-t border-night-line pt-8 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-6 border-t border-night-line pt-8 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className={label}>
               <span className="tabular-nums">03</span> / Skills
@@ -29,7 +29,7 @@ export function Skills() {
           </p>
         </div>
 
-        <div className="mt-14 grid gap-x-10 gap-y-16 md:mt-20 lg:grid-cols-12">
+        <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-16 md:mt-20 lg:grid-cols-12">
           <ToolSchedule />
 
           <div className="lg:col-span-5 lg:col-start-8">

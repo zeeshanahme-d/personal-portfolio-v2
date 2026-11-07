@@ -18,7 +18,7 @@ export function About() {
         </h2>
       </div>
 
-      <div className="mt-14 grid gap-x-10 gap-y-12 md:mt-20 lg:grid-cols-12">
+      <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-12 md:mt-20 lg:grid-cols-12">
         <Portrait />
 
         <div className="lg:col-span-8 xl:col-span-8 xl:col-start-5">
@@ -28,7 +28,7 @@ export function About() {
             developer. I built Eyecatch AI alone, from the React app to the Node.js API.
           </p>
 
-          <div className="mt-12 grid gap-x-10 border-t border-line md:grid-cols-2">
+          <div className="mt-12 grid grid-cols-1 gap-x-10 border-t border-line md:grid-cols-2">
             <div className="border-b border-line py-6 md:border-b-0">
               <h3 className={label}>How I work</h3>
               <p className="mt-3 text-ink-2">
