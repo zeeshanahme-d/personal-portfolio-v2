@@ -65,7 +65,7 @@ export function Hero({ contour, facts }: Props) {
             </p>
           </div>
 
-          <div className="container-page grid gap-x-10 gap-y-12 pt-[calc(var(--overlap)+2.75rem)] pb-2 lg:grid-cols-12" dir={dir}>
+          <div className="container-page grid grid-cols-1 gap-x-10 gap-y-12 pt-[calc(var(--overlap)+2.75rem)] pb-2 lg:grid-cols-12" dir={dir}>
             {/* Keyed by language, so the introduction plays its entrance again in the new language. */}
             <HeroIntro key={lang} lang={lang} />
             {/* The hero's title block. Always left to right. */}

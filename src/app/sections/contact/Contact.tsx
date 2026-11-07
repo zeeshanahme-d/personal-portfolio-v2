@@ -15,7 +15,7 @@ export function Contact() {
           <span className="tabular-nums">05</span> / Contact
         </p>
 
-        <div className="mt-5 grid gap-x-10 gap-y-14 lg:grid-cols-12">
+        <div className="mt-5 grid grid-cols-1 gap-x-10 gap-y-14 lg:grid-cols-12">
           <div className="lg:col-span-7">
             {/* The page's one large headline after the hero: this is the ask. */}
             <h2 id="contact-title" className="max-w-[18ch] text-4xl font-semibold">

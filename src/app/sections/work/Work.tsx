@@ -12,7 +12,7 @@ export function Work() {
   return (
     <section id="work" aria-labelledby="work-title" className="dark bg-night text-snow">
       <div className="container-page py-20 md:py-28">
-        <div className="grid gap-x-10 gap-y-12 border-t border-night-line pt-8 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-12 border-t border-night-line pt-8 lg:grid-cols-12">
           <div className="lg:col-span-6">
             <p className={label}>
               <span className="tabular-nums">01</span> / Work
