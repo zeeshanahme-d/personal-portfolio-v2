@@ -1,6 +1,11 @@
 @import 'tailwindcss';
 @import './fonts.css';
 @import './variables.css';
+/*
+ * The palette: Margalla (green). The blue one is kept in palettes/tile-blue.css; to use it, import it here
+ * instead and set THEME_COLOR in data/site.ts to PAPER['tile-blue'].
+ */
+@import './palettes/margalla.css';
 @import './scrollbar.css';
 
 /* dark: follows the theme toggle (<html data-theme>), not the OS setting. */
@@ -8,11 +13,6 @@
 
 html {
   background-color: var(--color-paper);
-}
-
-/* The few places that hard-code a light-theme colour. */
-[data-theme='dark'] ::selection {
-  color: var(--color-night);
 }
 
 @media (hover: hover) {
@@ -53,7 +53,7 @@ html {
 
   ::selection {
     background: var(--color-accent);
-    color: #fff;
+    color: var(--color-paper);
   }
 
   :focus-visible {
@@ -117,9 +117,9 @@ html {
     color: var(--color-ink);
   }
 
-  /* On pine, the main ask is marigold. */
+  /* On the coloured sections the main ask is the page colour; it turns to the bright accent on hover. */
   .dark .btn-solid {
-    background: var(--color-accent-bright);
+    background: var(--color-snow);
     color: var(--color-night);
   }
 
@@ -215,7 +215,22 @@ html {
     width: 0.5rem;
     height: 0.5rem;
     border-radius: 999px;
-    background: var(--color-accent-bright);
+    background: var(--color-live);
+  }
+
+  /* Work: the project list beside the story (from lg). The project in view is marked by a bar in the bright
+     accent (and aria-current, so not by colour alone). */
+  .project-tab {
+    display: block;
+    padding: 0.75rem 0 0.75rem 1.25rem;
+    border-inline-start: 2px solid var(--color-night-line);
+    color: var(--color-snow-3);
+    transition: border-color var(--dur-base) ease, color var(--dur-base) ease;
+  }
+
+  .project-tab[aria-current] {
+    border-color: var(--color-accent-bright);
+    color: var(--color-snow);
   }
 
   /* Nav: an accent underline grows from the left on hover and marks the current section. */
@@ -241,18 +256,33 @@ html {
   }
 }
 
-/* Arabic: Plex Arabic for the letters, Mona Sans for Latin words inside (CRM, React). Arabic letters join,
+/* Arabic: Plex Arabic for the letters, Plex Sans for Latin words inside (CRM, React). Arabic letters join,
    so no negative tracking, and they need taller lines than Latin. */
 [lang='ar'] {
   font-family: 'IBM Plex Sans Arabic', var(--font-sans);
   letter-spacing: 0;
 }
 
-/* Display sizes are set in Besley; everything smaller stays in Mona Sans. */
+/* Display sizes and the hero name are set in Anybody, a little expanded (the hero name more); everything smaller
+   stays in Plex Sans. After the [lang='ar'] rule on purpose: the Arabic hero name is a lang="ar" element and must keep
+   the display stack (Kufam draws its Arabic; it has no width axis, so the stretch leaves it alone). */
 .text-3xl,
 .text-4xl,
-.text-5xl {
+.text-5xl,
+.hero-name,
+.font-display {
   font-family: var(--font-display);
+  font-stretch: 112.5%;
+}
+
+.hero-name {
+  font-stretch: 125%;
+}
+
+/* The part of the hero name the foreground covers, as outlines. */
+.hero-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.25px color-mix(in srgb, var(--color-snow) 50%, transparent);
 }
 
 /* The display sizes' negative tracking and tight leading are for Latin; joined Arabic letters need neither. */
@@ -262,34 +292,43 @@ html {
 }
 
 /*
- * Hero geometry (sections/hero), in vw so the composition holds at every width. --name is the type size, --name-h
+ * Hero geometry (sections/hero), in vw so the composition holds at every width. --name is the type size, --name-lh
+ * its line height (0.8 puts Anybody's cap line exactly at the top of the box, where the callouts hang), --name-h
  * the height of its line boxes (one line on wide screens, ZEE / SHAN on phones), --cover how much of that height the
  * foreground hides, --edge the depth of the foreground's plotted top edge, --callouts the room above the name, and
  * --overlap how far the foreground rides up over it.
  */
 .hero-stage {
-  --name: 21vw;
-  --name-h: calc(var(--name) * 0.8);
-  --cover: 0.4;
+  --name: 16.2vw;
+  --name-lh: 0.8;
+  --name-h: calc(var(--name) * var(--name-lh));
+  --cover: 0.52;
   --edge: 6vw;
   --callouts: 3.5rem;
   --overlap: calc(var(--cover) * var(--name-h) + var(--edge) / 2);
 }
 
+/* Arabic letters rise above and hang below the Latin caps, so the Arabic name gets a taller line box. */
+.hero-stage:has(#hero-name:lang(ar)) {
+  --name: 20.8vw;
+  --name-lh: 1.3;
+  --cover: 0.45;
+}
+
 @media (max-width: 47.99rem) {
   .hero-stage {
-    --name: 31vw;
-    --name-h: calc(var(--name) * 1.6);
-    --cover: 0.24;
+    --name: 24vw;
+    --name-h: calc(var(--name) * var(--name-lh) * 2);
+    --cover: 0.27;
     --edge: 10vw;
     --callouts: 1.25rem;
   }
 
   /* The Arabic name joins into one line, so it keeps a one-line box (and the outlines line up with it). */
   .hero-stage:has(#hero-name:lang(ar)) {
-    --name: 36vw;
-    --name-h: calc(var(--name) * 0.8);
-    --cover: 0.4;
+    --name: 30vw;
+    --name-h: calc(var(--name) * var(--name-lh));
+    --cover: 0.45;
   }
 }
 
@@ -338,8 +377,13 @@ html {
   }
 
   .dark .btn-solid:hover {
-    background: var(--color-snow);
+    background: var(--color-accent-bright);
     color: var(--color-night);
+  }
+
+  .project-tab:not([aria-current]):hover {
+    border-color: var(--color-snow-3);
+    color: var(--color-snow);
   }
 
   .btn-line:hover {
@@ -483,17 +527,6 @@ html {
   }
 }
 
-/*
- * Work: each project name arrives as hidden-line outlines (as the covered part of the hero's name is drawn) and
- * fills in solid, left to right, as its sheet scrolls into view. Browsers without view timelines, and reduced
- * motion, just show it solid.
- */
-@keyframes fill-in {
-  from {
-    background-size: 0% 100%;
-  }
-}
-
 /* Experience: the dimension lines are drafted one after another, oldest first, as the drawing scrolls up. */
 @keyframes dim-draw {
   from {
@@ -520,21 +553,6 @@ html {
 
     .dim-label {
       animation-name: fade;
-    }
-  }
-}
-
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .sheet-name {
-      color: transparent;
-      -webkit-text-stroke: 1px rgb(238 240 234 / 0.45);
-      background: linear-gradient(var(--color-snow) 0 0) no-repeat 0 0 / 100% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: fill-in linear both;
-      animation-timeline: view();
-      animation-range: entry 15% cover 45%;
     }
   }
 }
@@ -569,11 +587,11 @@ html {
 
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgb(242 169 59 / 0.55);
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--color-live) 55%, transparent);
   }
   70%,
   100% {
-    box-shadow: 0 0 0 6px rgb(242 169 59 / 0);
+    box-shadow: 0 0 0 6px transparent;
   }
 }
 
