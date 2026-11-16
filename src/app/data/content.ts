@@ -31,6 +31,8 @@ export type Screenshot = {
    * No leading slash, so the page carries no "/leads"-style strings, which Googlebot tries (and 404s) as URLs.
    */
   path?: string;
+  /** Domain for this screen alone, when it differs from the project's (Stampy: the public site among private portals). */
+  url?: string;
 };
 
 /** About photo (an 800px WebP). null shows a placeholder: drop a 4:5 photo in public/ and set it here. */
@@ -65,10 +67,10 @@ export const cases: CaseStudy[] = [
     kind: 'AI, full-stack',
     context: 'Personal project, 2026',
     summary:
-      'An AI thumbnail generator for YouTube, TikTok, Instagram, Facebook, X, Twitch and Vimeo. Describe the video, pick a format, style and colors, add a reference image if you have one, and Google Gemini makes the thumbnail.',
+      'An AI thumbnail generator for YouTube, TikTok, Instagram, Facebook, X, Twitch and Vimeo. Describe the video, pick a format, style and colours, add a reference image if you have one, and Google Gemini makes the thumbnail.',
     role: 'Sole developer, frontend and backend, development to deployment',
     points: [
-      'Generator with 14 formats across 7 platforms, 16 categories, 5 styles and 8 color schemes, plus an Improve button that rewrites a rough idea into a prompt.',
+      'Generator with 14 formats across 7 platforms, 16 categories, 5 styles and 8 colour schemes, plus an Improve button that rewrites a rough idea into a prompt.',
       'Credits can’t be overspent: one atomic MongoDB update charges them before Gemini is called, and a failed generation is refunded, by a scheduled job if the server crashes mid-way.',
       'Auth in httpOnly cookies with rotating refresh tokens: reusing an old one signs that login out everywhere, and a password change ends every session.',
       'Pro and Ultra plans and credit packs on Paddle (in test mode), with signed webhooks that never apply a retried or out-of-order event twice.',
@@ -137,6 +139,17 @@ export const cases: CaseStudy[] = [
     stack: ['React', 'TypeScript', 'TanStack Query', 'Zustand', 'Ant Design', 'Tailwind CSS', 'Stripe', 'Google Maps'],
     // The portals are private; the only public link is the product site, which I didn't build.
     links: [{ label: 'stampyapp.me (product site)', href: 'https://stampyapp.me' }],
+    // The portals run on their demo data; any email or phone number in the captures is blurred.
+    images: [
+      { src: 'stampy-site', url: 'stampyapp.me', path: '', alt: 'The Stampy product site: an AI-powered digital loyalty app that turns first-time visitors into loyal customers.', width: 1600, height: 1000 },
+      { src: 'stampy-site-how', url: 'stampyapp.me', path: '', alt: 'How Stampy works at the counter: scan the QR code, earn stamps, get rewards.', width: 1600, height: 1000 },
+      { src: 'stampy-owner-dashboard', path: 'dashboard', alt: 'Business Owner Portal dashboard: branches, stamps, rewards, redemption rate and redemptions by branch.', width: 1600, height: 1000 },
+      { src: 'stampy-owner-branches', path: 'branches', alt: 'Business Owner Portal branches: every location with its address, assigned manager and status.', width: 1600, height: 1000 },
+      { src: 'stampy-owner-campaigns', path: 'campaigns', alt: 'Business Owner Portal campaigns: stamp campaigns per product and branch, with pause and end controls.', width: 1600, height: 1000 },
+      { src: 'stampy-manager-dashboard', path: 'dashboard', alt: 'Branch Manager Portal dashboard: stamps issued, rewards, active customers and the top products by stamps.', width: 1600, height: 1000 },
+      { src: 'stampy-manager-customers', path: 'customers', alt: 'Branch Manager Portal customers: stamp balance, lifetime stamps and rewards available per customer.', width: 1600, height: 1000 },
+      { src: 'stampy-manager-rewards', path: 'rewards', alt: 'Branch Manager Portal rewards: the stamps each free product costs.', width: 1600, height: 1000 },
+    ],
   },
   {
     name: 'Scalezy Admin Panel',
