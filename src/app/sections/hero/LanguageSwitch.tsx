@@ -4,7 +4,7 @@ const langButton =
   'relative text-snow-2 underline-offset-[0.4em] transition-colors duration-(--dur-quick) hover:text-snow aria-pressed:text-snow aria-pressed:underline aria-pressed:decoration-accent-bright aria-pressed:decoration-1 after:absolute after:-inset-x-2 after:-inset-y-3';
 
 // Fetch the bold Arabic weight before the click, so the flip doesn't flash the fallback font.
-const warm = () => void document.fonts?.load('600 1em "IBM Plex Sans Arabic"', 'ع');
+const warm = () => void document.fonts?.load('800 1em "Kufam"', 'ع');
 
 /** EN / العربية: flips the hero's name and introduction between English and Arabic. */
 export function LanguageSwitch({ lang, onChange }: { lang: Lang; onChange: (lang: Lang) => void }) {

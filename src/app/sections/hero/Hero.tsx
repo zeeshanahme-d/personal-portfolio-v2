@@ -17,8 +17,8 @@ type Props = {
 
 /**
  * The interface is built around the name. Four planes, each with its own scroll rate (styles/globals.css, "Hero"):
- * the limestone page, the giant name, a survey contour behind it, and the pine foreground rising in front.
- * Where the foreground covers the name, the letters carry on as cream outlines, like hidden lines in a
+ * the page, the giant name, a survey contour behind it, and the coloured foreground rising in front.
+ * Where the foreground covers the name, the letters carry on as outlines, like hidden lines in a
  * technical drawing; as you scroll the name sinks and the foreground rises, so more of it turns to outline.
  * A client component: the language switch re-renders the name, the status and the introduction together.
  * The parts that never change with the language come in as server-rendered props.
@@ -28,13 +28,13 @@ export function Hero({ contour, facts }: Props) {
   const dir = lang === 'ar' ? 'rtl' : 'ltr';
 
   return (
-    // The pine strip at the bottom sits under the foreground, so its parallax lift never opens a gap above Work.
+    // The strip of foreground colour at the bottom sits under the foreground, so its parallax lift never opens a gap above Work.
     <section
       id="top"
       aria-labelledby="hero-name"
       className="overflow-x-clip pt-20 bg-[linear-gradient(to_top,var(--color-night)_3rem,transparent_3rem)]"
     >
-      <div className="container-page flex justify-between gap-6 text-xs/[1.6] tracking-[0.06em] text-ink-2 uppercase" dir={dir}>
+      <div className="container-page flex justify-between gap-6 text-sm text-ink-2" dir={dir}>
         <p key={lang} lang={lang} className="enter flex items-center gap-2.5" style={delay(900)}>
           <span className="live-dot" aria-hidden="true" />
           {heroCopy[lang].status}
@@ -60,7 +60,7 @@ export function Hero({ contour, facts }: Props) {
             className="hero-xray-plane pointer-events-none absolute inset-x-0 top-[calc(var(--overlap)-var(--name-h))] h-(--name-h) overflow-hidden"
             aria-hidden="true"
           >
-            <p key={lang} lang={lang} dir={dir} className={`${nameType(lang)} text-transparent [-webkit-text-stroke:1.25px_rgb(238_240_234/0.5)]`}>
+            <p key={lang} lang={lang} dir={dir} className={`${nameType(lang)} hero-outline`}>
               <HeroName lang={lang} />
             </p>
           </div>

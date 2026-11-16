@@ -3,16 +3,12 @@ import { profile } from '@/app/data/content';
 /** The hero's words in both languages; the language switch flips between them. */
 export const heroCopy = {
   en: {
-    status: profile.status,
-    role: 'Full-Stack Developer',
-    title: 'I build the interfaces businesses actually run on.',
+    status: profile.status,    title: 'I build the interfaces businesses actually run on.',
     lede: 'CRMs, dashboards, admin systems and AI products, built with React, Next.js, TypeScript and Node.js.',
     cta: 'Selected work',
   },
   ar: {
-    status: 'متاح الآن لوظائف التطوير المتكامل والواجهات الأمامية، عن بُعد أو في المكتب',
-    role: 'مطوّر ويب متكامل',
-    title: 'أبني واجهات الويب التي تُدار بها الأعمال.',
+    status: 'متاح الآن لوظائف التطوير المتكامل والواجهات الأمامية، عن بُعد أو في المكتب',    title: 'أبني واجهات الويب التي تُدار بها الأعمال.',
     lede: 'أنظمة CRM ولوحات معلومات وأنظمة إدارة ومنتجات ذكاء اصطناعي، باستخدام React وNext.js وTypeScript وNode.js.',
     cta: 'أعمال مختارة',
   },
