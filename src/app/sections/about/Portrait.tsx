@@ -2,7 +2,7 @@ import { ImageIcon } from 'lucide-react';
 import { portrait } from '@/app/data/content';
 import { label } from '@/app/lib/styles';
 
-/** The portrait as a figure plate with crop marks (Fig. 04.1); a placeholder until a photo is set in data/content.ts. */
+/** The portrait as a figure plate with crop marks; a placeholder until a photo is set in data/content.ts. */
 export function Portrait() {
   return (
     <figure className="w-full max-w-80 lg:col-span-4 xl:col-span-3">
@@ -24,7 +24,7 @@ export function Portrait() {
           </div>
         )}
       </div>
-      <figcaption className={`${label} mt-3`}>Fig. 04.1 / Zeeshan Ahmed, Islamabad</figcaption>
+      <figcaption className={`${label} mt-3`}>Zeeshan Ahmed, Islamabad</figcaption>
     </figure>
   );
 }

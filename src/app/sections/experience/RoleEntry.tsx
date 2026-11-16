@@ -2,20 +2,18 @@ import { Notes } from '@/app/components/drawing/Notes';
 import { Period } from '@/app/components/ui/Period';
 import { Tool } from '@/app/components/ui/Tool';
 import type { Role } from '@/app/data/content';
-import { twoDigits } from '@/app/lib/format';
 import { formatMonths, parsePeriod } from '@/app/lib/period';
-import { label, wideCaps } from '@/app/lib/styles';
+import { label } from '@/app/lib/styles';
 import { entryBox } from './styles';
 
-/** One role, E-01, E-02…: the company in wide caps beside the summary, the numbered notes and the stack. */
+/** One role: the company beside the summary, the notes and the stack. */
 export function RoleEntry({ role, index }: { role: Role; index: number }) {
   const { start, end } = parsePeriod(role.period);
   return (
     <li id={`e-${index + 1}`} className={`${entryBox} gap-y-8`}>
       {/* Stays in view while the notes scroll past on wide screens. */}
       <div className="lg:sticky lg:top-24 lg:col-span-4 lg:self-start">
-        <p className={`${label} tabular-nums`}>E-{twoDigits(index + 1)}</p>
-        <h3 className={`${wideCaps} mt-4 text-[clamp(2rem,4vw,3.25rem)] leading-[0.95]`}>{role.company}</h3>
+        <h3 className="text-3xl font-bold">{role.company}</h3>
         <p className="mt-4 font-medium">{role.title}</p>
         <p className="text-sm text-ink-2">
           <Period period={role.period} />
