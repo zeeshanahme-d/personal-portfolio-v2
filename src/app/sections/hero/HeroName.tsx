@@ -3,7 +3,7 @@ import { LETTERS, type Lang } from './copy';
 
 /** The giant name's type: Anybody at 800, expanded caps in English; Kufam's Arabic in Arabic. */
 export const nameType = (lang: Lang) =>
-  `hero-name ms-[-0.03em] text-(length:--name) leading-(--name-lh) font-extrabold whitespace-nowrap ${lang === 'ar' ? '' : 'uppercase'}`;
+  `hero-name text-(length:--name) leading-(--name-lh) font-extrabold whitespace-nowrap ${lang === 'ar' ? '' : 'uppercase'}`;
 
 /**
  * The name, letter by letter (ZEE / SHAN on phones). Arabic letters join, so the Arabic name stays one run.
@@ -24,9 +24,8 @@ export function HeroName({ lang, callouts }: { lang: Lang; callouts?: boolean })
           aria-hidden="true"
           data-kind={kind}
           style={stagger(i)}
-          className={`callout absolute bottom-[calc(100%+0.5rem)] max-w-[calc(var(--name)*0.55)] pb-3.5 font-sans text-(length:--text-xs) leading-[1.3] font-medium tracking-normal normal-case whitespace-normal text-ink-2 max-md:hidden after:content-[attr(data-kind)] ${
-            i === 0 ? 'left-[calc(var(--name)*0.03+clamp(1.25rem,4vw,2.5rem))]' : 'left-[0.1rem]'
-          }`}
+          className={`callout absolute bottom-[calc(100%+0.5rem)] max-w-[calc(var(--name)*0.55)] pb-3.5 font-sans text-(length:--text-xs) leading-[1.3] font-medium tracking-normal normal-case whitespace-normal text-ink-2 max-md:hidden after:content-[attr(data-kind)] ${i === 0 ? 'left-[calc(var(--name)*0.03+clamp(1.25rem,4vw,2.5rem))]' : 'left-[0.1rem]'
+            }`}
         >
           <span className="absolute bottom-0 left-0 h-2 w-px bg-current opacity-60" />
         </span>
