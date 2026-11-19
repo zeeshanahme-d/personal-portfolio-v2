@@ -8,4 +8,9 @@ export const SITE_DESCRIPTION =
   'Zeeshan Ahmed, full-stack developer in Islamabad, Pakistan. CRMs, dashboards and AI apps with React, Next.js and Node.js. Open to full-stack and frontend roles.';
 
 // The browser bar colour of each theme (the page colour, --color-paper). lib/theme.ts switches between them.
-export const THEME_COLOR = { light: '#eef0ea', dark: '#0b1712' } as const;
+// It must equal --color-paper of the palette imported in styles/globals.css.
+const PAPER = {
+  'tile-blue': { light: '#f3f4ef', dark: '#0c1238' },
+  margalla: { light: '#eef0ea', dark: '#0b1712' },
+} as const;
+export const THEME_COLOR = PAPER.margalla;

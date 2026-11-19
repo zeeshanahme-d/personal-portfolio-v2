@@ -1,0 +1,35 @@
+/*
+ * Margalla: the hills over Islamabad. Limestone sky, pine ridge, marigold for the few things that should catch
+ * the eye. The site's first palette, kept so it can be switched back on: see the palette import in globals.css.
+ */
+@theme {
+  --color-paper: #eef0ea;
+  --color-surface: #f7f8f4;
+  --color-ink: #0f231a;
+  --color-ink-2: #4a5a50;
+  --color-ink-3: #5f6e64;
+  --color-line: #d5dacf;
+
+  /* Pine sections (hero foreground, work, contact, footer) */
+  --color-night: #12372a;
+  --color-night-2: #0e2d22;
+  --color-night-line: #2a4d3f;
+  --color-snow: #eef0ea;
+  --color-snow-2: #b5c2b9;
+  --color-snow-3: #93a598;
+
+  /* Marigold is too light for text on limestone, so light sections use its deep ochre (5.2:1). */
+  --color-accent: #8f5600;
+  --color-accent-bright: #f2a93b;
+  --color-live: #f2a93b;
+}
+
+:root[data-theme='dark'] {
+  --color-paper: #0b1712;
+  --color-surface: #12211a;
+  --color-ink: #e8ece4;
+  --color-ink-2: #a9b6ac;
+  --color-ink-3: #8c9a90;
+  --color-line: #213229;
+  --color-accent: #f2a93b;
+}

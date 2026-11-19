@@ -1,25 +1,21 @@
 import { ArrowDown } from 'lucide-react';
 import { delay } from '@/app/lib/motion';
-import { label } from '@/app/lib/styles';
 import { heroCopy, type Lang } from './copy';
 
-/** The statement in the pine under the name: role, headline, lede and the way into the work. */
+/** The statement in the foreground under the name: headline, lede and the way into the work. */
 export function HeroIntro({ lang }: { lang: Lang }) {
   const t = heroCopy[lang];
   return (
     <div lang={lang} className="lg:col-span-7">
-      <p className={`enter ${label}`} style={delay(700)}>
-        <span className="tabular-nums">00</span> / {t.role}
-      </p>
-      {/* No entrance: the headline is the page's Largest Contentful Paint, and fading it in at 780ms held LCP back. */}
-      <p className="mt-5 max-w-[20ch] text-3xl font-semibold text-snow">{t.title}</p>
+      {/* No entrance: the headline is the page's Largest Contentful Paint, and fading it in held LCP back. */}
+      <p className="max-w-[20ch] text-3xl font-semibold text-snow">{t.title}</p>
       <p className="enter mt-5 max-w-120 text-snow-2" style={delay(860)}>
         {t.lede}
       </p>
-      {/* Editorial navigation, not a button: label, rule, arrow. The marigold arrow is the hero's one accent. */}
+      {/* Editorial navigation, not a button: label, rule, arrow. The bright arrow is the hero's one accent. */}
       <a
         href="#work"
-        className="enter group mt-9 inline-flex items-center gap-3.5 py-3 text-(length:--text-xs) font-semibold tracking-widest text-snow uppercase transition-transform duration-(--dur-base) ease-out hover:translate-x-[3px]"
+        className="enter group mt-9 inline-flex items-center gap-3.5 py-3 text-(length:--text-sm) font-semibold text-snow transition-transform duration-(--dur-base) ease-out hover:translate-x-[3px]"
         style={delay(940)}
       >
         {t.cta}

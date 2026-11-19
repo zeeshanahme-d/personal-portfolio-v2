@@ -7,8 +7,8 @@ import { useReveal } from '@/app/hooks/useReveal';
 type Props = {
   /** The project's name, for the carousel's label. */
   name: string;
-  /** Domain for the address bar. Private apps have none: the bar shows a lock and the page path. */
-  url?: string;
+  /** Each screen's domain for the address bar, in the same order. Private apps have none: the bar shows a lock and the page path. */
+  urls: (string | undefined)[];
   /** The screenshots (<Screenshot>), rendered on the server: only the frame's state and controls need the browser. */
   screens: ReactNode[];
   /** Each screen's page path for the address bar, in the same order (Screenshot data's `path`). */
@@ -20,11 +20,12 @@ type Props = {
  * carousel: back/forward buttons in the frame bar, the address follows the page, and the track is a
  * native scroll-snap strip, so swipe, trackpad and arrow keys all work without extra code.
  */
-export function ScreenshotFrame({ name, url, screens, paths }: Props) {
+export function ScreenshotFrame({ name, urls, screens, paths }: Props) {
   const frame = useRef<HTMLDivElement>(null);
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const many = screens.length > 1;
+  const url = urls[index];
   const path = paths[index];
   useReveal(frame);
 
@@ -56,7 +57,7 @@ export function ScreenshotFrame({ name, url, screens, paths }: Props) {
             </button>
           </span>
         )}
-        <span aria-hidden="true" className="ml-2 flex min-w-0 flex-1 items-center gap-1.5 font-mono text-xs text-snow-3">
+        <span aria-hidden="true" className="ml-2 flex min-w-0 flex-1 items-center gap-1.5 text-xs text-snow-3">
           {!url && <Lock className="size-3 shrink-0" />}
           <span className="truncate">
             {url}

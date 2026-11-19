@@ -11,7 +11,7 @@ export function CareerDrawing() {
   return (
     <figure className="dims mt-14 md:mt-20">
       <figcaption className={label}>
-        Fig. 02.1 / To scale, {careerYears[0]}–{careerYears[careerYears.length - 1]}
+        To scale, {careerYears[0]}–{careerYears[careerYears.length - 1]}
       </figcaption>
       {/* column-reverse: oldest at the bottom, so the drawing climbs, while the list still reads oldest first. */}
       <ol className="mt-8 flex flex-col-reverse gap-3">

@@ -1,0 +1,38 @@
+/*
+ * Tile blue: the glazed tilework of Sindh and Multan. Chalk walls, cobalt glaze, feroza (turquoise) for links and
+ * active states, one saffron dot for "available now". The token names (paper, night, snow) are shared with the
+ * other palette (margalla.css); every text pair below passes 4.5:1.
+ */
+@theme {
+  --color-paper: #f3f4ef;
+  --color-surface: #fbfbf8;
+  --color-ink: #10163a;
+  --color-ink-2: #474d6e;
+  --color-ink-3: #5c6285;
+  --color-line: #d6d9e0;
+
+  /* Cobalt sections (hero foreground, work, contact, footer) */
+  --color-night: #1e2f97;
+  --color-night-2: #172579;
+  --color-night-line: #3d4db3;
+  --color-snow: #f3f4ef;
+  --color-snow-2: #c8cef3;
+  --color-snow-3: #a7b0ea;
+
+  /* Bright feroza is too light for text on chalk, so light sections use its deep tone (5.4:1). */
+  --color-accent: #0b6f6a;
+  --color-accent-bright: #4fd1c5;
+  /* Saffron: the "available now" dot. Never text on chalk (1.8:1). */
+  --color-live: #e9b13b;
+}
+
+/* Dark: the same tiles at night. The cobalt sections keep their colour and now sit lighter than the page. */
+:root[data-theme='dark'] {
+  --color-paper: #0c1238;
+  --color-surface: #131a4a;
+  --color-ink: #e9ebf5;
+  --color-ink-2: #abb2d6;
+  --color-ink-3: #8d95c0;
+  --color-line: #232b5e;
+  --color-accent: #4fd1c5;
+}

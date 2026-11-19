@@ -1,14 +1,13 @@
 import { Notes } from '@/app/components/drawing/Notes';
 import { Period } from '@/app/components/ui/Period';
 import { education } from '@/app/data/content';
-import { label } from '@/app/lib/styles';
 import { entryBox } from './styles';
 
 /** Education, as the last entry: a ruled list of courses. */
 export function EducationEntry() {
   return (
     <li id="education" className={`${entryBox} gap-y-6`}>
-      <h3 className={`${label} lg:col-span-4`}>Education</h3>
+      <h3 className="text-3xl font-bold lg:col-span-4">Education</h3>
       {/* flush: the entry's rule is already right above it. */}
       <Notes
         flush

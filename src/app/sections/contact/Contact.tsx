@@ -1,21 +1,16 @@
 import { profile } from '@/app/data/content';
-import { label } from '@/app/lib/styles';
 import { ContactDetails } from './ContactDetails';
 import { CopyEmail } from './CopyEmail';
 
 /**
- * The close of the page, as the set's last sheet: the one ask on the left (headline, what I'm looking for, the email
- * and two ways to send it), a title block of the other ways to reach me on the right. SiteFooter continues the pine.
+ * The close of the page: the one ask on the left (headline, what I'm looking for, the email and two ways to send
+ * it), the other ways to reach me on the right. SiteFooter continues the colour.
  */
 export function Contact() {
   return (
     <section id="contact" aria-labelledby="contact-title" className="dark bg-night text-snow">
       <div className="container-page py-20 md:py-28">
-        <p className={`${label} border-t border-night-line pt-8`}>
-          <span className="tabular-nums">05</span> / Contact
-        </p>
-
-        <div className="mt-5 grid grid-cols-1 gap-x-10 gap-y-14 lg:grid-cols-12">
+        <div className="grid grid-cols-1 gap-x-10 gap-y-14 border-t border-night-line pt-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
             {/* The page's one large headline after the hero: this is the ask. */}
             <h2 id="contact-title" className="max-w-[18ch] text-4xl font-semibold">

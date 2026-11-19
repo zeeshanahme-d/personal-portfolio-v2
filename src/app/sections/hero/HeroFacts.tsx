@@ -1,21 +1,18 @@
 import { Fact } from '@/app/components/drawing/Fact';
-import { twoDigits } from '@/app/lib/format';
 import { LETTERS } from './copy';
 
-/** The fixed rows of the hero's title block: role, stack and the index of builds. Hero adds the language switch. */
+/** The fixed rows of the hero's facts: role, stack and the kinds of builds. Hero adds the language switch. */
 export function HeroFacts() {
   return (
     <>
-      <Fact term="Role">Full-Stack Developer, 2.5 years in production</Fact>
-      <Fact term="Stack">React / Next.js / TypeScript / Node.js</Fact>
-      {/* On phones the letters carry no callouts, so the same index lives here. Screen readers get it here on
+      <Fact term="Role">Full-stack developer, 2.5 years in production</Fact>
+      <Fact term="Stack">React, Next.js, TypeScript, Node.js</Fact>
+      {/* On phones the letters carry no callouts, so the same list lives here. Screen readers get it here on
           every size (the callouts are hidden from them). */}
       <Fact term="Builds" className="md:sr-only">
-        <ul className="grid gap-1 text-(length:--text-xs) tracking-[0.06em] uppercase">
-          {LETTERS.map(([, kind], i) => (
-            <li key={kind}>
-              <span className="text-snow-3 tabular-nums">{twoDigits(i + 1)}</span> {kind}
-            </li>
+        <ul className="grid gap-1">
+          {LETTERS.map(([, kind]) => (
+            <li key={kind}>{kind}</li>
           ))}
         </ul>
       </Fact>

@@ -29,8 +29,8 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {/* The text and headline fonts (styles/fonts.css), preloaded so neither paints in a fallback face first.
             Plain links: ReactDOM.preload in a Server Component only reaches the browser after hydration. */}
-        <link rel="preload" href="/fonts/mona-sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/besley.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/plex-sans.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/anybody.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       {/* A full-height column, so a short page (the 404) still ends on the footer, not on a band of page colour. */}
       <body className="flex min-h-svh flex-col">
